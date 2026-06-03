@@ -291,6 +291,42 @@
     }
     
     feed.innerHTML = html;
+    // Lazy load images
+    setTimeout(function() {
+      var items = feed.querySelectorAll('.ah-item');
+      var idx = 0;
+      function loadNext() {
+        if (idx >= items.length) return;
+        var el = items[idx];
+        idx++;
+        var link = el.querySelector('.ah-title');
+        if (link && link.href) {
+          var imgReq = new XMLHttpRequest();
+          imgReq.open('GET', '/api/og?url=' + encodeURIComponent(link.href), true);
+          imgReq.onload = function() {
+            if (imgReq.status === 200) {
+              try {
+                var imgData = JSON.parse(imgReq.responseText);
+                if (imgData.image) {
+                  el.classList.add('ah-has-img');
+                  var imgEl = document.createElement('img');
+                  imgEl.className = 'ah-img';
+                  imgEl.src = imgData.image;
+                  imgEl.onerror = function() { el.classList.remove('ah-has-img'); };
+                  el.insertBefore(imgEl, el.querySelector('.ah-body'));
+                }
+              } catch(e) {}
+            }
+            setTimeout(loadNext, 200);
+          };
+          imgReq.onerror = function() { setTimeout(loadNext, 200); };
+          imgReq.send();
+        } else {
+          setTimeout(loadNext, 100);
+        }
+      }
+      setTimeout(loadNext, 500);
+    }, 100);
   }
   
   // Tab click handlers

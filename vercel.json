@@ -2,6 +2,9 @@
   "functions": {
     "api/news.js": {
       "maxDuration": 10
+    },
+    "api/og.js": {
+      "maxDuration": 15
     }
   }
 }

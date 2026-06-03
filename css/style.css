@@ -642,6 +642,16 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   background: var(--surface2);
   color: var(--text-muted);
 }
+.ah-has-img .ah-time { align-self: flex-start; margin-top: 6px; }
+.ah-img {
+  width: 56px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--surface2);
+  margin-top: 2px;
+}
 
 /* ===== Footer ===== */
 footer {

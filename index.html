@@ -159,126 +159,153 @@
     </div>
   </div>
 
-  <!-- AI News Feed - aihot style -->
+  <!-- AI 热点 - aihot 风格 -->
   <div class="section-title">
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div class="aihot-feed" id="news-feed">
-    <div class="aihot-loading">
-      <div class="aihot-loader"></div>
-      <span>正在加载 AI 热点...</span>
+  <div id="aihot-wrap">
+    <div class="aihot-bar">
+      <span class="aihot-bar-title">精选</span>
+      <span class="aihot-bar-sub">AI 自动挑选的高价值内容</span>
+    </div>
+    <div class="aihot-tabs">
+      <a href="#" class="aihot-tab active" data-cat="">全部</a>
+      <a href="#" class="aihot-tab" data-cat="ai-models">模型</a>
+      <a href="#" class="aihot-tab" data-cat="ai-products">产品</a>
+      <a href="#" class="aihot-tab" data-cat="industry">行业</a>
+      <a href="#" class="aihot-tab" data-cat="paper">论文</a>
+      <a href="#" class="aihot-tab" data-cat="tip">技巧</a>
+    </div>
+    <div class="aihot-feed" id="news-feed">
+      <div class="aihot-loading"><span>加载 AI 热点...</span></div>
     </div>
   </div>
 
 </div>
 
 <script>
-// AI 热点 - 从 aihot.virxact.com 拉取 (aihot 风格)
+// AI 热点 - aihot 风格
 (function() {
   var feed = document.getElementById('news-feed');
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/api/news?take=25', true);
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      try {
-        var data = JSON.parse(xhr.responseText);
-        var items = data.items || [];
-        if (items.length === 0) {
-          feed.innerHTML = '<div class="aihot-empty">暂无热点</div>';
-          return;
+  var currentCat = '';
+  var allItems = [];
+  
+  function loadNews(cat) {
+    feed.innerHTML = '<div class="aihot-loading"><span>加载 AI 热点...</span></div>';
+    currentCat = cat;
+    var url = '/api/news?take=30';
+    if (cat) url += '&category=' + cat;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var items = data.items || [];
+          allItems = items;
+          renderItems(items);
+        } catch(e) {
+          feed.innerHTML = '<div class="aihot-empty">加载失败</div>';
         }
-        
-        // Group by date
-        var groups = {};
-        var now = new Date();
-        var todayStr = now.toISOString().slice(0,10);
-        var yesterday = new Date(now);
-        yesterday.setDate(yesterday.getDate() - 1);
-        var yesterdayStr = yesterday.toISOString().slice(0,10);
-        
-        for (var i = 0; i < items.length; i++) {
-          var item = items[i];
-          var dateStr = '';
-          if (item.publishedAt) {
-            dateStr = item.publishedAt.slice(0,10);
-          } else {
-            dateStr = '最近';
-          }
-          if (!groups[dateStr]) groups[dateStr] = [];
-          groups[dateStr].push(item);
-        }
-        
-        var html = '';
-        var dateKeys = Object.keys(groups).sort().reverse();
-        
-        for (var d = 0; d < dateKeys.length; d++) {
-          var dateKey = dateKeys[d];
-          var dayItems = groups[dateKey];
-          var dateLabel = '';
-          if (dateKey === todayStr) dateLabel = '今天';
-          else if (dateKey === yesterdayStr) dateLabel = '昨天';
-          else {
-            var parts = dateKey.split('-');
-            dateLabel = parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
-          }
-          
-          html += '<div class="aihot-day">' +
-            '<div class="aihot-day-label">' + dateLabel + '</div>' +
-            '<div class="aihot-day-items">';
-          
-          for (var j = 0; j < dayItems.length; j++) {
-            var item = dayItems[j];
-            var cat = item.category || '';
-            var catLabels = {
-              'ai-models':'模型发布',
-              'ai-products':'产品发布',
-              'industry':'行业动态',
-              'paper':'论文研究',
-              'tip':'技巧观点'
-            };
-            var catLabel = catLabels[cat] || '';
-            var catHtml = catLabel ? '<span class="aihot-badge badge-' + cat + '">' + catLabel + '</span>' : '';
-            
-            var url = item.url || '#';
-            var title = item.title || '无标题';
-            var source = item.source || '';
-            var sourceShort = source.replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim();
-            if (!sourceShort) sourceShort = source;
-            if (sourceShort.length > 25) sourceShort = sourceShort.slice(0,22) + '...';
-            
-            var time = '';
-            if (item.publishedAt) {
-              var t = item.publishedAt.slice(11,16);
-              time = t;
-            }
-            
-            html += '<div class="aihot-item">' +
-              (time ? '<span class="aihot-time">' + time + '</span>' : '<span class="aihot-time" style="visibility:hidden">--:--</span>') +
-              '<div class="aihot-body">' +
-              '<a href="' + url + '" target="_blank" rel="noopener" class="aihot-title">' + title + '</a>' +
-              '<div class="aihot-meta">' +
-              (source ? '<span class="aihot-source">' + sourceShort + '</span>' : '') +
-              catHtml +
-              '</div></div></div>';
-          }
-          
-          html += '</div></div>';
-        }
-        
-        feed.innerHTML = html;
-      } catch(e) {
-        feed.innerHTML = '<div class="aihot-empty">资讯加载失败</div>';
+      } else {
+        feed.innerHTML = '<div class="aihot-empty">加载失败</div>';
       }
-    } else {
-      feed.innerHTML = '<div class="aihot-empty">资讯加载失败</div>';
+    };
+    xhr.onerror = function() {
+      feed.innerHTML = '<div class="aihot-empty">网络错误</div>';
+    };
+    xhr.send();
+  }
+  
+  function renderItems(items) {
+    if (items.length === 0) {
+      feed.innerHTML = '<div class="aihot-empty">暂无热点</div>';
+      return;
     }
-  };
-  xhr.onerror = function() {
-    feed.innerHTML = '<div class="aihot-empty">网络错误，无法加载资讯</div>';
-  };
-  xhr.send();
+    
+    // Group by date
+    var groups = {};
+    var now = new Date();
+    var todayStr = now.toISOString().slice(0,10);
+    var yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    var yesterdayStr = yesterday.toISOString().slice(0,10);
+    
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var dateStr = item.publishedAt ? item.publishedAt.slice(0,10) : '最近';
+      if (!groups[dateStr]) groups[dateStr] = [];
+      groups[dateStr].push(item);
+    }
+    
+    var html = '';
+    var dateKeys = Object.keys(groups).sort().reverse();
+    
+    for (var d = 0; d < dateKeys.length; d++) {
+      var dateKey = dateKeys[d];
+      var dayItems = groups[dateKey];
+      
+      var dateLabel = '';
+      if (dateKey === todayStr) dateLabel = '今天';
+      else if (dateKey === yesterdayStr) dateLabel = '昨天';
+      else {
+        var parts = dateKey.split('-');
+        dateLabel = parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
+      }
+      
+      html += '<div class="ah-day">' +
+        '<div class="ah-day-bar" onclick="this.classList.toggle(\'collapsed\');var n=this.nextElementSibling;n.style.display=n.style.display==\'none\'?\'\':\'none\';">' +
+        '<span class="ah-day-label">' + dateLabel + '</span>' +
+        '<span class="ah-day-toggle">收起</span></div>' +
+        '<div class="ah-day-items">';
+      
+      for (var j = 0; j < dayItems.length; j++) {
+        var item = dayItems[j];
+        var sourceClean = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
+        if (sourceClean.length > 30) sourceClean = sourceClean.slice(0,27) + '...';
+        
+        var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+        
+        var tags = [];
+        var catLabels = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
+        if (item.category && catLabels[item.category]) {
+          tags.push(catLabels[item.category]);
+        }
+        // Try to extract secondary tags from summary
+        var tagHtml = tags.length ? '<span class="ah-tags">' + tags.map(function(t){ return '<span class="ah-tag">' + t + '</span>'; }).join('') + '</span>' : '';
+        
+        html += '<div class="ah-item">' +
+          '<span class="ah-time">' + time + '</span>' +
+          '<div class="ah-body">' +
+          '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="ah-title">' + (item.title || '') + '</a>' +
+          '<div class="ah-meta">' +
+          (sourceClean ? '<span class="ah-source">' + sourceClean + '</span>' : '') +
+          tagHtml +
+          '</div></div></div>';
+      }
+      
+      html += '</div></div>';
+    }
+    
+    feed.innerHTML = html;
+  }
+  
+  // Tab click handlers
+  document.addEventListener('click', function(e) {
+    var tab = e.target.closest('.aihot-tab');
+    if (tab) {
+      e.preventDefault();
+      document.querySelectorAll('.aihot-tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      loadNews(tab.getAttribute('data-cat') || '');
+    }
+  });
+  
+  // Initial load
+  loadNews('');
 })();
 </script>
 

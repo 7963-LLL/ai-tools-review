@@ -573,13 +573,13 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 }
 .nl-item:last-child { border-bottom: none; }
 .nl-item:hover { background: var(--surface2); }
-.nl-num {
+.nl-time {
   font-size: 12px;
-  font-weight: 700;
   color: var(--text-muted);
   flex-shrink: 0;
-  width: 20px;
+  width: 40px;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 .nl-title {
   flex: 1;

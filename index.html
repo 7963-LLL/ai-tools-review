@@ -185,34 +185,25 @@
 (function() {
   var newsBox = document.getElementById('aihot-news');
   if (newsBox) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/news?take=20', true);
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        try {
-          var data = JSON.parse(xhr.responseText);
-          var items = data.items || [];
-          if (items.length === 0) { newsBox.innerHTML = '<div class="aihot-empty">暂无热点</div>'; return; }
-          var html = '<div class="news-list">';
-          for (var i = 0; i < items.length; i++) {
-            var item = items[i];
-            var source = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
-            if (source.length > 30) source = source.slice(0,27) + '...';
-            var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
-            var tags = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
-            var tag = item.category && tags[item.category] ? '<span class="news-tag">' + tags[item.category] + '</span>' : '';
-            html += '<div class="news-item">' +
-              (time ? '<span class="news-time">' + time + '</span>' : '') +
-              '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="news-title">' + (item.title || '') + '</a>' +
-              '<span class="news-meta"><span class="news-source">' + source + '</span>' + tag + '</span></div>';
-          }
-          html += '</div>';
-          newsBox.innerHTML = html;
-        } catch(e) { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; }
-      } else { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; }
-    };
-    xhr.onerror = function() { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; };
-    xhr.send();
+    fetch('/api/news?take=20').then(function(r) { return r.json(); }).then(function(data) {
+      var items = data.items || [];
+      if (items.length === 0) { newsBox.innerHTML = '<div class="aihot-empty">暂无热点</div>'; return; }
+      var html = '<div class="news-list">';
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var source = (item.source || '').replace(/^X[：:]\\s*/,'').replace(/\\(.*?\\)/g,'').trim() || item.source || '';
+        if (source.length > 30) source = source.slice(0,27) + '...';
+        var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+        var tags = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
+        var tag = item.category && tags[item.category] ? '<span class="news-tag">' + tags[item.category] + '</span>' : '';
+        html += '<div class="news-item">' +
+          (time ? '<span class="news-time">' + time + '</span>' : '') +
+          '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="news-title">' + (item.title || '') + '</a>' +
+          '<span class="news-meta"><span class="news-source">' + source + '</span>' + tag + '</span></div>';
+      }
+      html += '</div>';
+      newsBox.innerHTML = html;
+    }).catch(function() { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; });
   }
   
   // Language selector

@@ -175,64 +175,52 @@
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div class="news-list-box">
-    <a href="https://x.com/alibaba_cloud/status/2062113338994172169" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">18:10</span>
-      <span class="nl-title">Qwen Cloud全球AI黑客马拉松启动</span>
-      <span class="nl-source">阿里云</span>
-    </a>
-    <a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">17:51</span>
-      <span class="nl-title">Anthropic 分析 832 个 AI 恶意账户：中高风险攻击者半年从 33% 跃至 56%</span>
-      <span class="nl-source">Anthropic</span>
-    </a>
-    <a href="https://x.com/SiliconFlowAI/status/2062054848762450324" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">14:36</span>
-      <span class="nl-title">Karpathy 的 llm-wiki 项目获超五千星</span>
-      <span class="nl-source">SiliconFlow</span>
-    </a>
-    <a href="https://x.com/nousresearch/status/2061984028490990096" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">14:06</span>
-      <span class="nl-title">NousResearch 发布 Hermes Agent 桌面应用公测版</span>
-      <span class="nl-source">NousResearch</span>
-    </a>
-    <a href="https://www.ithome.com/0/867/123.htm" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">13:09</span>
-      <span class="nl-title">消息称 DeepSeek 首轮融资拟筹集 500 亿元，腾讯、宁德时代等参投</span>
-      <span class="nl-source">IT之家</span>
-    </a>
-    <a href="https://x.com/satyanadella/status/2061819524407640419" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">12:02</span>
-      <span class="nl-title">Satya Nadella 谈微软 Build 大会主旨演讲</span>
-      <span class="nl-source">Satya Nadella</span>
-    </a>
-    <a href="https://www.sensor-tower.com/blog/chatgpt-monthly-active-users" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">10:09</span>
-      <span class="nl-title">Sensor Tower：OpenAI 旗下 ChatGPT 月活已破 10 亿</span>
-      <span class="nl-source">Sensor Tower</span>
-    </a>
-    <a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">05:55</span>
-      <span class="nl-title">美国发布行政令加强AI领导地位</span>
-      <span class="nl-source">白宫</span>
-    </a>
-    <a href="https://github.com/google-deepmind/science-skills" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">05:47</span>
-      <span class="nl-title">Google DeepMind 开源科学智能体工具包</span>
-      <span class="nl-source">DeepMind</span>
-    </a>
-    <a href="https://x.com/Microsoft/status/2061569814201049408" target="_blank" rel="noopener" class="nl-item">
-      <span class="nl-time">05:45</span>
-      <span class="nl-title">微软发布首款高级推理AI模型 MAI-Thinking-1</span>
-      <span class="nl-source">Microsoft</span>
-    </a>
+  <div id="news-feed" class="nf-box">
+    <div class="nf-loading">加载中...</div>
   </div>
 
 </div>
 
 <script>
-// Language selector
+// AI 热点 + 语言切换
 (function() {
+  var feed = document.getElementById('news-feed');
+  if (feed) {
+    feed.innerHTML = '<div class="nf-loading">加载中...</div>';
+    var s = document.createElement('script');
+    s.src = '/api/news?t=' + Date.now();
+    document.body.appendChild(s);
+  }
+  window.renderNews = function() {
+    var items = window.__newsData?.items || [];
+    if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
+    var html = '<div class="nf-list">';
+    for (var i = 0; i < Math.min(items.length, 15); i++) {
+      var item = items[i];
+      var src = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
+      if (src.length > 28) src = src.slice(0,25) + '...';
+      var tm = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+      html += '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="nf-item">' +
+        (tm ? '<span class="nf-time">' + tm + '</span>' : '') +
+        '<span class="nf-title">' + (item.title || '') + '</span>' +
+        (src ? '<span class="nf-src">' + src + '</span>' : '') +
+        '</a>';
+    }
+    html += '</div>';
+    feed.innerHTML = html;
+    window.__newsData = null;
+  };
+  // Poll for data
+  var wait = 0;
+  function check() {
+    if (window.__newsData) { window.renderNews(); return; }
+    wait++;
+    if (wait > 50) { feed.innerHTML = '<div class="nf-empty">加载失败</div>'; return; }
+    setTimeout(check, 200);
+  }
+  setTimeout(check, 100);
+  
+  // Language selector
   var langBtn = document.querySelector('.lang-select');
   var langMenu = document.getElementById('lang-menu');
   if (langBtn && langMenu) {
@@ -248,7 +236,7 @@
     });
   }
 })();
-
+</script>
 <footer>
   <div class="container">
     <p>AI快报站 © 2026</p>

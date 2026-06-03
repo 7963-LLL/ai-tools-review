@@ -553,8 +553,8 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 .trust-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
 .trust-item p { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin: 0; }
 
-/* ===== AI 热点静态列表 ===== */
-.news-list-box {
+/* ===== AI 热点动态列表 ===== */
+.nf-box {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -562,7 +562,13 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   box-shadow: var(--shadow);
   overflow: hidden;
 }
-.nl-item {
+.nf-loading, .nf-empty {
+  text-align: center;
+  padding: 32px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.nf-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -571,9 +577,9 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   text-decoration: none;
   transition: background 0.1s;
 }
-.nl-item:last-child { border-bottom: none; }
-.nl-item:hover { background: var(--surface2); }
-.nl-time {
+.nf-item:last-child { border-bottom: none; }
+.nf-item:hover { background: var(--surface2); }
+.nf-time {
   font-size: 12px;
   color: var(--text-muted);
   flex-shrink: 0;
@@ -581,7 +587,7 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.nl-title {
+.nf-title {
   flex: 1;
   font-size: 14px;
   color: var(--text);
@@ -591,7 +597,7 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.nl-source {
+.nf-src {
   font-size: 11px;
   color: var(--text-muted);
   flex-shrink: 0;

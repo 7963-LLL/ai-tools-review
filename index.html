@@ -16,32 +16,6 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447"
      crossorigin="anonymous"></script>
-<!-- Google Translate -->
-<style>
-.goog-te-gadget-simple { 
-  font-size: 12px !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 6px !important;
-  padding: 3px 8px !important;
-  background: transparent !important;
-  line-height: 1.5 !important;
-}
-.goog-te-gadget-simple span { color: var(--text-dim) !important; }
-.goog-te-gadget-simple .goog-te-menu-value span { color: var(--text-dim) !important; }
-.goog-te-banner-frame.skiptranslate { display: none !important; }
-body { top: 0 !important; }
-</style>
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'zh-CN',
-    includedLanguages: 'en,ja,ko,fr,de,es,pt,ru,ar,hi,th,vi,id,zh-TW,zh-CN',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
@@ -57,6 +31,16 @@ function googleTranslateElementInit() {
       <a href="best-ai-video-tools.html">视频</a>
       <a href="best-ai-voice-tools.html">语音</a>
       <a href="about.html">关于</a>
+      <span class="lang-select">🌐</span>
+      <div class="lang-menu" id="lang-menu">
+        <a href="#" data-lang="en">English</a>
+        <a href="#" data-lang="ja">日本語</a>
+        <a href="#" data-lang="ko">한국어</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="de">Deutsch</a>
+        <a href="#" data-lang="pt">Português</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -346,8 +330,30 @@ function googleTranslateElementInit() {
   });
   
   // Initial load
-  loadNews('');
-})();
+    loadNews('');
+  
+    // Language selector
+    var langBtn = document.querySelector('.lang-select');
+    var langMenu = document.getElementById('lang-menu');
+    if (langBtn && langMenu) {
+      langBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langMenu.classList.toggle('show');
+      });
+      document.addEventListener('click', function() {
+        langMenu.classList.remove('show');
+      });
+      langMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          var lang = this.getAttribute('data-lang');
+          var url = 'https://translate.google.com/translate?hl=' + lang + '&sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href.split('?')[0]);
+          window.open(url, '_blank');
+          langMenu.classList.remove('show');
+        });
+      });
+    }
+  })();
 </script>
 
 <footer>

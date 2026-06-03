@@ -159,87 +159,76 @@
     </div>
   </div>
 
-  <!-- Latest Updates Timeline -->
+  <!-- AI News Feed -->
   <div class="section-title">
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    站内动态
+    AI 资讯速递
+    <span class="news-source">来自 aihot.virxact.com</span>
   </div>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag update">内容扩充</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="best-ai-image-tools.html">图像工具页</a> — 扩充至 22KB，新增 FAQ 12 问、决策矩阵、测试方法</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag update">内容扩充</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="best-ai-writing-tools.html">写作工具页</a> — 扩充至 30KB，含 12 FAQ、10 维评分矩阵、风格切换实测</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag update">内容扩充</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="best-ai-voice-tools.html">语音工具页</a> — 扩充至 34KB，含盲听测试、方言评测、9 场景决策矩阵</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag update">内容扩充</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="best-ai-video-tools.html">视频工具页</a> — 扩充至 57KB，含 10 FAQ、8 场景决策矩阵、6 维评分体系</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag update">内容扩充</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="best-ai-coding-tools.html">编程工具页</a> — 扩充至 42KB，含 12 FAQ、11 场景决策矩阵、真实代码案例</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag hot">精选</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title"><a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a> — 深度扩充至 5500 字，10 大评测维度 + 12 FAQ + 完整测试方法论</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag new">上线</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title">域名 suduai.top 绑定，Google AdSense 代码添加，等待审核</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag new">上线</span>
-        <span class="tl-time">今天</span>
-        <p class="tl-title">Google Analytics 接入，白色简洁主题上线，隐私政策发布</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <span class="tl-tag new">上线</span>
-        <span class="tl-time">1 天前</span>
-        <p class="tl-title">AI 编程 / 视频 / 语音 工具对比页上线，首批 8 篇评测发布</p>
-      </div>
-    </div>
+  <div class="news-feed" id="news-feed">
+    <div class="news-loading">加载中...</div>
   </div>
 
 </div>
+
+<script>
+// AI 资讯 - 从 aihot.virxact.com 拉取最新 AI 动态
+(function() {
+  var feed = document.getElementById('news-feed');
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://aihot.virxact.com/api/public/items?mode=selected&take=10', true);
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        var items = data.items || [];
+        if (items.length === 0) {
+          feed.innerHTML = '<div class="news-empty">暂无资讯</div>';
+          return;
+        }
+        var html = '<div class="news-list">';
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          var cat = item.category || '';
+          var catLabel = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' }[cat] || '';
+          var catHtml = catLabel ? '<span class="news-cat cat-' + cat + '">' + catLabel + '</span>' : '';
+          var url = item.url || '#';
+          var title = item.title || '无标题';
+          var source = item.source || '';
+          var time = '';
+          if (item.publishedAt) {
+            var d = new Date(item.publishedAt);
+            var now = new Date();
+            var diff = Math.floor((now - d) / 1000);
+            if (diff < 3600) time = Math.floor(diff / 60) + ' 分钟前';
+            else if (diff < 86400) time = Math.floor(diff / 3600) + ' 小时前';
+            else time = Math.floor(diff / 86400) + ' 天前';
+          }
+          html += '<div class="news-item">' +
+            catHtml +
+            '<a href="' + url + '" target="_blank" rel="noopener" class="news-title">' + title + '</a>' +
+            '<span class="news-meta">' +
+            (source ? '<span class="news-source">' + source + '</span>' : '') +
+            (time ? '<span class="news-time">' + time + '</span>' : '') +
+            '</span></div>';
+        }
+        html += '</div>' +
+          '<div class="news-footer"><a href="https://aihot.virxact.com" target="_blank" rel="noopener">查看更多 → aihot.virxact.com</a></div>';
+        feed.innerHTML = html;
+      } catch(e) {
+        feed.innerHTML = '<div class="news-empty">资讯加载失败</div>';
+      }
+    } else {
+      feed.innerHTML = '<div class="news-empty">资讯加载失败</div>';
+    }
+  };
+  xhr.onerror = function() {
+    feed.innerHTML = '<div class="news-empty">网络错误，无法加载资讯</div>';
+  };
+  xhr.send();
+})();
+</script>
 
 <footer>
   <div class="container">

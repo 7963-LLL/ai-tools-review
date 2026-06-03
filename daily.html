@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 快报 - 每日 AI 资讯速览 | suduai.top</title>
+  <meta name="description" content="每日 AI 资讯速览，涵盖模型发布、产品更新、行业动态、论文研究等最新 AI 热点。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z33SFE6V0H');
+</script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+      <span class="lang-select">🌐</span>
+      <div class="lang-menu" id="lang-menu">
+        <a href="#" data-lang="en">English</a>
+        <a href="#" data-lang="ja">日本語</a>
+        <a href="#" data-lang="ko">한국어</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="de">Deutsch</a>
+        <a href="#" data-lang="pt">Português</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+  <h1>AI 快报 · 今日资讯</h1>
+  <div class="subtitle" id="daily-subtitle">加载中...</div>
+
+  <!-- Quick Stats -->
+  <div class="stats-row" id="daily-stats">
+    <div class="key-stat"><span class="stat-val" id="stat-count">-</span><span class="stat-lbl">今日资讯</span></div>
+    <div class="key-stat"><span class="stat-val" id="stat-models">-</span><span class="stat-lbl">模型发布</span></div>
+    <div class="key-stat"><span class="stat-val" id="stat-products">-</span><span class="stat-lbl">产品更新</span></div>
+    <div class="key-stat"><span class="stat-val" id="stat-industry">-</span><span class="stat-lbl">行业动态</span></div>
+  </div>
+
+  <!-- News by Category -->
+  <div id="daily-content">加载中...</div>
+
+  <!-- Methodology -->
+  <h2>关于本简报</h2>
+  <p>本页面由 AI 自动生成，数据来源 <a href="https://aihot.virxact.com" target="_blank" rel="noopener">aihot.virxact.com</a>，每天早上 7:00 更新。涵盖模型发布、产品更新、行业动态、论文研究、技巧观点五大类 AI 资讯。</p>
+  <p>所有条目标注了来源和发布时间，点击标题可查看原文。</p>
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+<script>
+// 加载今日 AI 资讯
+(function() {
+  var today = new Date();
+  var dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月' + today.getDate() + '日';
+  var weekdays = ['日','一','二','三','四','五','六'];
+  document.getElementById('daily-subtitle').textContent = dateStr + ' 星期' + weekdays[today.getDay()];
+
+  var s = document.createElement('script');
+  s.src = '/api/news?t=' + Date.now();
+  document.body.appendChild(s);
+  
+  window.renderNews = function(data) {
+    var items = data?.items || [];
+    if (items.length === 0) { document.getElementById('daily-content').innerHTML = '<p>暂无数据</p>'; return; }
+    
+    // Stats
+    var counts = { 'ai-models':0, 'ai-products':0, 'industry':0 };
+    items.forEach(function(it) { if (counts[it.category] !== undefined) counts[it.category]++; });
+    document.getElementById('stat-count').textContent = items.length;
+    document.getElementById('stat-models').textContent = counts['ai-models'];
+    document.getElementById('stat-products').textContent = counts['ai-products'];
+    document.getElementById('stat-industry').textContent = counts['industry'];
+    
+    // Group by category
+    var cats = { 'ai-models':'模型发布/更新', 'ai-products':'产品发布/更新', 'industry':'行业动态', 'paper':'论文研究', 'tip':'技巧与观点' };
+    var groups = {};
+    items.forEach(function(it) {
+      var c = it.category || 'other';
+      if (!groups[c]) groups[c] = [];
+      groups[c].push(it);
+    });
+    
+    var html = '';
+    var order = ['ai-models','ai-products','industry','paper','tip'];
+    var catLabels = { 'ai-models':'ai-models','ai-products':'ai-products','industry':'industry','paper':'paper','tip':'tip' };
+    
+    order.forEach(function(cat) {
+      if (!groups[cat] || groups[cat].length === 0) return;
+      html += '<h2>' + (cats[cat] || cat) + '</h2><div class="daily-section">';
+      groups[cat].forEach(function(item) {
+        var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+        var src = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
+        if (src.length > 25) src = src.slice(0,22) + '...';
+        html += '<div class="daily-item">' +
+          '<span class="daily-time">' + time + '</span>' +
+          '<div class="daily-body">' +
+          '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="daily-title">' + (item.title || '') + '</a>' +
+          '<span class="daily-src">' + src + '</span>' +
+          '</div></div>';
+      });
+      html += '</div>';
+    });
+    
+    document.getElementById('daily-content').innerHTML = html;
+    window.renderNews = null;
+  };
+})();
+</script>
+
+</body>
+</html>

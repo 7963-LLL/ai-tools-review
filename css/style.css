@@ -732,6 +732,50 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   flex-shrink: 0;
 }
 
+/* ===== Daily Page ===== */
+.daily-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.daily-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.daily-item:last-child { border-bottom: none; }
+.daily-item:hover { background: var(--surface2); }
+.daily-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  width: 40px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+.daily-body { flex: 1; min-width: 0; }
+.daily-title {
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1.5;
+  display: block;
+}
+.daily-title:hover { color: var(--brand); }
+.daily-src {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
 /* ===== Footer ===== */
 footer {
   background: var(--surface);

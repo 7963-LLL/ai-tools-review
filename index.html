@@ -159,24 +159,26 @@
     </div>
   </div>
 
-  <!-- AI News Feed -->
+  <!-- AI News Feed - aihot style -->
   <div class="section-title">
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    AI 资讯速递
-    <span class="news-source">来自 aihot.virxact.com</span>
+    AI 热点
   </div>
-  <div class="news-feed" id="news-feed">
-    <div class="news-loading">加载中...</div>
+  <div class="aihot-feed" id="news-feed">
+    <div class="aihot-loading">
+      <div class="aihot-loader"></div>
+      <span>正在加载 AI 热点...</span>
+    </div>
   </div>
 
 </div>
 
 <script>
-// AI 资讯 - 从 aihot.virxact.com 拉取最新 AI 动态
+// AI 热点 - 从 aihot.virxact.com 拉取 (aihot 风格)
 (function() {
   var feed = document.getElementById('news-feed');
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/api/news?take=10', true);
+  xhr.open('GET', '/api/news?take=25', true);
   xhr.setRequestHeader('Accept', 'application/json');
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -184,47 +186,98 @@
         var data = JSON.parse(xhr.responseText);
         var items = data.items || [];
         if (items.length === 0) {
-          feed.innerHTML = '<div class="news-empty">暂无资讯</div>';
+          feed.innerHTML = '<div class="aihot-empty">暂无热点</div>';
           return;
         }
-        var html = '<div class="news-list">';
+        
+        // Group by date
+        var groups = {};
+        var now = new Date();
+        var todayStr = now.toISOString().slice(0,10);
+        var yesterday = new Date(now);
+        yesterday.setDate(yesterday.getDate() - 1);
+        var yesterdayStr = yesterday.toISOString().slice(0,10);
+        
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
-          var cat = item.category || '';
-          var catLabel = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' }[cat] || '';
-          var catHtml = catLabel ? '<span class="news-cat cat-' + cat + '">' + catLabel + '</span>' : '';
-          var url = item.url || '#';
-          var title = item.title || '无标题';
-          var source = item.source || '';
-          var time = '';
+          var dateStr = '';
           if (item.publishedAt) {
-            var d = new Date(item.publishedAt);
-            var now = new Date();
-            var diff = Math.floor((now - d) / 1000);
-            if (diff < 3600) time = Math.floor(diff / 60) + ' 分钟前';
-            else if (diff < 86400) time = Math.floor(diff / 3600) + ' 小时前';
-            else time = Math.floor(diff / 86400) + ' 天前';
+            dateStr = item.publishedAt.slice(0,10);
+          } else {
+            dateStr = '最近';
           }
-          html += '<div class="news-item">' +
-            catHtml +
-            '<a href="' + url + '" target="_blank" rel="noopener" class="news-title">' + title + '</a>' +
-            '<span class="news-meta">' +
-            (source ? '<span class="news-source">' + source + '</span>' : '') +
-            (time ? '<span class="news-time">' + time + '</span>' : '') +
-            '</span></div>';
+          if (!groups[dateStr]) groups[dateStr] = [];
+          groups[dateStr].push(item);
         }
-        html += '</div>' +
-          '<div class="news-footer"><a href="https://aihot.virxact.com" target="_blank" rel="noopener">查看更多 → aihot.virxact.com</a></div>';
+        
+        var html = '';
+        var dateKeys = Object.keys(groups).sort().reverse();
+        
+        for (var d = 0; d < dateKeys.length; d++) {
+          var dateKey = dateKeys[d];
+          var dayItems = groups[dateKey];
+          var dateLabel = '';
+          if (dateKey === todayStr) dateLabel = '今天';
+          else if (dateKey === yesterdayStr) dateLabel = '昨天';
+          else {
+            var parts = dateKey.split('-');
+            dateLabel = parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
+          }
+          
+          html += '<div class="aihot-day">' +
+            '<div class="aihot-day-label">' + dateLabel + '</div>' +
+            '<div class="aihot-day-items">';
+          
+          for (var j = 0; j < dayItems.length; j++) {
+            var item = dayItems[j];
+            var cat = item.category || '';
+            var catLabels = {
+              'ai-models':'模型发布',
+              'ai-products':'产品发布',
+              'industry':'行业动态',
+              'paper':'论文研究',
+              'tip':'技巧观点'
+            };
+            var catLabel = catLabels[cat] || '';
+            var catHtml = catLabel ? '<span class="aihot-badge badge-' + cat + '">' + catLabel + '</span>' : '';
+            
+            var url = item.url || '#';
+            var title = item.title || '无标题';
+            var source = item.source || '';
+            var sourceShort = source.replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim();
+            if (!sourceShort) sourceShort = source;
+            if (sourceShort.length > 25) sourceShort = sourceShort.slice(0,22) + '...';
+            
+            var time = '';
+            if (item.publishedAt) {
+              var t = item.publishedAt.slice(11,16);
+              time = t;
+            }
+            
+            html += '<div class="aihot-item">' +
+              (time ? '<span class="aihot-time">' + time + '</span>' : '<span class="aihot-time" style="visibility:hidden">--:--</span>') +
+              '<div class="aihot-body">' +
+              '<a href="' + url + '" target="_blank" rel="noopener" class="aihot-title">' + title + '</a>' +
+              '<div class="aihot-meta">' +
+              (source ? '<span class="aihot-source">' + sourceShort + '</span>' : '') +
+              catHtml +
+              '</div></div></div>';
+          }
+          
+          html += '</div></div>';
+        }
+        
+        html += '<div class="aihot-more"><a href="https://aihot.virxact.com" target="_blank" rel="noopener">AIHOT 更多热点 →</a></div>';
         feed.innerHTML = html;
       } catch(e) {
-        feed.innerHTML = '<div class="news-empty">资讯加载失败</div>';
+        feed.innerHTML = '<div class="aihot-empty">资讯加载失败</div>';
       }
     } else {
-      feed.innerHTML = '<div class="news-empty">资讯加载失败</div>';
+      feed.innerHTML = '<div class="aihot-empty">资讯加载失败</div>';
     }
   };
   xhr.onerror = function() {
-    feed.innerHTML = '<div class="news-empty">网络错误，无法加载资讯</div>';
+    feed.innerHTML = '<div class="aihot-empty">网络错误，无法加载资讯</div>';
   };
   xhr.send();
 })();

@@ -520,90 +520,115 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 .trust-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
 .trust-item p { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin: 0; }
 
-/* ===== News Feed ===== */
-.news-source {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-muted);
-  margin-left: 4px;
-}
-.news-feed {
+/* ===== aihot 风格热点资讯 ===== */
+.aihot-feed {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px 20px;
   margin-bottom: 48px;
-  min-height: 80px;
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
-.news-loading {
-  color: var(--text-muted);
-  font-size: 14px;
-  text-align: center;
-  padding: 20px 0;
-}
-.news-empty {
-  color: var(--text-muted);
-  font-size: 14px;
-  text-align: center;
-  padding: 20px 0;
-}
-.news-list { display: flex; flex-direction: column; gap: 0; }
-.news-item {
+.aihot-loading {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.aihot-loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.aihot-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.aihot-day {
   border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
 }
-.news-item:last-child { border-bottom: none; }
-.news-cat {
-  display: inline-block;
-  font-size: 10px;
+.aihot-day:last-child { border-bottom: none; }
+.aihot-day-label {
+  font-size: 13px;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  flex-shrink: 0;
-  margin-top: 2px;
+  color: var(--text);
+  padding: 14px 20px 8px;
+  position: sticky;
+  top: 56px;
+  background: var(--surface);
+  z-index: 1;
 }
-.news-cat.cat-ai-models { background: #d0ebff; color: #1971c2; }
-.news-cat.cat-ai-products { background: #d3f9d8; color: #2b8a3e; }
-.news-cat.cat-industry { background: #fff3bf; color: #e67700; }
-.news-cat.cat-paper { background: #e8dbff; color: #6741d9; }
-.news-cat.cat-tip { background: #ffe0e0; color: #c92a2a; }
-.news-title {
+.aihot-day-items { padding: 0 0 4px; }
+.aihot-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px 20px;
+  transition: background 0.15s;
+}
+.aihot-item:hover { background: rgba(0,0,0,0.02); }
+.aihot-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  width: 44px;
+  text-align: right;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.aihot-body { flex: 1; min-width: 0; }
+.aihot-title {
   font-size: 14px;
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
   line-height: 1.5;
-  flex: 1;
-  min-width: 200px;
+  display: block;
 }
-.news-title:hover { color: var(--accent); }
-.news-meta {
+.aihot-title:hover { color: var(--accent); }
+.aihot-meta {
   display: flex;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--text-muted);
-  flex-shrink: 0;
+  gap: 8px;
   align-items: center;
+  margin-top: 3px;
+  flex-wrap: wrap;
 }
-.news-footer {
+.aihot-source {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.aihot-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.2px;
+}
+.badge-ai-models { background: #d0ebff; color: #1971c2; }
+.badge-ai-products { background: #d3f9d8; color: #2b8a3e; }
+.badge-industry { background: #fff3bf; color: #e67700; }
+.badge-paper { background: #e8dbff; color: #6741d9; }
+.badge-tip { background: #ffe0e0; color: #c92a2a; }
+.aihot-more {
   text-align: center;
-  padding-top: 12px;
+  padding: 12px 20px;
   border-top: 1px solid var(--border);
-  margin-top: 4px;
 }
-.news-footer a {
+.aihot-more a {
   font-size: 13px;
   color: var(--text-muted);
   text-decoration: none;
 }
-.news-footer a:hover { color: var(--accent); }
+.aihot-more a:hover { color: var(--accent); }
 
 /* ===== Footer ===== */
 footer {

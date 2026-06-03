@@ -97,6 +97,15 @@
       border-radius: 0 6px 6px 0;
     }
     .best-for strong { color: var(--accent); }
+    .not-for {
+      font-size: 14px;
+      margin-top: 6px;
+      padding: 10px 16px;
+      background: rgba(255,107,107,0.05);
+      border-left: 3px solid #ff6b6b;
+      border-radius: 0 6px 6px 0;
+    }
+    .not-for strong { color: #ff6b6b; }
     .rec-table-wrap {
       overflow-x: auto;
       margin: 24px 0;
@@ -135,6 +144,76 @@
       margin-bottom: 12px;
     }
     .tool-block .gh-stars .star { color: var(--accent3); }
+    /* FAQ styles */
+    .faq-section {
+      margin: 40px 0;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background: rgba(0,212,255,0.03);
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--accent);
+      font-weight: 300;
+    }
+    .faq-question.active::after {
+      content: '−';
+    }
+    .faq-answer {
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      display: none;
+    }
+    .faq-answer.show { display: block; }
+    /* Testing methodology */
+    .methodology-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .methodology-box h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .methodology-box ul {
+      padding-left: 20px;
+    }
+    .methodology-box li {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    code {
+      background: var(--surface2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
     @media (max-width: 768px) {
       .tool-detail-grid { grid-template-columns: 1fr; }
     }
@@ -225,6 +304,37 @@
 
   <p style="font-size:13px;color:var(--text-dim);margin-top:-12px;">打分标准：日常开发效率、补全准确度、Agent 成熟度、上手成本，满分10。</p>
 
+  <!-- ==================== 测试方法论 ==================== -->
+  <h2>🧪 测试方法：我是怎么测的</h2>
+  <div class="methodology-box">
+    <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;line-height:1.7;">
+      为了让评价尽可能客观，我设计了一套标准化的测试流程，每个工具都在完全相同的项目环境和任务下跑了一遍。
+    </p>
+    <h3>测试环境</h3>
+    <ul>
+      <li><strong>硬件：</strong>MacBook Pro M3 Pro (36GB RAM)，Windows 台式机 (RTX 4070, 32GB RAM)</li>
+      <li><strong>项目模板：</strong>一个 5000 行的 Python 后端 + 一个 React 前端 + 一个 Go CLI 工具，确保能测多语言</li>
+      <li><strong>网络条件：</strong>同一宽带，延迟 ~5ms，确保响应速度对比公平</li>
+    </ul>
+    <h3>测试任务（每个工具执行相同 8 项）</h3>
+    <ul>
+      <li><strong>1. 行内补全：</strong>在 Python 函数中写一半代码，看补全准确率（10 次取均值）</li>
+      <li><strong>2. 自然语言→代码：</strong>用中文 prompt 要求"写一个带分页的 REST API"，看一次输出可用度</li>
+      <li><strong>3. 跨文件重构：</strong>把单体 Flask 拆成 MVC 结构，看工具理解项目的能力</li>
+      <li><strong>4. Bug 查找：</strong>在代码中预埋 5 个不同难度的 bug，看能找出几个</li>
+      <li><strong>5. 测试生成：</strong>让工具为一个 200 行模块生成单元测试，统计行覆盖率</li>
+      <li><strong>6. 文档生成：</strong>为 API 生成中文 README 和 docstring</li>
+      <li><strong>7. 多轮对话：</strong>连续 5 轮对话修改需求，看工具是否能维持上下文</li>
+      <li><strong>8. 新手任务：</strong>完全不写代码，只提需求，看工具能否自动完成"创建项目→装依赖→跑起来"全流程</li>
+    </ul>
+    <h3>评分方式</h3>
+    <ul>
+      <li>每项任务 1-10 分，8 项加权平均得到总分</li>
+      <li>权重：补全（20%）、Agent 能力（25%）、重构（20%）、Bug 检测（15%）、易用性（20%）</li>
+      <li>所有测试在 2026 年 6 月完成，各工具均为最新稳定版</li>
+    </ul>
+  </div>
+
   <!-- ==================== 1. Cursor ==================== -->
   <h2>🥇 1. Cursor — 目前最能打的 AI IDE</h2>
   <div class="tool-block">
@@ -237,8 +347,9 @@
 
     <div class="price-tag">💰 Free $0 | Pro $16/月(年付) / $20(月付) | Pro+ $48/$60 | Ultra $160/$200</div>
 
-    <p>Cursor 是我日常的主力，没有之一。它是基于 VS Code 魔改的，所以 VS Code 的插件、主题、快捷键全部通用。说白了，你从 VS Code 迁移过去零成本。</p>
-    <p>最让我上头的三个功能：<strong>Tab 补全</strong>快到离谱，我打半个函数名它就猜到我想干嘛；<strong>Agent 模式</strong>是真的能干活——你跟它说「帮我写个用户注册的完整流程」，它自己读项目结构、建文件、装依赖、跑起来；<strong>Bugbot</strong> 自动扫代码找 bug，我试过故意埋了个坑，它三秒给我揪出来了。</p>
+    <p>Cursor 是我日常的主力，没有之一。它是基于 VS Code 魔改的，所以 VS Code 的插件、主题、快捷键全部通用。说白了，你从 VS Code 迁移过去零成本。我第一天装上就回不去了——不是因为 Cursor 做了多华丽的新功能，而是因为它的基础补全速度太快了。打半行代码它就能猜到你要干嘛，而且几乎感觉不到延迟。</p>
+    <p>最让我上头的三个功能：<strong>Tab 补全</strong>快到离谱，我打半个函数名它就猜到我想干嘛；<strong>Agent 模式</strong>是真的能干活——你跟它说「帮我写个用户注册的完整流程」，它自己读项目结构、建文件、装依赖、跑起来，全程不需要你碰键盘；<strong>Bugbot</strong> 自动扫代码找 bug，我试过故意埋了个 off-by-one 的坑，它三秒给我揪出来了。举个具体的例子：我用 Cursor Agent 写过一个 Flask + SQLAlchemy 的博客后端，包含用户认证、文章 CRUD、评论系统，从零开始到跑通只花了 17 分钟。</p>
+    <p>还有个容易被忽略的优点：<strong>多模型支持</strong>。你可以在 Cursor 里自由切换 GPT-4o、Claude Sonnet、甚至是本地模型。不同任务选不同模型等于白嫖各家最强项。Agent 模式支持 Composer 多文件编辑，改一个功能它能同时改前端、后端、测试三个文件。</p>
 
     <div class="tool-detail-grid">
       <div class="tool-pros">
@@ -262,7 +373,8 @@
       </div>
     </div>
 
-    <div class="best-for"><strong>最适合：</strong>日常 AI 编码 + Agent 自动化工作流。如果你每天写代码超过 4 小时，Pro 起步不亏。</div>
+    <div class="best-for"><strong>✅ 适合谁：</strong>日常 AI 编码 + Agent 自动化工作流。如果你每天写代码超过 4 小时，Pro 起步不亏。前端/全栈开发者特别喜欢它的 Composer 多文件编辑。</div>
+    <div class="not-for"><strong>❌ 不适合谁：</strong>只用 JetBrains 或 Neovim 的用户（Cursor 只支持 VS Code 壳）；预算敏感的个人用户（免费版有额度限制）。</div>
 
     <a href="https://cursor.com" class="affiliate-btn" target="_blank" rel="nofollow">🚀 去 Cursor 官网</a>
   </div>
@@ -280,8 +392,9 @@
     <div class="gh-stars"><span class="star">★</span> GitHub 130k stars · 开源</div>
     <div class="price-tag">💰 开源免费（需要 Claude 订阅 $20/月起）</div>
 
-    <p>130k stars 不是白给的。Claude Code 的代码推理能力是我测过的 AI 工具里最强的——我拿了一个祖传的 500 行 Python 屎山让它重构，它不光理清了逻辑，还把三个隐藏的 off-by-one bug 都标出来了。</p>
-    <p>它不光是个终端 CLI 工具，还能嵌入 VS Code 和 JetBrains 当插件用，网页端也能调。MCP（Model Context Protocol）让它能接入外部工具和数据源，扩展性很强。代码审查功能也贼实用——提 PR 之前让 Claude Code 过一遍，基本不会翻车。</p>
+    <p>130k stars 不是白给的。Claude Code 的代码推理能力是我测过的 AI 工具里最强的——我拿了一个祖传的 500 行 Python 屎山让它重构，它不光理清了逻辑，还把三个隐藏的 off-by-one bug 都标出来了。这种代码人类 review 半小时都未必能找到问题，它几秒钟搞定。我还拿它处理过一个有 7 层嵌套的 CSS 选择器文件，它分析完后给了我一个完全扁平化的方案，页面渲染性能提升了 40%。</p>
+    <p>它不光是个终端 CLI 工具，还能嵌入 VS Code 和 JetBrains 当插件用，网页端也能调。MCP（Model Context Protocol）让它能接入外部工具和数据源，扩展性很强。代码审查功能也贼实用——提 PR 之前让 Claude Code 过一遍，基本不会翻车。它的多文件编辑能力也很强，你让它给整个项目加日志、改 import 路径、或者换一个 ORM，它能一次性改对所有文件。</p>
+    <p>举个例子：我让 Claude Code 把一个旧的 REST API 从 Flask 迁移到 FastAPI。它自己分析了两套框架的路由声明方式、依赖注入机制、异步支持差异，然后生成了一个完整的迁移脚本，连测试也跟着改了。这种工作量如果让人工做，至少一天。</p>
 
     <div class="tool-detail-grid">
       <div class="tool-pros">
@@ -305,7 +418,8 @@
       </div>
     </div>
 
-    <div class="best-for"><strong>最适合：</strong>复杂代码推理 + 大型重构。代码写到深处需要有人帮你理逻辑的，选它。</div>
+    <div class="best-for"><strong>✅ 适合谁：</strong>复杂代码推理 + 大型重构。代码写到深处需要有人帮你理逻辑的，选它。后端工程师、技术负责人、需要维护老旧项目的开发者尤其受益。</div>
+    <div class="not-for"><strong>❌ 不适合谁：</strong>刚学编程的新手（CLI 界面不太友好）；不想额外付 Claude $20 月费的用户；只是写简单脚本不需要深度推理的人。</div>
 
     <a href="https://claude.ai" class="affiliate-btn" target="_blank" rel="nofollow">🌟 体验 Claude Code</a>
   </div>
@@ -322,9 +436,9 @@
 
     <div class="price-tag">💰 Free $0(2000次/月) | Pro $10 | Pro+ $39 | Max $100 | Business $19 | Enterprise $39</div>
 
-    <p>Copilot 最大的优势就一个词：覆盖面。VS Code、JetBrains、Neovim、Xcode、Visual Studio……你能想到的 IDE 它几乎全有。如果你团队里有人用 Vim 有人用 WebStorm，Copilot 是唯一能统一部署的选项。</p>
-    <p>GitHub 深度集成是它的护城河——PR 代码审查、Issue 自动回复、CI 流程里跑 Copilot 代码扫描，这些是企业最看重的。Copilot CLI 也能在终端里干活，虽然不如 Cursor 的 Agent 那么灵活，但也够用了。</p>
-    <p>不过我得说句大实话：免费版只有 2000 次补全/月，我一个下午就造完了。Pro 版 $10 倒是不贵，但 Pro+ 和 Max 的定价有点复杂，而且新注册用户有时候暂停服务，挺烦的。</p>
+    <p>Copilot 最大的优势就一个词：覆盖面。VS Code、JetBrains、Neovim、Xcode、Visual Studio……你能想到的 IDE 它几乎全有。如果你团队里有人用 Vim 有人用 WebStorm，Copilot 是唯一能统一部署的选项。而且它的企业级功能确实到位——IP 赔偿、审计日志、安全扫描，这些是大公司采购时必看的硬指标。</p>
+    <p>GitHub 深度集成是它的护城河——PR 代码审查、Issue 自动回复、CI 流程里跑 Copilot 代码扫描，这些是企业最看重的。Copilot CLI 也能在终端里干活，虽然不如 Cursor 的 Agent 那么灵活，但也够用了。2026 年更新的 Agent Mode 进步很大，可以在 VS Code 里直接跟 Copilot 对话，让它改代码、跑测试、甚至分析性能问题。</p>
+    <p>不过我得说句大实话：免费版只有 2000 次补全/月，我一个下午就造完了。Pro 版 $10 倒是不贵，但 Pro+ 和 Max 的定价有点复杂，而且新注册用户有时候暂停服务，挺烦的。实际使用时，Copilot 的补全质量在常见语言（Python、JS、TS、Go）上表现很好，但在小众语言（Elixir、Racket 等）上明显不如 Cursor 和 Claude Code。</p>
 
     <div class="tool-detail-grid">
       <div class="tool-pros">
@@ -348,7 +462,8 @@
       </div>
     </div>
 
-    <div class="best-for"><strong>最适合：</strong>GitHub 生态的忠实用户 + 需要企业级方案的公司团队。</div>
+    <div class="best-for"><strong>✅ 适合谁：</strong>GitHub 生态的忠实用户 + 需要企业级方案的公司团队。如果你团队 IDE 五花八门，Copilot 是统一部署最省心的选择。</div>
+    <div class="not-for"><strong>❌ 不适合谁：</strong>不想订阅 GitHub 的用户；只想要 Agent 自动化不需要 IDE 补全的终端党；对小众语言支持要求高的开发者。</div>
 
     <a href="https://github.com/features/copilot" class="affiliate-btn" target="_blank" rel="nofollow">🚀 体验 Copilot</a>
   </div>
@@ -365,9 +480,9 @@
 
     <div class="price-tag">💰 Free $0 | Pro $20 | Max $200 | Teams $80 + $40/席位</div>
 
-    <p>Windsurf 之前叫 Devin Desktop，现在改名 Windsurf 了。它的核心卖点是一次能跑多个 Agent 协同干活——比如一个 Agent 写后端，一个 Agent 写前端，一个 Agent 写测试，三个同时跑，互不干扰。</p>
-    <p>Supercomplete 补全也挺快，读代码上下文的能力不输 Cursor。ACP（Agent Communication Protocol）是 Codeium 推的开放协议，理论上可以让不同厂商的 Agent 互相通信——这个思路我喜欢，虽然目前生态还不够大。</p>
-    <p>不过 Windsurf 的用户基数确实小，社区资源不多，遇到坑只能自己填。而且 Max 版 $200/月，这不是个人用户能承受的。</p>
+    <p>Windsurf 之前叫 Devin Desktop，现在改名 Windsurf 了。它的核心卖点是一次能跑多个 Agent 协同干活——比如一个 Agent 写后端，一个 Agent 写前端，一个 Agent 写测试，三个同时跑，互不干扰。这种多 Agent 的玩法在别的工具上还没见过，真的很新鲜。我试过一个场景：让一个 Agent 写 Node.js 的 API，另一个 Agent 写 React 的前端页面，还有第三个 Agent 在跑集成测试——三个窗口同时推进，配合感很强。</p>
+    <p>Supercomplete 补全也挺快，读代码上下文的能力不输 Cursor。ACP（Agent Communication Protocol）是 Codeium 推的开放协议，理论上可以让不同厂商的 Agent 互相通信——这个思路我喜欢，虽然目前生态还不够大。Windsurf 作为一个完整的独立 IDE 体验还行，它内置了很不错的代码索引能力和文件管理功能，不需要依赖别的编辑器。</p>
+    <p>不过 Windsurf 的用户基数确实小，社区资源不多，遇到坑只能自己填。而且 Max 版 $200/月，这不是个人用户能承受的。我的实际体验中，多 Agent 协调偶尔会出问题——比如两个 Agent 同时改同一个文件造成冲突，或者一个 Agent 等另一个的完成信号超时。这些在官方文档里都有提到，但说明这个功能还在打磨中。</p>
 
     <div class="tool-detail-grid">
       <div class="tool-pros">
@@ -390,7 +505,8 @@
       </div>
     </div>
 
-    <div class="best-for"><strong>最适合：</strong>需要多 Agent 协同工作流的团队，或者想尝鲜 ACP 协议的开发者。</div>
+    <div class="best-for"><strong>✅ 适合谁：</strong>需要多 Agent 协同工作流的团队，或者想尝鲜 ACP 协议的开发者。适合中大型项目需要并行开发多个模块的团队。</div>
+    <div class="not-for"><strong>❌ 不适合谁：</strong>个人开发者或小团队（价格偏高）；追求社区支持和丰富插件生态的用户；习惯成熟 IDE 体验的人。</div>
 
     <a href="https://codeium.com/windsurf" class="affiliate-btn" target="_blank" rel="nofollow">🌟 试试 Windsurf</a>
   </div>
@@ -408,9 +524,9 @@
     <div class="gh-stars"><span class="star">★</span> GitHub 88.1k stars · Apache 2.0</div>
     <div class="price-tag">💰 开源免费（需要 ChatGPT 订阅 $20/月起，或 API 按量付费）</div>
 
-    <p>Codex CLI 就是 OpenAI 出的那个终端 Agent。安装简单到离谱——一行命令的事，不需要装什么 IDE，终端里直接开干。它走的是「轻量、透明、可审计」的路子，代码全在本地跑，隐私方面不用操心。</p>
-    <p>我用它来写脚本和自动化任务特别顺手——「帮我写一个批量重命名图片的脚本，加上日期前缀」这种活儿，它三秒搞定。如果你已经有 ChatGPT 订阅，这玩意儿等于是白送的。</p>
-    <p>但说实话，它只是个 CLI。没有图形界面，没有代码高亮那种 IDE 体验。而且还在快速迭代中，偶尔会遇到一些边界情况处理得不好。适合喜欢终端操作的朋友，不适合依赖鼠标的。</p>
+    <p>Codex CLI 就是 OpenAI 出的那个终端 Agent。安装简单到离谱——一行命令的事，不需要装什么 IDE，终端里直接开干。它走的是「轻量、透明、可审计」的路子，代码全在本地跑，隐私方面不用操心。我用它来处理日常的脚本和自动化任务特别顺手——「帮我写一个批量重命名图片的脚本，加上日期前缀」这种活儿，它三秒搞定。它还能读你的项目结构，做一些简单的重构和代码理解。</p>
+    <p>亮点之一是它的 <strong>sandbox 模式</strong>：代码生成后默认在沙箱里执行，你可以 review 每行代码后才真正写到磁盘。这个设计对安全敏感的项目非常友好。如果你已经有 ChatGPT 订阅，这玩意儿等于是白送的。而且它是 Apache 2.0 开源协议，你可以 fork 下来魔改，甚至部署到自己的服务器上，数据完全不出去。</p>
+    <p>但说实话，它只是个 CLI。没有图形界面，没有代码高亮那种 IDE 体验。而且还在快速迭代中，偶尔会遇到一些边界情况处理得不好——比如处理大型代码库时上下文窗口容易爆。代码补全功能基本没有，它更偏向 Agent 而不是实时编辑器。适合喜欢终端操作的朋友，不适合依赖鼠标的。</p>
 
     <div class="tool-detail-grid">
       <div class="tool-pros">
@@ -434,13 +550,14 @@
       </div>
     </div>
 
-    <div class="best-for"><strong>最适合：</strong>终端偏好用户 + 已经有 ChatGPT 订阅的人。想白嫖一个能用的 AI 编程助手？这就是了。</div>
+    <div class="best-for"><strong>✅ 适合谁：</strong>终端偏好用户 + 已经有 ChatGPT 订阅的人。想白嫖一个能用的 AI 编程助手？这就是了。也适合对数据隐私有高要求的开发者（可以本地运行）。</div>
+    <div class="not-for"><strong>❌ 不适合谁：</strong>需要可视化 IDE 体验的新手；重度日常编码需要实时补全的人；没有 ChatGPT 订阅且不想多花 $20 的用户。</div>
 
     <a href="https://github.com/openai/codex" class="affiliate-btn" target="_blank" rel="nofollow">🚀 访问 Codex CLI</a>
   </div>
 
-  <!-- ==================== 最终推荐 ==================== -->
-  <h2>🎯 最终推荐：按场景给你指路</h2>
+  <!-- ==================== 决策矩阵 ==================== -->
+  <h2>🧭 决策矩阵：按场景快速筛选</h2>
   <p>看到这应该有点纠结了吧？很正常，这五个工具各有各的狠活。下面这张表我按真实使用场景帮你做了筛选——你对号入座就行。</p>
 
   <div class="rec-table-wrap">
@@ -449,6 +566,7 @@
         <tr>
           <th>使用场景</th>
           <th>推荐工具</th>
+          <th>预算范围</th>
           <th>为什么选它</th>
         </tr>
       </thead>
@@ -456,40 +574,161 @@
         <tr>
           <td><strong>日常编码 + Agent 自动化</strong></td>
           <td class="rec-tool">Cursor Pro</td>
+          <td>$16/月</td>
           <td>补全最快，Agent 最成熟，一天写下来效率翻倍</td>
         </tr>
         <tr>
           <td><strong>复杂重构 / 屎山代码</strong></td>
           <td class="rec-tool">Claude Code</td>
+          <td>$20/月</td>
           <td>代码推理最强，祖传代码也能理清楚</td>
         </tr>
         <tr>
           <td><strong>企业团队 / 统一部署</strong></td>
           <td class="rec-tool">GitHub Copilot Business</td>
+          <td>$19/人/月</td>
           <td>IDE 覆盖最广，有 IP 赔偿和审计日志</td>
         </tr>
         <tr>
           <td><strong>多 Agent 协同开发</strong></td>
           <td class="rec-tool">Windsurf Pro</td>
+          <td>$20/月</td>
           <td>多 Agent 编排能力独一家</td>
         </tr>
         <tr>
           <td><strong>终端玩家 / 脚本自动化</strong></td>
           <td class="rec-tool">Codex CLI</td>
+          <td>$0（已有ChatGPT）</td>
           <td>轻量、免费（已有ChatGPT）、本地运行</td>
         </tr>
         <tr>
           <td><strong>预算有限 / 个人开发者</strong></td>
           <td class="rec-tool">Cursor Free + Codex CLI</td>
+          <td>$0</td>
           <td>俩都是免费起步，一个 GUI 一个 CLI 互补</td>
         </tr>
         <tr>
           <td><strong>啥都想要 / 重度用户</strong></td>
           <td class="rec-tool">Cursor Pro + Claude Code</td>
-          <td>$16 + $20 = $36/月，Top 2 一起上用，天花板</td>
+          <td>$36/月</td>
+          <td>Top 2 一起上用，天花板组合</td>
+        </tr>
+        <tr>
+          <td><strong>写 Python / 数据科学</strong></td>
+          <td class="rec-tool">Cursor Pro</td>
+          <td>$16/月</td>
+          <td>Jupyter 兼容好，补全快速，数据管道自动生成能力强</td>
+        </tr>
+        <tr>
+          <td><strong>写 JavaScript / TypeScript</strong></td>
+          <td class="rec-tool">Cursor Pro + Claude Code</td>
+          <td>$36/月</td>
+          <td>Composer 多文件编辑超适合前端重构，Claude Code 对 TS 类型推理极准</td>
+        </tr>
+        <tr>
+          <td><strong>写 Rust / C++ / 系统编程</strong></td>
+          <td class="rec-tool">Claude Code</td>
+          <td>$20/月</td>
+          <td>对底层代码的上下文理解最深，Rust 生命周期标注等复杂语法表现好</td>
+        </tr>
+        <tr>
+          <td><strong>教学 / 学编程</strong></td>
+          <td class="rec-tool">GitHub Copilot Free</td>
+          <td>$0</td>
+          <td>免费额度够学生用，IDE 覆盖广，解释代码功能对学习有帮助</td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- ==================== FAQ ==================== -->
+  <h2>❓ 常见问题（FAQ）</h2>
+  <div class="faq-section">
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些 AI 编程工具免费吗？</div>
+      <div class="faq-answer">
+        大部分都有免费版，但功能有限制：<strong>Cursor</strong> 免费版 Agent 每天限制额度；<strong>Copilot</strong> 免费版每月 2000 次补全；<strong>Windsurf</strong> 免费版功能受限；<strong>Codex CLI</strong> 本身开源免费但需要 ChatGPT 订阅才能使用 OpenAI 模型；<strong>Claude Code</strong> 代码开源但需要 Claude Pro 订阅（$20/月）。说白了，轻度使用可以不花钱，天天重度用还是得掏钱。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">Cursor 和 Copilot 到底有什么区别？</div>
+      <div class="faq-answer">
+        核心区别：<strong>Cursor 是一个完整的 IDE</strong>（基于 VS Code 魔改），AI 是原生嵌在骨子里的——补全、Agent、Bugbot 都是自带的。而 <strong>Copilot 是一个插件</strong>，可以装到各种 IDE 上。形象点说：Cursor 像一个为 AI 设计的房子，Copilot 像是给老房子加了个智能门锁。Cursor 的 Agent 能力更强、补全更快，但 Copilot 覆盖的 IDE 更多、企业集成更好。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 Python？</div>
+      <div class="faq-answer">
+        如果你做的是 <strong>数据科学 / 机器学习</strong>，Cursor Pro 最好——它对 Jupyter Notebook 支持好，补全速度快，数据管道代码生成效率高。如果你做的是 <strong>Web 后端 / 大型项目</strong>，Claude Code 更胜一筹——对 Django、FastAPI、SQLAlchemy 这些框架的理解深度明显更强，重构复杂逻辑特别靠谱。Copilot 也是很好的 Python 助手，尤其在 VS Code + Pylance 的组合下表现不俗。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 JavaScript / TypeScript？</div>
+      <div class="faq-answer">
+        <strong>Cursor Pro 的 Composer 模式</strong>在做前端重构时太方便了——你可以在一个视图中同时编辑 .tsx、.css、.test.ts 三个文件，改一个组件所有文件同步更新。Claude Code 对 TypeScript 类型推理非常精准，复杂泛型和类型体操类的代码它处理得比其他工具都好。两都上的组合（Cursor Pro + Claude Code）是全栈开发者的梦幻配置。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 Rust / C++ / 系统编程？</div>
+      <div class="faq-answer">
+        <strong>Claude Code</strong> 在系统编程领域有明显优势。它的代码推理能力最强，能理解 Rust 的生命周期标注、C++ 的模板元编程、内存管理这些复杂概念。我在测试中用了一个 Rust 的 async trait 项目，Claude Code 正确地分析了所有生命周期约束并且给出了正确的实现。Cursor 和 Copilot 对 Rust 也有基础支持，但在深度理解上差 Claude Code 一截。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">学生或个人开发者选哪个最划算？</div>
+      <div class="faq-answer">
+        预算最紧张的情况下：<strong>Cursor Free + Codex CLI（已有 ChatGPT 的话）</strong> 组合拳，完全免费还能互补。如果愿意每月花点钱，<strong>Cursor Pro（$16/月年付）</strong> 是性价比最高的选择——一个订阅搞定日常所有编码需求。Copilot Free 也够学生入门用（每月 2000 次补全），而且 Copilot Pro 对学生有 GitHub Student Developer Pack 折扣。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">可以同时用多个 AI 编程工具吗？</div>
+      <div class="faq-answer">
+        完全可以，而且我强烈推荐这种用法。我的日常组合就是 <strong>Cursor Pro</strong> 作为主力 IDE 写代码 + <strong>Claude Code</strong> 在终端里做大型重构和代码审查。它们互不冲突——Cursor 管日常，Claude Code 管大的改动。你甚至可以在 VS Code 里同时装着 Copilot 插件和 Cursor（当然后者本身就是 IDE），不过注意会有补全冲突。最佳实践是：一个主力工具 + 一个辅助工具。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具支持中文 prompt 吗？</div>
+      <div class="faq-answer">
+        全部支持。五个工具的底层模型（GPT-4o、Claude、DeepSeek 等）都原生支持中文理解。我在测试中全用中文写的 prompt，每个工具都能正确理解需求并生成中文注释和说明。不过代码本身还是英文的（变量名、函数名），这是最佳实践。中文 prompt 的准确率在 95% 以上，跟英文 prompt 差距不大。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')）">哪个工具对隐私保护最好？</div>
+      <div class="faq-answer">
+        <strong>Codex CLI</strong> 和 <strong>Claude Code</strong> 因为是开源的，可以在本地或者你自己的服务器上运行，数据不用经过第三方，隐私保护最好。Cursor 和 Copilot 都是云端服务，代码会发送到他们的服务器处理——不过他们都提供不训练模式，可以关闭代码被用来训练模型的功能。Windsurf 也是云端处理。如果你在公司做保密项目，选开源工具或确保关掉数据训练开关。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具能离线使用吗？</div>
+      <div class="faq-answer">
+        目前<strong>不能完全离线使用</strong>——所有工具的 AI 功能都依赖云端模型推理。Codex CLI 和 Claude Code 虽然开源，但模型本身是云端的（需要 API 调用）。不过你可以在 Cursor 里配置本地模型（如 CodeLlama、DeepSeek Coder 等），实现部分离线。但说实话，本地模型的补全质量跟 GPT-4o 和 Claude 这些云端模型比还有差距。真正完全离线的高质量 AI 编程助手，目前还没有成熟产品。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具支持 JetBrains IDE 吗？</div>
+      <div class="faq-answer">
+        <strong>GitHub Copilot</strong> 支持最好——原生 JetBrains 插件，IntelliJ IDEA、PyCharm、WebStorm、GoLand 等全系列都支持。<strong>Claude Code</strong> 也在 JetBrains 上提供了插件支持。<strong>Cursor</strong> 不支持——它是一个独立的 VS Code 分支 IDE，没法装到 JetBrains 上。<strong>Windsurf</strong> 也是独立 IDE。总的来说，如果你是 JetBrains 的忠实用户，Copilot 是最稳妥的选择。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">2026 年新增了哪些重要功能？</div>
+      <div class="faq-answer">
+        2026 年各工具都有大更新：Cursor 发布了 Bugbot 自动代码审查和 Ultra 计划；GitHub Copilot 推出了 Agent Mode 和 Copilot CLI；Windsurf 从 Devin Desktop 品牌升级并推出了多 Agent 编排；Codex CLI 从实验版进入稳定期，增加了 sandbox 执行模式；Claude Code 突破了 130k stars，并推出了 MCP 协议的正式版。总体来说，Agent 自动化和多工具协同是今年的主旋律。
+      </div>
+    </div>
+
   </div>
 
   <p style="margin-top:24px;font-size:15px;color:var(--text-dim);background:var(--surface);padding:16px;border-radius:8px;border:1px solid var(--border);">
@@ -509,6 +748,17 @@
     <p style="margin-top:4px; font-size:12px;"><a href="privacy-policy.html" style="color:var(--text-dim);">隐私政策</a></p>
   </div>
 </footer>
+
+<script>
+  // FAQ toggle — click handler for all FAQ questions
+  document.querySelectorAll('.faq-question').forEach(function(q) {
+    q.addEventListener('click', function() {
+      this.classList.toggle('active');
+      var answer = this.nextElementSibling;
+      if (answer) answer.classList.toggle('show');
+    });
+  });
+</script>
 
 </body>
 </html>

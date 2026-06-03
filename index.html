@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI工具评测 — 2026最新AI工具深度对比与推荐</title>
-  <meta name="description" content="AI工具评测 - 提供ChatGPT、Claude、Midjourney等主流AI工具的深度评测、横向对比和选购指南。">
+  <title>AI快报 — 2026最新AI工具深度对比与推荐</title>
+  <meta name="description" content="AI快报 - 提供ChatGPT、Claude、Midjourney等主流AI工具的深度评测、横向对比和选购指南。">
   <link rel="stylesheet" href="css/style.css">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
@@ -47,7 +47,7 @@ function googleTranslateElementInit() {
 
 <header>
   <div class="container">
-    <a href="/" class="logo">AI<span>工具</span>评测</a>
+    <a href="/" class="logo">AI<span>快报</span></a>
     <nav>
       <a href="/">首页</a>
       <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
@@ -307,19 +307,18 @@ function googleTranslateElementInit() {
         if (item.category && catLabels[item.category]) tags.push(catLabels[item.category]);
         var tagHtml = tags.length ? tags.map(function(t){ return '<span class="ah-tag">' + t + '</span>'; }).join('') : '';
         
-        // Check if has media (Twitter/X source likely has media)
-        var hasMedia = sourceRaw.indexOf('X：') === 0;
+        // Check source type for icon
+        var isX = sourceRaw.indexOf('X：') === 0;
+        var isPaper = sourceRaw.indexOf('论文') >= 0 || sourceRaw.indexOf('Paper') >= 0 || sourceRaw.indexOf('Research') >= 0;
+        var isRss = sourceRaw.indexOf('RSS') >= 0 || sourceRaw.indexOf('rss') >= 0;
+        var iconClass = isX ? 'x' : (isPaper ? 'paper' : (isRss ? 'rss' : 'web'));
+        var iconText = isX ? '𝕏' : (isPaper ? '📄' : (isRss ? '📡' : '🌐'));
         
-        // Clean summary for display
-        var summary = (item.summary || '').replace(/https?:\/\/[^\s]+/g, '').trim().substring(0, 150);
-        if (summary.length >= 150) summary += '...';
-        
-        html += '<div class="ah-item" data-url="' + (item.url || '') + '">' +
+        html += '<div class="ah-item">' +
           '<span class="ah-time">' + time + '</span>' +
           '<div class="ah-body">' +
-          (hasMedia ? '<div class="ah-img-wrap"></div>' : '') +
           '<div class="ah-source-line">' +
-          '<span class="ah-source-icon">' + (hasMedia ? '𝕏' : '📄') + '</span>' +
+          '<span class="ah-source-icon ' + iconClass + '">' + iconText + '</span>' +
           '<span class="ah-source-name">' + sourceMain + '</span>' +
           (sourceMeta ? '<span class="ah-source-meta">' + sourceMeta + '</span>' : '') +
           '</div>' +
@@ -333,47 +332,6 @@ function googleTranslateElementInit() {
     }
     
     feed.innerHTML = html;
-    // Lazy load images
-    setTimeout(function() {
-      var items = feed.querySelectorAll('.ah-item');
-      var idx = 0;
-      function loadNext() {
-        if (idx >= items.length) return;
-        var el = items[idx];
-        idx++;
-        var imgWrap = el.querySelector('.ah-img-wrap');
-        if (!imgWrap) { setTimeout(loadNext, 50); return; }
-        var link = el.querySelector('.ah-title');
-        if (link && link.href) {
-          var imgReq = new XMLHttpRequest();
-          imgReq.open('GET', '/api/og?url=' + encodeURIComponent(link.href), true);
-          imgReq.onload = function() {
-            if (imgReq.status === 200) {
-              try {
-                var imgData = JSON.parse(imgReq.responseText);
-                if (imgData.image) {
-                  var imgEl = document.createElement('img');
-                  imgEl.src = imgData.image;
-                  imgEl.onerror = function() { imgWrap.style.display = 'none'; };
-                  imgWrap.appendChild(imgEl);
-                } else {
-                  imgWrap.style.display = 'none';
-                }
-              } catch(e) { imgWrap.style.display = 'none'; }
-            } else {
-              imgWrap.style.display = 'none';
-            }
-            setTimeout(loadNext, 300);
-          };
-          imgReq.onerror = function() { imgWrap.style.display = 'none'; setTimeout(loadNext, 300); };
-          imgReq.send();
-        } else {
-          imgWrap.style.display = 'none';
-          setTimeout(loadNext, 50);
-        }
-      }
-      setTimeout(loadNext, 800);
-    }, 100);
   }
   
   // Tab click handlers
@@ -394,7 +352,7 @@ function googleTranslateElementInit() {
 
 <footer>
   <div class="container">
-    <p>AI工具评测站 © 2026</p>
+    <p>AI快报站 © 2026</p>
     <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
   </div>
 </footer>

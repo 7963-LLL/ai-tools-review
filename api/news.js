@@ -1,9 +1,13 @@
-// Vercel function that returns news data as JS variable assignment
+// Vercel function - returns news as JSONP (callback=renderNews)
 module.exports = async (req, res) => {
   const https = require('https');
+  const category = req.query.category || '';
+  let url = 'https://aihot.virxact.com/api/public/items?mode=selected&take=20';
+  if (category) url += '&category=' + category;
+  
   try {
     const data = await new Promise((resolve, reject) => {
-      https.get('https://aihot.virxact.com/api/public/items?mode=selected&take=20', {
+      https.get(url, {
         headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
       }, (res2) => {
         let body = '';
@@ -16,9 +20,9 @@ module.exports = async (req, res) => {
     });
     res.setHeader('Content-Type', 'application/javascript');
     res.setHeader('Cache-Control', 's-maxage=300');
-    res.status(200).send('window.__newsData=' + JSON.stringify(data) + ';');
+    res.status(200).send('window.renderNews(' + JSON.stringify(data) + ');');
   } catch(e) {
     res.setHeader('Content-Type', 'application/javascript');
-    res.status(200).send('window.__newsData=[];');
+    res.status(200).send('window.renderNews({items:[]});');
   }
 };

@@ -206,8 +206,8 @@
     document.body.appendChild(s);
   }
   
-  window.renderNews = function() {
-    var items = window.__newsData?.items || [];
+  window.renderNews = function(data) {
+    var items = data?.items || [];
     if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
     var html = '<div class="nf-list">';
     for (var i = 0; i < Math.min(items.length, 15); i++) {
@@ -223,7 +223,6 @@
     }
     html += '</div>';
     feed.innerHTML = html;
-    window.__newsData = null;
   };
   
   // Tab click
@@ -236,16 +235,7 @@
     loadNews(tab.getAttribute('data-cat') || '');
   });
   
-  // Poll for initial data
-  var wait = 0;
-  function check() {
-    if (window.__newsData) { window.renderNews(); return; }
-    wait++;
-    if (wait > 50) { feed.innerHTML = '<div class="nf-empty">加载失败</div>'; return; }
-    setTimeout(check, 200);
-  }
-  setTimeout(check, 100);
-  // Trigger initial load
+  // Initial load
   loadNews('');
   
   // Language selector

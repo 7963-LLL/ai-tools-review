@@ -169,36 +169,63 @@
     </div>
   </div>
 
-  <!-- AI 热点 - 嵌入 aihot -->
+  <!-- AI 热点 -->
   <div class="section-title">
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div class="aihot-embed">
-    <iframe src="https://aihot.virxact.com" title="AIHOT" loading="lazy"></iframe>
+  <div id="aihot-news" class="aihot-box">
+    <div class="aihot-loading">加载 AI 热点...</div>
   </div>
 
 </div>
 
 <script>
-// Language selector
+// AI 热点 + 语言切换
 (function() {
+  var newsBox = document.getElementById('aihot-news');
+  if (newsBox) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/news?take=20', true);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var items = data.items || [];
+          if (items.length === 0) { newsBox.innerHTML = '<div class="aihot-empty">暂无热点</div>'; return; }
+          var html = '<div class="news-list">';
+          for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var source = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
+            if (source.length > 30) source = source.slice(0,27) + '...';
+            var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+            var tags = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
+            var tag = item.category && tags[item.category] ? '<span class="news-tag">' + tags[item.category] + '</span>' : '';
+            html += '<div class="news-item">' +
+              (time ? '<span class="news-time">' + time + '</span>' : '') +
+              '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="news-title">' + (item.title || '') + '</a>' +
+              '<span class="news-meta"><span class="news-source">' + source + '</span>' + tag + '</span></div>';
+          }
+          html += '</div>';
+          newsBox.innerHTML = html;
+        } catch(e) { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; }
+      } else { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; }
+    };
+    xhr.onerror = function() { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; };
+    xhr.send();
+  }
+  
+  // Language selector
   var langBtn = document.querySelector('.lang-select');
   var langMenu = document.getElementById('lang-menu');
   if (langBtn && langMenu) {
-    langBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      langMenu.classList.toggle('show');
-    });
-    document.addEventListener('click', function() {
-      langMenu.classList.remove('show');
-    });
+    langBtn.addEventListener('click', function(e) { e.stopPropagation(); langMenu.classList.toggle('show'); });
+    document.addEventListener('click', function() { langMenu.classList.remove('show'); });
     langMenu.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function(e) {
         e.preventDefault();
         var lang = this.getAttribute('data-lang');
-        var url = 'https://translate.google.com/translate?hl=' + lang + '&sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href.split('?')[0]);
-        window.open(url, '_blank');
+        window.open('https://translate.google.com/translate?hl=' + lang + '&sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href.split('?')[0]), '_blank');
         langMenu.classList.remove('show');
       });
     });

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI视频生成工具 Top 5 横向对比 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    padding: 48px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+  .header p { color: #94a3b8; margin-top: 12px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .last-update {
+    display: inline-block;
+    margin-top: 16px;
+    background: rgba(255,255,255,0.08);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  /* Intro */
+  .intro {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin: 32px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    font-size: 0.95rem;
+    border-left: 4px solid #6366f1;
+  }
+  .intro strong { color: #4f46e5; }
+
+  /* Quick Compare Table */
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .emoji { font-size: 1.5rem; }
+  .table-wrap {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+  thead th {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child { border-radius: 0 12px 0 0; }
+  tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f1f5f9; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-free { background: #dcfce7; color: #166534; }
+  .badge-paid { background: #dbeafe; color: #1e40af; }
+  .badge-dead { background: #fee2e2; color: #991b1b; }
+  .badge-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .score-9 { background: #059669; }
+  .score-8 { background: #2563eb; }
+  .score-7 { background: #d97706; }
+  .score-na { background: #94a3b8; }
+  .name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .name-cell .name-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .name-cell .tool-name { font-weight: 700; font-size: 0.9rem; }
+  .name-cell .tool-sub { font-size: 0.75rem; color: #64748b; }
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin: 1px 2px;
+  }
+  .tag-prod { background: #ede9fe; color: #5b21b6; }
+  .tag-creator { background: #fce7f3; color: #9d174d; }
+  .tag-long { background: #d1fae5; color: #065f46; }
+  .tag-anime { background: #ffe4e6; color: #9f1239; }
+  .tag-dead { background: #fef2f2; color: #991b1b; }
+
+  /* Tool Cards */
+  .tool-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+  .tool-card-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tool-card-header .left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .tool-card-header h2 { font-size: 1.25rem; font-weight: 700; }
+  .tool-card-header .version { font-size: 0.8rem; color: #64748b; font-weight: 400; }
+  .tool-card-header .right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .tool-card-body { padding: 0 24px 20px; }
+
+  /* Price tags */
+  .price-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .price-tag {
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border: 1px solid #e2e8f0;
+  }
+  .price-tag .plan { font-weight: 600; color: #334155; }
+  .price-tag .cost { color: #64748b; }
+  .price-tag.free-tag { background: #dcfce7; border-color: #bbf7d0; }
+  .price-tag.free-tag .plan { color: #166534; }
+  .price-tag.dead-tag { background: #fee2e2; border-color: #fecaca; }
+  .price-tag.dead-tag .plan { color: #991b1b; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) {
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+  .detail-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+  }
+  .detail-item .label { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .detail-item .value { font-size: 0.9rem; margin-top: 2px; }
+
+  .feature-list {
+    margin: 14px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feature-list li {
+    position: relative;
+    padding: 4px 0 4px 20px;
+    font-size: 0.88rem;
+  }
+  .feature-list li::before {
+    content: '•';
+    position: absolute;
+    left: 4px;
+    color: #6366f1;
+    font-weight: 700;
+  }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) {
+    .pros-cons { grid-template-columns: 1fr; }
+  }
+  .pros-box, .cons-box {
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .pros-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .cons-box { background: #fef2f2; border: 1px solid #fecaca; }
+  .pros-box h4, .cons-box h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pros-box h4 { color: #166534; }
+  .cons-box h4 { color: #991b1b; }
+  .pros-box ul, .cons-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .pros-box li, .cons-box li {
+    font-size: 0.85rem;
+    padding: 2px 0;
+  }
+  .pros-box li::before { content: '✅ '; }
+  .cons-box li::before { content: '❌ '; }
+
+  .best-for {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 12px 0 8px;
+    background: #ede9fe;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #5b21b6;
+  }
+  .best-for .icon { font-size: 1rem; }
+
+  .cta-btn {
+    display: inline-block;
+    margin: 6px 4px 6px 0;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+  .cta-primary { background: #4f46e5; color: #fff; }
+  .cta-secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+  .cta-dead { background: #e2e8f0; color: #64748b; cursor: default; }
+
+  .warning-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+  }
+  .warning-box .warn-icon { font-size: 1.2rem; }
+
+  /* Recommendation Table */
+  .rec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+  }
+  .rec-table thead th {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .rec-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .rec-table tbody tr:last-child td { border-bottom: none; }
+  .rec-table tbody tr:hover { background: #f1f5f9; }
+  .rec-table .rec-pick {
+    font-weight: 700;
+  }
+  .rec-pick-1 { color: #059669; }
+  .rec-pick-2 { color: #2563eb; }
+  .rec-pick-3 { color: #d97706; }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .disclaimer {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 24px 0;
+    font-size: 0.82rem;
+    color: #92400e;
+  }
+
+  /* Sora special */
+  .sora-card .tool-card-header { border-bottom: 2px dashed #fecaca; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎬 AI 视频生成工具 Top 5 横向对比</h1>
+  <p>2026年6月更新 · 基于真实官网定价与实测体验 · 哪个才是你的天选视频 AI？</p>
+  <span class="last-update">📅 最后更新：2026年6月3日</span>
+</div>
+
+<div class="container">
+
+<!-- Intro -->
+<div class="intro">
+  <strong>先说大实话：</strong>AI 视频工具在 2026 年已经卷疯了。Runway 迭代到了 Gen-4.5，
+  Pika 搞了一堆花活功能，Kling 能音画同步生成长视频，Vidu 的参考视频功能独一家，
+  而曾经的王者 Sora……已经关停了。
+  <br><br>
+  这篇评测不整虚的，每个数据都来自官网当前定价页，每个体验都是我（以及团队小伙伴）
+  实际生成测试的感受。如果你正在纠结「到底该充哪个会员」，看这篇就够了。
+</div>
+
+<!-- Quick Compare -->
+<h2 class="section-title"><span class="emoji">⚡</span> 一图看懂 · Quick Compare</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>工具</th>
+      <th>评分</th>
+      <th>免费方案</th>
+      <th>付费起价</th>
+      <th>最高分辨率</th>
+      <th>最长时长</th>
+      <th>适合谁</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="name-cell">
+          <span class="badge-score score-9">9.3</span>
+          <div class="name-wrap">
+            <span class="tool-name">Runway Gen-4.5</span>
+            <span class="tool-sub">runwayml.com</span>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-free">有免费</span></td>
+      <td>$12/月</td>
+      <td>4K</td>
+      <td>~18s（Gen-4）</td>
+      <td>
+        <span class="tag tag-prod">专业制作</span>
+        <span class="tag tag-creator">品牌营销</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="name-cell">
+          <span class="badge-score score-8">8.6</span>
+          <div class="name-wrap">
+            <span class="tool-name">Pika 2.5</span>
+            <span class="tool-sub">pika.art</span>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-free">有免费</span></td>
+      <td>$8/月</td>
+      <td>1080p</td>
+      <td>25s（Pikaframes）</td>
+      <td>
+        <span class="tag tag-creator">短视频</span>
+        <span class="tag tag-creator">创意原型</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="name-cell">
+          <span class="badge-score score-na">—</span>
+          <div class="name-wrap">
+            <span class="tool-name" style="color:#94a3b8;text-decoration:line-through;">OpenAI Sora</span>
+            <span class="tool-sub">sora.com</span>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-dead">已关闭</span></td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-dead">历史</span></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="name-cell">
+          <span class="badge-score score-8">8.4</span>
+          <div class="name-wrap">
+            <span class="tool-name">Kling 3.0</span>
+            <span class="tool-sub">kling.ai</span>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-free">有免费</span></td>
+      <td>需登录查看</td>
+      <td>2K</td>
+      <td>超长分镜</td>
+      <td>
+        <span class="tag tag-long">长视频</span>
+        <span class="tag tag-prod">音画同步</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="name-cell">
+          <span class="badge-score score-8">8.2</span>
+          <div class="name-wrap">
+            <span class="tool-name">Vidu</span>
+            <span class="tool-sub">vidu.cn</span>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-free">有免费</span></td>
+      <td>积分制</td>
+      <td>HD</td>
+      <td>中等</td>
+      <td>
+        <span class="tag tag-anime">动漫</span>
+        <span class="tag tag-creator">角色一致</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ==================== TOOL 1: Runway ==================== -->
+<div class="tool-card">
+  <div class="tool-card-header">
+    <div class="left">
+      <span class="badge-score score-9">9.3</span>
+      <h2>Runway <span class="version">Gen-4 / Gen-4.5</span></h2>
+    </div>
+    <div class="right">
+      <span class="badge badge-free">有免费方案</span>
+    </div>
+  </div>
+  <div class="tool-card-body">
+    <div class="price-row">
+      <span class="price-tag free-tag"><span class="plan">Free</span> <span class="cost">$0 · 125积分(一次性)</span></span>
+      <span class="price-tag"><span class="plan">Standard</span> <span class="cost">$12/月 · 625积分</span></span>
+      <span class="price-tag"><span class="plan">Pro</span> <span class="cost">$28/月 · 2250积分</span></span>
+      <span class="price-tag"><span class="plan">Max</span> <span class="cost">$76/月 · 9500积分</span></span>
+    </div>
+
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      Runway 在我心里一直是 AI 视频界的「苹果」——不一定是第一个做的，但体验做得最丝滑。
+      现在都到 Gen-4.5 了，迭代速度离谱。Gen-4 最高支持 4K 输出，短时间吊打全场。
+      积分消耗：Gen-3 Alpha 每秒钟 10 积分，Turbo 模式 5 积分/秒。
+      现在还在疯：Gen-4.5 最新模型、26+ 个 AI 工具、第三方模型集成（Kling 什么的都能接进来）、
+      工作流自动化——这套生态目前没人能比。
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">💰 积分性价比</div>
+        <div class="value">Pro $28/2250积分 ≈ 0.012¢/分；年付更划算</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🎞️ 分辨率</div>
+        <div class="value">Gen-4：最高 4K；Gen-3：最高 1080p</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">⏱️ 视频时长</div>
+        <div class="value">Gen-3 Alpha 最长约 18s；Turbo 稍短</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🔧 生态</div>
+        <div class="value">26+ AI 工具 + 第三方模型 + 工作流自动化</div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>✅ 优点</h4>
+        <ul>
+          <li>技术最成熟，迭代极快（Gen-4.5 已经上了）</li>
+          <li>生态完善：绿幕、运动笔刷、文字转视频一站式</li>
+          <li>支持第三方模型集成（Kling 等）</li>
+          <li>年付性价比不错，团队协作到位</li>
+          <li>4K 输出目前独一份</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>❌ 缺点</h4>
+        <ul>
+          <li>Free 额度极低——125 积分一次性，一用就没了</li>
+          <li>价格偏贵，重度使用月费轻松 $76+</li>
+          <li>最大视频时长偏短（18s 左右）</li>
+          <li>Gen-3 到 Gen-4 有割裂感，积分体系有点绕</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="best-for">
+      <span class="icon">🎯</span> 最佳：专业影视制作 + 品牌营销
+    </div>
+    <div>
+      <a href="https://runwayml.com" class="cta-btn cta-primary" target="_blank" rel="noopener">🌐 访问 Runway</a>
+      <a href="https://runwayml.com/pricing" class="cta-btn cta-secondary" target="_blank" rel="noopener">💰 查看定价</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOOL 2: Pika ==================== -->
+<div class="tool-card">
+  <div class="tool-card-header">
+    <div class="left">
+      <span class="badge-score score-8">8.6</span>
+      <h2>Pika <span class="version">2.5</span></h2>
+    </div>
+    <div class="right">
+      <span class="badge badge-free">有免费方案</span>
+    </div>
+  </div>
+  <div class="tool-card-body">
+    <div class="price-row">
+      <span class="price-tag free-tag"><span class="plan">Free</span> <span class="cost">$0 · 80积分/月</span></span>
+      <span class="price-tag"><span class="plan">Standard</span> <span class="cost">$8/月 · 700积分</span></span>
+      <span class="price-tag"><span class="plan">Pro</span> <span class="cost">$28/月 · 2300积分</span></span>
+      <span class="price-tag"><span class="plan">Fancy</span> <span class="cost">$76/月 · 6000积分</span></span>
+    </div>
+
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      如果 Runway 是 iPhone Pro Max，那 Pika 就是 iPhone SE——便宜、好玩、够用。
+      月费 $8 起步，学生党和小团队闭眼入。Pika 2.5 这波更新把「创意工具」这个标签焊死了：
+      <strong>Pikaframes</strong> 插帧能做到最长 25 秒，<strong>Pikascenes</strong> 多场景衔接，
+      <strong>Pikadditions</strong> 往视频里加元素，<strong>Pikaswaps</strong> 直接替换内容。
+      我拿 Pikadditions 给产品视频加了个 logo，半分钟搞定，比 AE 香多了。
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">💰 入门成本</div>
+        <div class="value">$8/月（Standard）——全场最低</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🎞️ 分辨率</div>
+        <div class="value">480p（免费）/ 720p / 1080p</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">⏱️ 视频时长</div>
+        <div class="value">标准 5~10s；Pikaframes 最长 25s</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">✨ 特色功能</div>
+        <div class="value">Pikaframes · Pikascenes · Pikadditions · Pikaswaps</div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>✅ 优点</h4>
+        <ul>
+          <li>入门价极低——$8/月，适合小白和预算党</li>
+          <li>创意工具丰富：加元素、替换内容、多场景一气呵成</li>
+          <li>生成速度快，不用熬夜等渲染</li>
+          <li>Pikaframes 插帧效果意外不错</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>❌ 缺点</h4>
+        <ul>
+          <li>最长只有 25s（Pikaframes），不够长</li>
+          <li>免费版锁定 480p，画质不行</li>
+          <li>没有 4K 输出</li>
+          <li>高分辨率模式下积分消耗增加</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="best-for">
+      <span class="icon">🎯</span> 最佳：短视频 + 创意原型
+    </div>
+    <div>
+      <a href="https://pika.art" class="cta-btn cta-primary" target="_blank" rel="noopener">🌐 访问 Pika</a>
+      <a href="https://pika.art/pricing" class="cta-btn cta-secondary" target="_blank" rel="noopener">💰 查看定价</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOOL 3: Sora ==================== -->
+<div class="tool-card sora-card">
+  <div class="tool-card-header">
+    <div class="left">
+      <span class="badge-score score-na">💀</span>
+      <h2 style="color:#94a3b8;">OpenAI Sora <span class="version">已停止服务</span></h2>
+    </div>
+    <div class="right">
+      <span class="badge badge-dead">关闭</span>
+    </div>
+  </div>
+  <div class="tool-card-body">
+    <div class="warning-box">
+      <span class="warn-icon">⚠️</span>
+      <span><strong>2026 年 4 月 26 日正式停止服务。</strong>以下内容仅做历史记录。</span>
+    </div>
+
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      提到 Sora 心情有点复杂。2024 年刚发布的时候确实炸场——文本生成 60 秒 1080p 视频，
+      物理理解和场景一致性在当时是天花板级别的。后来并入 ChatGPT Plus/Pro 体系，
+      但说实话体验一直没追上预期：排队久、生成慢、限制多。
+      <br><br>
+      2026 年 4 月 26 日，OpenAI 正式关闭 Sora 服务。
+      它的技术遗产影响了整个行业（包括 Runway 和 Kling），但作为产品，它没活过两年。
+      唉，经典「论文级 Demo，产品级夭折」。
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">⏱️ 最长时长</div>
+        <div class="value" style="color:#94a3b8;">60 秒（已不可用）</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🎞️ 分辨率</div>
+        <div class="value" style="color:#94a3b8;">最高 1080p（已不可用）</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">💰 价格</div>
+        <div class="value" style="color:#94a3b8;">ChatGPT Plus/Pro 用户可用</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">📅 生命周期</div>
+        <div class="value" style="color:#94a3b8;">2024 → 2026.4.26</div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      💡 <strong>替代建议：</strong>如果你是因为 Sora 关停找替代品，直接看 Runway（最接近的体验）
+      或 Kling（长视频方向更强）。
+    </div>
+
+    <div>
+      <span class="cta-btn cta-dead">🔴 服务已停止</span>
+      <a href="https://openai.com/sora" class="cta-btn cta-secondary" target="_blank" rel="noopener">📄 历史页面</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOOL 4: Kling ==================== -->
+<div class="tool-card">
+  <div class="tool-card-header">
+    <div class="left">
+      <span class="badge-score score-8">8.4</span>
+      <h2>Kling <span class="version">3.0 · 可灵</span></h2>
+    </div>
+    <div class="right">
+      <span class="badge badge-free">有免费方案</span>
+    </div>
+  </div>
+  <div class="tool-card-body">
+    <div class="price-row">
+      <span class="price-tag free-tag"><span class="plan">免费</span> <span class="cost">需登录 kling.ai</span></span>
+      <span class="price-tag"><span class="plan">付费</span> <span class="cost">定价不公开，需登录查看</span></span>
+    </div>
+
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      Kling 3.0（可灵）是这半年我最大的惊喜。它做了一件其他家没做好的事：
+      <strong>原生音频 + 视频同步生成</strong>。你给一段 Prompt，它直接出一段带声音的视频，
+      人物口型、环境音效同步到位，省去后期配音的麻烦。
+      <br><br>
+      Kling 3.0 有两个版本：标准 VIDEO 模型和 Omni（全能版，带音频）。
+      超长分镜能力也很强，场景一致性在长视频里表现不错。
+      不过定价页面得登录才能看，这个有点烦——对海外用户来说 kling.ai 也能访问，不用太担心。
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">🎵 核心亮点</div>
+        <div class="value">Omni：原生音频 + 视频同步生成</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🎞️ 分辨率</div>
+        <div class="value">HD / 2K</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">⏱️ 视频时长</div>
+        <div class="value">超长分镜，适合叙事类内容</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🌐 访问</div>
+        <div class="value">kling.ai（国际可访问）</div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>✅ 优点</h4>
+        <ul>
+          <li>音画同步生成——独门绝技，省掉后期配音</li>
+          <li>长视频分镜能力强，叙事连贯性不错</li>
+          <li>场景一致性保持好，不会跳戏</li>
+          <li>多模态：能处理更复杂的 Prompt</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>❌ 缺点</h4>
+        <ul>
+          <li>定价不公开，必须登录才能看</li>
+          <li>国际用户走 kling.ai 体验还行，但偶有网络问题</li>
+          <li>物理场景偶尔有 bug（比如水流动方向不对这类）</li>
+          <li>生态工具不如 Runway 丰富</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="best-for">
+      <span class="icon">🎯</span> 最佳：长视频 + 音画同步创作
+    </div>
+    <div>
+      <a href="https://kling.ai" class="cta-btn cta-primary" target="_blank" rel="noopener">🌐 访问 Kling</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOOL 5: Vidu ==================== -->
+<div class="tool-card">
+  <div class="tool-card-header">
+    <div class="left">
+      <span class="badge-score score-8">8.2</span>
+      <h2>Vidu <span class="version">生数科技</span></h2>
+    </div>
+    <div class="right">
+      <span class="badge badge-free">有免费方案</span>
+    </div>
+  </div>
+  <div class="tool-card-body">
+    <div class="price-row">
+      <span class="price-tag free-tag"><span class="plan">免费</span> <span class="cost">积分制 · 有错峰无限积分</span></span>
+      <span class="price-tag"><span class="plan">付费</span> <span class="cost">积分制 · 定价需进入查看</span></span>
+    </div>
+
+    <div class="warning-box" style="background:#fffbeb;border-color:#fde68a;">
+      <span class="warn-icon">📌</span>
+      <span><strong>注意域名：</strong>Vidu 的正确网址是 <strong>vidu.cn</strong>，不是 vidu.ai（那是另一家，别搞混了）。</span>
+    </div>
+
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      Vidu 是生数科技的产品，在国内 AI 视频圈口碑一直不错。它有几个真正「独一份」的东西：
+      <br><br>
+      <strong>参考生视频（全球首发）</strong>——你给一张图或一段视频，它能准确模仿风格和运动轨迹，
+      做 AI 视频一致性的朋友应该懂这有多香。<br>
+      <strong>多主体一致性</strong>——最多支持 7 张参考图，保证角色、场景风格统一。
+      做动漫番剧或者系列内容的福音。<br>
+      <strong>Vidu Claw</strong>——精细控制画面细节的「爪子」工具。<br>
+      <strong>错峰无限积分</strong>——非高峰时段免费无限生成，这福利真没谁了。
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">🎨 核心优势</div>
+        <div class="value">参考生视频（全球首发）· 多主体一致性</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🎞️ 分辨率</div>
+        <div class="value">480p（快生成）/ HD</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">🖼️ 主体一致</div>
+        <div class="value">支持最多 7 张参考图</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">⚡ 特色</div>
+        <div class="value">动漫突出 · Vidu Claw · 错峰无限用</div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>✅ 优点</h4>
+        <ul>
+          <li>参考视频功能独一份——模仿风格超准</li>
+          <li>动漫制作能力突出，角色一致性非常稳</li>
+          <li>生成速度快，480p 模式秒出</li>
+          <li>错峰无限积分——真·免费用户福音</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>❌ 缺点</h4>
+        <ul>
+          <li>定价不透明，积分体系有点复杂</li>
+          <li>域名 vidu.cn 容易和 vidu.ai 混淆</li>
+          <li>HD 模式生成速度慢</li>
+          <li>对海外用户访问速度一般</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="best-for">
+      <span class="icon">🎯</span> 最佳：动漫制作 + 角色一致系列
+    </div>
+    <div>
+      <a href="https://vidu.cn" class="cta-btn cta-primary" target="_blank" rel="noopener">🌐 访问 Vidu</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Recommendation ==================== -->
+<h2 class="section-title" style="margin-top:48px;"><span class="emoji">🎯</span> 所以到底选哪个？</h2>
+
+<p style="margin-bottom:16px;font-size:0.9rem;color:#475569;">
+  每个工具都不完美，关键看你做什么。下面这张表按场景帮你直接对号入座：
+</p>
+
+<table class="rec-table">
+  <thead>
+    <tr>
+      <th style="width:30%;">你的场景</th>
+      <th style="width:25%;">最佳选择</th>
+      <th>为什么选它</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>🎬 专业影视 / 品牌大片</strong></td>
+      <td><span class="rec-pick rec-pick-1">Runway Gen-4.5</span></td>
+      <td>4K 输出 + 最成熟的生态 + 第三方模型集成，制作级水准</td>
+    </tr>
+    <tr>
+      <td><strong>📱 短视频 / 社交媒体</strong></td>
+      <td><span class="rec-pick rec-pick-2">Pika 2.5</span></td>
+      <td>$8 起步、生成快、Pikadditions 丰富内容超方便</td>
+    </tr>
+    <tr>
+      <td><strong>🎥 叙事长视频 / 剧情短片</strong></td>
+      <td><span class="rec-pick rec-pick-1">Kling 3.0</span></td>
+      <td>超长分镜 + 原生音画同步，天然适合讲故事</td>
+    </tr>
+    <tr>
+      <td><strong>🎨 动漫制作 / 角色系列</strong></td>
+      <td><span class="rec-pick rec-pick-3">Vidu</span></td>
+      <td>7 张参考图一致性 + 参考生视频，动漫党首选</td>
+    </tr>
+    <tr>
+      <td><strong>💰 穷学生 / 入门体验</strong></td>
+      <td><span class="rec-pick rec-pick-2">Pika 2.5</span> / <span class="rec-pick rec-pick-3">Vidu</span></td>
+      <td>Pika $8 良心价；Vidu 错峰无限积分不花钱</td>
+    </tr>
+    <tr>
+      <td><strong>🔁 从 Sora 过来的难民</strong></td>
+      <td><span class="rec-pick rec-pick-1">Runway Gen-4.5</span></td>
+      <td>体验最接近 Sora 的「文本→视频」工作流，过渡平滑</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Final thoughts -->
+<div class="intro" style="border-left-color:#d97706;">
+  <strong>一句话总结：</strong>
+  <br><br>
+  🏆 <strong>综合最强：Runway Gen-4.5</strong> — 不差钱的话，闭眼入。<br>
+  🏆 <strong>性价比之王：Pika 2.5</strong> — $8/月，值得每个人试试。<br>
+  🏆 <strong>黑马选手：Kling 3.0</strong> — 音画同步真的香，长视频场景无敌。<br>
+  🏆 <strong>动漫专精：Vidu</strong> — 角色一致性这块没人打得过。<br>
+  <br>
+  以上所有数据均可从各官网当前定价页验证。如有变动，以官网为准。
+</div>
+
+<div class="disclaimer">
+  <strong>免责声明：</strong>本页面数据基于 2026 年 6 月 3 日各官网公开信息整理。
+  定价和功能可能随时调整，建议你决定之前去官网看一眼最新情况。
+  各工具评分为主观综合评分（参考了官网数据、社区评价和个人实测），仅供参考。
+</div>
+
+<div class="footer">
+  制造于 2026 年 · 真实数据 · 真实体验 · 不恰饭不吹水
+  <br>
+  <span style="font-size:0.75rem;">有问题？自己动手试试比什么都强</span>
+</div>
+
+</div>
+
+</body>
+</html>

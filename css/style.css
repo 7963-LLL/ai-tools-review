@@ -117,6 +117,137 @@ nav a:hover { color: var(--accent); }
   margin-bottom: 40px;
 }
 
+/* Score Badge */
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #f59e0b, #7c3aed);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.score-badge .num { font-size: 18px; }
+
+/* Tool Block (per-product section) */
+.tool-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 28px;
+  transition: box-shadow 0.2s;
+}
+.tool-block:hover { box-shadow: 0 4px 24px rgba(0,212,255,0.06); }
+.tool-block h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tool-block h3 .sub-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.tool-block h3 .sub-link:hover { color: var(--accent); }
+.tool-block .tagline {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.tool-block .gh-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,212,255,0.1);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.tool-block .price-tag {
+  display: inline-block;
+  background: rgba(245,158,11,0.15);
+  color: var(--accent3);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+.tool-block .best-for {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  background: rgba(0,212,255,0.05);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.tool-block .best-for strong { color: var(--text); }
+
+/* Pros/Cons side by side in tool block */
+.tool-pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.tool-pros, .tool-cons {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.tool-pros { background: rgba(16,185,129,0.04); border-color: rgba(16,185,129,0.18); }
+.tool-cons { background: rgba(239,68,68,0.04); border-color: rgba(239,68,68,0.18); }
+.tool-pros h4 { color: var(--green); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.tool-cons h4 { color: var(--red); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.tool-pros ul, .tool-cons ul { list-style: none; padding: 0; margin: 0; }
+.tool-pros li, .tool-cons li {
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.tool-pros li::before { content: '✅'; font-size: 12px; }
+.tool-cons li::before { content: '❌'; font-size: 12px; }
+
+/* Status badge (e.g. "已停止服务") */
+.status-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.status-badge.dead { background: rgba(239,68,68,0.2); color: var(--red); }
+.status-badge.active { background: rgba(16,185,129,0.2); color: var(--green); }
+
+/* Alert box */
+.alert-box {
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid;
+  margin: 20px 0;
+  font-size: 14px;
+}
+.alert-box.warn { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.25); color: var(--text-dim); }
+.alert-box.warn strong { color: var(--red); }
+
 /* Card */
 .card {
   background: var(--surface);

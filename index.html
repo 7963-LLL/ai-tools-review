@@ -226,7 +226,6 @@
       return;
     }
     
-    // Group by date
     var groups = {};
     var now = new Date();
     var todayStr = now.toISOString().slice(0,10);
@@ -257,34 +256,51 @@
       }
       
       html += '<div class="ah-day">' +
-        '<div class="ah-day-bar" onclick="this.classList.toggle(\'collapsed\');var n=this.nextElementSibling;n.style.display=n.style.display==\'none\'?\'\':\'none\';">' +
+        '<div class="ah-day-bar" onclick="var n=this.nextElementSibling;n.style.display=n.style.display==\'none\'?\'\':\'none\';this.classList.toggle(\'collapsed\');">' +
         '<span class="ah-day-label">' + dateLabel + '</span>' +
         '<span class="ah-day-toggle">收起</span></div>' +
         '<div class="ah-day-items">';
       
       for (var j = 0; j < dayItems.length; j++) {
         var item = dayItems[j];
-        var sourceClean = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
-        if (sourceClean.length > 30) sourceClean = sourceClean.slice(0,27) + '...';
-        
         var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
         
-        var tags = [];
-        var catLabels = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
-        if (item.category && catLabels[item.category]) {
-          tags.push(catLabels[item.category]);
+        // Parse source
+        var sourceRaw = item.source || '';
+        var sourceMain = sourceRaw.replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim();
+        var sourceMeta = '';
+        var sourceMatch = sourceRaw.match(/\(([^)]+)\)/);
+        if (sourceMatch && !sourceMain.includes(sourceMatch[1])) {
+          sourceMeta = sourceMatch[1];
         }
-        // Try to extract secondary tags from summary
-        var tagHtml = tags.length ? '<span class="ah-tags">' + tags.map(function(t){ return '<span class="ah-tag">' + t + '</span>'; }).join('') + '</span>' : '';
+        if (sourceMain.length > 28) sourceMain = sourceMain.slice(0,25) + '...';
         
-        html += '<div class="ah-item">' +
+        // Tags
+        var catLabels = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
+        var tags = [];
+        if (item.category && catLabels[item.category]) tags.push(catLabels[item.category]);
+        var tagHtml = tags.length ? tags.map(function(t){ return '<span class="ah-tag">' + t + '</span>'; }).join('') : '';
+        
+        // Check if has media (Twitter/X source likely has media)
+        var hasMedia = sourceRaw.indexOf('X：') === 0;
+        
+        // Clean summary for display
+        var summary = (item.summary || '').replace(/https?:\/\/[^\s]+/g, '').trim().substring(0, 150);
+        if (summary.length >= 150) summary += '...';
+        
+        html += '<div class="ah-item" data-url="' + (item.url || '') + '">' +
           '<span class="ah-time">' + time + '</span>' +
           '<div class="ah-body">' +
+          (hasMedia ? '<div class="ah-img-wrap"></div>' : '') +
+          '<div class="ah-source-line">' +
+          '<span class="ah-source-icon">' + (hasMedia ? '𝕏' : '📄') + '</span>' +
+          '<span class="ah-source-name">' + sourceMain + '</span>' +
+          (sourceMeta ? '<span class="ah-source-meta">' + sourceMeta + '</span>' : '') +
+          '</div>' +
           '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="ah-title">' + (item.title || '') + '</a>' +
-          '<div class="ah-meta">' +
-          (sourceClean ? '<span class="ah-source">' + sourceClean + '</span>' : '') +
-          tagHtml +
-          '</div></div></div>';
+          (summary ? '<div class="ah-summary">' + summary + '</div>' : '') +
+          (tagHtml ? '<div class="ah-tag-row">' + tagHtml + '</div>' : '') +
+          '</div></div>';
       }
       
       html += '</div></div>';
@@ -299,6 +315,8 @@
         if (idx >= items.length) return;
         var el = items[idx];
         idx++;
+        var imgWrap = el.querySelector('.ah-img-wrap');
+        if (!imgWrap) { setTimeout(loadNext, 50); return; }
         var link = el.querySelector('.ah-title');
         if (link && link.href) {
           var imgReq = new XMLHttpRequest();
@@ -308,24 +326,27 @@
               try {
                 var imgData = JSON.parse(imgReq.responseText);
                 if (imgData.image) {
-                  el.classList.add('ah-has-img');
                   var imgEl = document.createElement('img');
-                  imgEl.className = 'ah-img';
                   imgEl.src = imgData.image;
-                  imgEl.onerror = function() { el.classList.remove('ah-has-img'); };
-                  el.insertBefore(imgEl, el.querySelector('.ah-body'));
+                  imgEl.onerror = function() { imgWrap.style.display = 'none'; };
+                  imgWrap.appendChild(imgEl);
+                } else {
+                  imgWrap.style.display = 'none';
                 }
-              } catch(e) {}
+              } catch(e) { imgWrap.style.display = 'none'; }
+            } else {
+              imgWrap.style.display = 'none';
             }
-            setTimeout(loadNext, 200);
+            setTimeout(loadNext, 300);
           };
-          imgReq.onerror = function() { setTimeout(loadNext, 200); };
+          imgReq.onerror = function() { imgWrap.style.display = 'none'; setTimeout(loadNext, 300); };
           imgReq.send();
         } else {
-          setTimeout(loadNext, 100);
+          imgWrap.style.display = 'none';
+          setTimeout(loadNext, 50);
         }
       }
-      setTimeout(loadNext, 500);
+      setTimeout(loadNext, 800);
     }, 100);
   }
   

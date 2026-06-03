@@ -2,7 +2,7 @@
 module.exports = async (req, res) => {
   const https = require('https');
   const category = req.query.category || '';
-  let url = 'https://aihot.virxact.com/api/public/items?mode=selected&take=20';
+  let url = 'https://aihot.virxact.com/api/public/items?mode=selected&take=60';
   if (category) url += '&category=' + category;
   
   try {

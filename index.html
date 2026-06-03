@@ -210,7 +210,7 @@
     var items = data?.items || [];
     if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
     var html = '<div class="nf-list">';
-    for (var i = 0; i < Math.min(items.length, 15); i++) {
+    for (var i = 0; i < items.length; i++) {
       var item = items[i];
       var src = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
       if (src.length > 28) src = src.slice(0,25) + '...';

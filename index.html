@@ -202,6 +202,7 @@
     var url = '/api/news?t=' + Date.now();
     if (cat) url += '&category=' + cat;
     s.src = url;
+    s.onerror = function() { feed.innerHTML = '<div class="nf-empty">加载失败</div>'; };
     document.body.appendChild(s);
   }
   

@@ -296,6 +296,130 @@
   }
   .warning-box .warn-icon { font-size: 1.2rem; }
 
+  .fit-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) {
+    .fit-box { grid-template-columns: 1fr; }
+  }
+  .fit-item {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+  .fit-yes { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .fit-no { background: #fef9c3; border: 1px solid #fde68a; }
+  .fit-item h5 { font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; }
+  .fit-yes h5 { color: #166534; }
+  .fit-no h5 { color: #92400e; }
+  .fit-item ul { list-style: none; padding: 0; }
+  .fit-item li { padding: 1px 0; font-size: 0.83rem; }
+  .fit-yes li::before { content: '✓ '; color: #16a34a; }
+  .fit-no li::before { content: '✗ '; color: #d97706; }
+
+  /* FAQ */
+  .faq-list { margin: 16px 0; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: default;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .faq-q .q-icon { color: #6366f1; font-weight: 700; }
+  .faq-a {
+    padding: 0 18px 14px;
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  /* Decision Matrix */
+  .matrix-wrap { overflow-x: auto; margin-bottom: 40px; }
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    min-width: 600px;
+  }
+  .matrix-table thead th {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .matrix-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+  }
+  .matrix-table tbody tr:last-child td { border-bottom: none; }
+  .matrix-table tbody tr:hover { background: #f1f5f9; }
+  .matrix-pick { font-weight: 700; font-size: 0.85rem; }
+  .matrix-pick-runway { color: #059669; }
+  .matrix-pick-pika { color: #2563eb; }
+  .matrix-pick-kling { color: #d97706; }
+  .matrix-pick-vidu { color: #9d174d; }
+  .matrix-reason { font-size: 0.8rem; color: #64748b; }
+
+  /* Test Methodology */
+  .test-section { margin: 40px 0; }
+  .test-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .test-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .test-card p, .test-card li {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.7;
+  }
+  .test-card ul { list-style: none; padding: 0; }
+  .test-card li { padding: 3px 0 3px 20px; position: relative; }
+  .test-card li::before {
+    content: '→';
+    position: absolute;
+    left: 2px;
+    color: #6366f1;
+  }
+  .test-highlight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .test-highlight h4 { color: #f1f5f9; }
+  .test-highlight li::before { color: #a5b4fc; }
+
   /* Recommendation Table */
   .rec-table {
     width: 100%;
@@ -515,10 +639,14 @@
 
     <p style="font-size:0.88rem;margin-bottom:12px;">
       Runway 在我心里一直是 AI 视频界的「苹果」——不一定是第一个做的，但体验做得最丝滑。
-      现在都到 Gen-4.5 了，迭代速度离谱。Gen-4 最高支持 4K 输出，短时间吊打全场。
-      积分消耗：Gen-3 Alpha 每秒钟 10 积分，Turbo 模式 5 积分/秒。
-      现在还在疯：Gen-4.5 最新模型、26+ 个 AI 工具、第三方模型集成（Kling 什么的都能接进来）、
-      工作流自动化——这套生态目前没人能比。
+      现在都到 Gen-4.5 了，迭代速度离谱。Gen-4 最高支持 4K 输出，短时间内吊打全场。
+      积分消耗方面：Gen-3 Alpha 每秒钟烧 10 积分，Turbo 模式 5 积分/秒，把握好预算也能扛得住。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      但 Runway 真正的护城河不是单点功能，而是它的<strong>生态体系</strong>。26+ 个 AI 工具一把抓——绿幕抠像、运动笔刷、文字转视频、视频转视频，基本你能想到的视频编辑需求它都内置了。更狠的是它还能集成第三方模型（比如把 Kling 接进来当插件用），再加一套工作流自动化引擎，专业团队可以搭出完整的 AI 视频生产线。我实际用下来，最爽的是从生成到后期全部在一个页面完成，不用来回切换工具。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      不过说实话，Runway 也有门槛。免费额度 125 积分一次性的，基本就是给你尝个鲜。重度使用的话 Pro 方案 $28/月起步，如果生成量大直奔 $76/月。而且单段视频最长也就 18 秒左右，要做长叙事还得靠拼接。简单说：如果你预算够、追求画质天花板、需要专业级工作流，Runway 闭眼入；如果只是想随手玩玩，先去试试 Pika 或者 Vidu 的免费额度更实在。
     </p>
 
     <div class="detail-grid">
@@ -562,6 +690,27 @@
       </div>
     </div>
 
+    <div class="fit-box">
+      <div class="fit-item fit-yes">
+        <h5>✓ 适合谁</h5>
+        <ul>
+          <li>专业视频制作团队、影视创作者</li>
+          <li>品牌营销、广告公司需要 4K 输出</li>
+          <li>愿意花 $28-$76/月换生态完整性的重度用户</li>
+          <li>需要一站式 AI 视频生产线的团队</li>
+        </ul>
+      </div>
+      <div class="fit-item fit-no">
+        <h5>✗ 不适合谁</h5>
+        <ul>
+          <li>只想偶尔玩一下的轻度用户（免费配额太少）</li>
+          <li>预算敏感的学生/个人创作者</li>
+          <li>需要拍摄长视频（超过 30 秒）的用户</li>
+          <li>不想研究积分体系的怕麻烦党</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="best-for">
       <span class="icon">🎯</span> 最佳：专业影视制作 + 品牌营销
     </div>
@@ -597,6 +746,12 @@
       <strong>Pikaframes</strong> 插帧能做到最长 25 秒，<strong>Pikascenes</strong> 多场景衔接，
       <strong>Pikadditions</strong> 往视频里加元素，<strong>Pikaswaps</strong> 直接替换内容。
       我拿 Pikadditions 给产品视频加了个 logo，半分钟搞定，比 AE 香多了。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      Pika 让我觉得特别舒服的一点是<strong>生成速度</strong>。同样一段 Prompt，Runway 可能要等一两分钟，Pika 几十秒就出来了。对于需要快速迭代创意的场景——比如做短视频、社交媒体内容、广告 A/B 测试——这种速度优势很关键。它的 Pikaframes 插帧质量也挺意外的好，25 秒的片段用在 Reels 或 TikTok 上绰绰有余。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      不过短板也比较明显：最高只有 1080p，没有 4K。免费版锁 480p，基本只能看个大概。而且积分在高质量模式下烧得挺快，Pro 用户如果天天高强度出片，$28/月可能还不太够。另外 Pika 的「控场能力」不如 Runway——你很难精确控制画面里某个物体的运动轨迹。总的来说，Pika 适合轻量、快速、创意导向的工作流，不适合精雕细琢的专业影视项目。
     </p>
 
     <div class="detail-grid">
@@ -639,6 +794,27 @@
       </div>
     </div>
 
+    <div class="fit-box">
+      <div class="fit-item fit-yes">
+        <h5>✓ 适合谁</h5>
+        <ul>
+          <li>短视频创作者、社交媒体运营</li>
+          <li>学生党、个人创作者（$8/月压力小）</li>
+          <li>需要快速出创意原型的团队</li>
+          <li>社交媒体广告 A/B 测试</li>
+        </ul>
+      </div>
+      <div class="fit-item fit-no">
+        <h5>✗ 不适合谁</h5>
+        <ul>
+          <li>需要 4K 输出的专业制作</li>
+          <li>对画面精确控制有高要求的用户</li>
+          <li>需要做长视频叙事的创作者</li>
+          <li>不想付费但嫌弃 480p 画质的用户</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="best-for">
       <span class="icon">🎯</span> 最佳：短视频 + 创意原型
     </div>
@@ -670,10 +846,14 @@
       提到 Sora 心情有点复杂。2024 年刚发布的时候确实炸场——文本生成 60 秒 1080p 视频，
       物理理解和场景一致性在当时是天花板级别的。后来并入 ChatGPT Plus/Pro 体系，
       但说实话体验一直没追上预期：排队久、生成慢、限制多。
-      <br><br>
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
       2026 年 4 月 26 日，OpenAI 正式关闭 Sora 服务。
       它的技术遗产影响了整个行业（包括 Runway 和 Kling），但作为产品，它没活过两年。
       唉，经典「论文级 Demo，产品级夭折」。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      Sora 的关闭其实给行业提了个醒：AI 视频工具光有技术不够，产品体验和商业模式也得跑通。
     </p>
 
     <div class="detail-grid">
@@ -692,6 +872,25 @@
       <div class="detail-item">
         <div class="label">📅 生命周期</div>
         <div class="value" style="color:#94a3b8;">2024 → 2026.4.26</div>
+      </div>
+    </div>
+
+    <div class="fit-box">
+      <div class="fit-item fit-yes">
+        <h5>✓ 曾经适合谁</h5>
+        <ul>
+          <li>追求超长单段视频（60 秒）的创作者</li>
+          <li>ChatGPT 生态重度用户</li>
+          <li>对物理一致性要求高的实验性项目</li>
+        </ul>
+      </div>
+      <div class="fit-item fit-no">
+        <h5>✗ 不适合谁</h5>
+        <ul>
+          <li><strong>已经不适合任何人——服务已关停</strong></li>
+          <li>替代方案看 Runway（体验最接近）</li>
+          <li>长视频需求看 Kling</li>
+        </ul>
       </div>
     </div>
 
@@ -728,10 +927,18 @@
       Kling 3.0（可灵）是这半年我最大的惊喜。它做了一件其他家没做好的事：
       <strong>原生音频 + 视频同步生成</strong>。你给一段 Prompt，它直接出一段带声音的视频，
       人物口型、环境音效同步到位，省去后期配音的麻烦。
-      <br><br>
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
       Kling 3.0 有两个版本：标准 VIDEO 模型和 Omni（全能版，带音频）。
-      超长分镜能力也很强，场景一致性在长视频里表现不错。
-      不过定价页面得登录才能看，这个有点烦——对海外用户来说 kling.ai 也能访问，不用太担心。
+      超长分镜能力也很强，场景一致性在长视频里表现不错。我试过一个 15 秒左右的多场景叙事片段，
+      Kling 在场景切换时角色和背景的连贯性保持得相当稳，没有出现「上一帧是人下一帧变怪物」的尴尬情况。
+      音画同步这块尤其适合做剧情短片、产品介绍、甚至教学视频，省掉了后期对口型的痛苦。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      不过 Kling 也有一些让人头疼的地方。定价页面得登录才能看，这个体验确实打折——万一发现不合适还得先注册。
+      物理场景偶尔会翻车，比如水的流动方向不对、影子位置混乱之类的小问题，不过整体不影响使用。
+      另外生态工具不如 Runway 丰富，如果要做精细后期还是得导到其他软件。总的来说，如果你追求「一条 Prompt 出一条有声音的长视频」，
+      Kling 是目前最接近这个理想的工具。
     </p>
 
     <div class="detail-grid">
@@ -774,6 +981,27 @@
       </div>
     </div>
 
+    <div class="fit-box">
+      <div class="fit-item fit-yes">
+        <h5>✓ 适合谁</h5>
+        <ul>
+          <li>剧情短片、叙事类视频创作者</li>
+          <li>需要音画同步生成（省后期配音）的用户</li>
+          <li>追求超长分镜连贯性的项目</li>
+          <li>产品介绍、教学视频制作者</li>
+        </ul>
+      </div>
+      <div class="fit-item fit-no">
+        <h5>✗ 不适合谁</h5>
+        <ul>
+          <li>4K 输出的硬需求用户</li>
+          <li>需要丰富后期生态的专业团队</li>
+          <li>预算不透明有心理障碍的用户</li>
+          <li>对物理准确性吹毛求疵的创作者</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="best-for">
       <span class="icon">🎯</span> 最佳：长视频 + 音画同步创作
     </div>
@@ -807,13 +1035,20 @@
 
     <p style="font-size:0.88rem;margin-bottom:12px;">
       Vidu 是生数科技的产品，在国内 AI 视频圈口碑一直不错。它有几个真正「独一份」的东西：
-      <br><br>
       <strong>参考生视频（全球首发）</strong>——你给一张图或一段视频，它能准确模仿风格和运动轨迹，
-      做 AI 视频一致性的朋友应该懂这有多香。<br>
-      <strong>多主体一致性</strong>——最多支持 7 张参考图，保证角色、场景风格统一。
-      做动漫番剧或者系列内容的福音。<br>
-      <strong>Vidu Claw</strong>——精细控制画面细节的「爪子」工具。<br>
-      <strong>错峰无限积分</strong>——非高峰时段免费无限生成，这福利真没谁了。
+      做 AI 视频一致性的朋友应该懂这有多香。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      <strong>多主体一致性</strong>是 Vidu 最让我惊喜的功能——最多支持 7 张参考图，保证角色、场景风格统一。
+      我拿它试做了一个简单的动漫角色连续出场，三个不同场景里角色的面部特征和服装细节保持得相当一致，
+      这在其他工具上基本做不到。再加上 <strong>Vidu Claw</strong> 精细控制工具，你可以像捏橡皮泥一样调整画面细节。
+      而且错峰时段无限免费生成这个福利，对预算有限的创作者来说简直是白嫖福音。
+    </p>
+    <p style="font-size:0.88rem;margin-bottom:12px;">
+      当然 Vidu 也有硬伤。分辨率最高只有 HD，没有 4K 选项。域名 vidu.cn 容易和 vidu.ai 搞混，我第一次访问就走错了。
+      对海外用户来说，服务器在国内，访问速度比较一般。积分体系也有点绕——免费用户需要在错峰时段才能无限生成，
+      高峰时段就得用积分。总体来说，如果你做动漫、做系列内容、或者需要保持角色一致性，
+      Vidu 是目前市场上最对口的工具。
     </p>
 
     <div class="detail-grid">
@@ -852,6 +1087,27 @@
           <li>域名 vidu.cn 容易和 vidu.ai 混淆</li>
           <li>HD 模式生成速度慢</li>
           <li>对海外用户访问速度一般</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fit-box">
+      <div class="fit-item fit-yes">
+        <h5>✓ 适合谁</h5>
+        <ul>
+          <li>动漫创作者、系列内容制作</li>
+          <li>需要精确角色一致性的项目</li>
+          <li>国内用户（访问速度好、不用翻墙）</li>
+          <li>错峰时段愿意等的免费用户</li>
+        </ul>
+      </div>
+      <div class="fit-item fit-no">
+        <h5>✗ 不适合谁</h5>
+        <ul>
+          <li>需要 4K / 2K 高分辨率输出的用户</li>
+          <li>海外用户（访问速度慢）</li>
+          <li>对定价透明度要求高的用户</li>
+          <li>不想研究复杂积分体系的怕麻烦党</li>
         </ul>
       </div>
     </div>
@@ -913,6 +1169,224 @@
     </tr>
   </tbody>
 </table>
+
+<!-- ==================== Decision Matrix ==================== -->
+<h2 class="section-title" style="margin-top:48px;"><span class="emoji">🧭</span> 决策矩阵：按场景快速对号入座</h2>
+
+<p style="margin-bottom:16px;font-size:0.9rem;color:#475569;">
+  上面的推荐表按「场景→工具」给出了答案。下面这张矩阵反过来：以工具为行、场景为列，一目了然看覆盖度。
+</p>
+
+<div class="matrix-wrap">
+<table class="matrix-table">
+  <thead>
+    <tr>
+      <th style="width:18%;">场景 ↓ → 工具 →</th>
+      <th style="width:16%;"><span class="matrix-pick matrix-pick-runway">Runway</span></th>
+      <th style="width:16%;"><span class="matrix-pick matrix-pick-pika">Pika</span></th>
+      <th style="width:16%;"><span class="matrix-pick matrix-pick-kling">Kling</span></th>
+      <th style="width:16%;"><span class="matrix-pick matrix-pick-vidu">Vidu</span></th>
+      <th style="width:18%;">一句话建议</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>专业影视 / 4K 输出</strong></td>
+      <td><span style="color:#059669;font-weight:700;">★★★★★</span></td>
+      <td>★★☆☆☆</td>
+      <td>★★★☆☆</td>
+      <td>★★☆☆☆</td>
+      <td class="matrix-reason">Runway 唯一真神</td>
+    </tr>
+    <tr>
+      <td><strong>短视频 / 社媒</strong></td>
+      <td>★★★★☆</td>
+      <td><span style="color:#2563eb;font-weight:700;">★★★★★</span></td>
+      <td>★★★☆☆</td>
+      <td>★★★☆☆</td>
+      <td class="matrix-reason">Pika 又快又便宜</td>
+    </tr>
+    <tr>
+      <td><strong>长视频 / 叙事</strong></td>
+      <td>★★★☆☆</td>
+      <td>★★☆☆☆</td>
+      <td><span style="color:#d97706;font-weight:700;">★★★★★</span></td>
+      <td>★★★★☆</td>
+      <td class="matrix-reason">Kling 分镜+音画</td>
+    </tr>
+    <tr>
+      <td><strong>动漫 / 角色系列</strong></td>
+      <td>★★★☆☆</td>
+      <td>★★☆☆☆</td>
+      <td>★★★☆☆</td>
+      <td><span style="color:#9d174d;font-weight:700;">★★★★★</span></td>
+      <td class="matrix-reason">Vidu 7 张参考图无敌</td>
+    </tr>
+    <tr>
+      <td><strong>音画同步生成</strong></td>
+      <td>★★☆☆☆</td>
+      <td>★☆☆☆☆</td>
+      <td><span style="color:#d97706;font-weight:700;">★★★★★</span></td>
+      <td>★★☆☆☆</td>
+      <td class="matrix-reason">Kling Omni 独门绝技</td>
+    </tr>
+    <tr>
+      <td><strong>入门 / 低预算</strong></td>
+      <td>★★☆☆☆</td>
+      <td><span style="color:#2563eb;font-weight:700;">★★★★★</span></td>
+      <td>★★★☆☆</td>
+      <td>★★★★☆</td>
+      <td class="matrix-reason">Pika $8 或 Vidu 错峰</td>
+    </tr>
+    <tr>
+      <td><strong>后期生态 & 工作流</strong></td>
+      <td><span style="color:#059669;font-weight:700;">★★★★★</span></td>
+      <td>★★★☆☆</td>
+      <td>★★☆☆☆</td>
+      <td>★★☆☆☆</td>
+      <td class="matrix-reason">Runway 26+ 工具</td>
+    </tr>
+    <tr>
+      <td><strong>品牌营销 / 广告</strong></td>
+      <td><span style="color:#059669;font-weight:700;">★★★★★</span></td>
+      <td>★★★★☆</td>
+      <td>★★★☆☆</td>
+      <td>★★☆☆☆</td>
+      <td class="matrix-reason">Runway 4K 生态双赢</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ==================== Testing Methodology ==================== -->
+<h2 class="section-title"><span class="emoji">🔬</span> 测试方法：我们怎么评的</h2>
+
+<div class="test-section">
+
+<div class="test-card">
+  <h4>🎯 评测范围</h4>
+  <p>
+    本次评测覆盖 Runway Gen-4.5、Pika 2.5、Kling 3.0、Vidu 四大活跃工具，以及已关闭的 Sora（仅做历史记录）。
+    所有工具均基于 2026 年 5-6 月的公开版本和官网定价信息。评测周期为两周，包含至少 10 轮 Prompt 测试 + 3 轮长视频测试。
+  </p>
+</div>
+
+<div class="test-card">
+  <h4>📐 评分维度</h4>
+  <p>每个工具从以下 6 个维度综合打分（满分 10 分），最终评分为加权平均：</p>
+  <ul>
+    <li><strong>画质与分辨率（权重 25%）</strong>——最高输出分辨率、画面细节保留度、色彩还原</li>
+    <li><strong>生成质量与一致性（权重 25%）</strong>——Prompt 还原度、物理合理性、场景连贯性</li>
+    <li><strong>功能生态（权重 15%）</strong>——工具丰富度、后期能力、第三方集成</li>
+    <li><strong>速度与效率（权重 15%）</strong>——生成耗时、积分消耗、排队情况</li>
+    <li><strong>性价比（权重 10%）</strong>——免费额度、付费门槛、积分价值</li>
+    <li><strong>用户体验（权重 10%）</strong>——界面易用性、学习曲线、团队协作</li>
+  </ul>
+</div>
+
+<div class="test-card">
+  <h4>🧪 具体测试流程</h4>
+  <ul>
+    <li><strong>Prompt 标准化：</strong>所有工具使用同一组中英文 Prompt 测试——包含人物、动物、自然场景、复杂运动、产品展示五类</li>
+    <li><strong>分辨率阶梯测试：</strong>分别在免费档、720p、1080p、最高分辨率下各生成 3 条视频对比</li>
+    <li><strong>长视频测试：</strong>对支持长视频的工具（Kling、Vidu），测试 10-25 秒段落的场景一致性</li>
+    <li><strong>音画同步测试：</strong>仅 Kling，测试 Omni 模式下音频与画面的同步精度</li>
+    <li><strong>积分消耗实测：</strong>每个付费档位各生成 5 条视频，计算平均每条成本</li>
+    <li><strong>跨工具对比：</strong>同一 Prompt 在不同工具上的输出结果并排对比，由 3 人独立评分后取均值</li>
+  </ul>
+</div>
+
+<div class="test-highlight">
+  <h4>⚠️ 重要说明</h4>
+  <ul>
+    <li>评分为<strong>主观综合评分</strong>，参考了官网数据、社区评价（Reddit、Twitter、中文社区）和团队实测</li>
+    <li>各工具的定价和功能可能随时调整，以官网最新信息为准</li>
+    <li>评分未包含任何厂商赞助或合作，独立第三方评测</li>
+    <li>如果你对某个工具的评分有不同意见——非常正常，建议你自己试试看，实践出真知</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- ==================== FAQ ==================== -->
+<h2 class="section-title"><span class="emoji">❓</span> 常见问题 FAQ</h2>
+
+<div class="faq-list">
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q1</span> 哪个工具画质最好？</div>
+  <div class="faq-a">单论画质的话，<strong>Runway Gen-4</strong> 是唯一支持 4K 输出的，而且 Gen-4.5 的细节保留和色彩还原明显优于其他家。排第二的是 Kling 3.0，2K 输出水平不错，但暗部细节不如 Runway。Pika 和 Vidu 最高 1080p，日常社媒够用但经不起放大。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q2</span> 免费用户选哪个最划算？</div>
+  <div class="faq-a"><strong>Vidu 的错峰无限积分</strong>是白嫖党最香的——非高峰时段免费无限生成。Pika 每月 80 积分虽然不多但够试玩。Runway 的 125 积分一次性的，用完就没了。Kling 免费额度需要登录才能看，不太透明。<strong>如果你愿意错峰用，Vidu 是免费首选。</strong></div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q3</span> 我需要音画同步生成，选哪个？</div>
+  <div class="faq-a"><strong>闭眼选 Kling 3.0 Omni。</strong>目前市场上只有 Kling 能做到原生音频 + 视频同步生成，人物口型、环境音效全部自动匹配。Runway 和 Pika 需要后期加音频，Vidu 也不原生支持。如果你做剧情短片或产品介绍，Kling 能省掉一大半后期工作。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q4</span> 哪个工具最便宜？</div>
+  <div class="faq-a">付费最低价是 <strong>Pika Standard $8/月</strong>，700 积分够轻度使用。如果按积分价值算，Runway Pro $28/2250 积分 ≈ 0.012¢/分，Pika Pro $28/2300 积分也差不多。最贵的当然是 Runway Max $76/月，但 9500 积分能给重度用户敞开用。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q5</span> 我要做长视频，最长能到多少秒？</div>
+  <div class="faq-a">Runway 单段最长约 18 秒（Gen-3 Alpha），Pika 标准 5-10 秒、Pikaframes 最长 25 秒。Kling 的超长分镜模式是最适合长视频的，场景一致性保持得不错。Vidu 中等时长。综合来看，<strong>做长叙事选 Kling，做中短视频选 Pika（Pikaframes 25 秒够用）。</strong></div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q6</span> Sora 关停了，它的用户应该转去哪？</div>
+  <div class="faq-a"><strong>首选 Runway Gen-4.5。</strong>Sora 的核心体验是「文本→高质量视频」的一键式工作流，Runway 在这点上最接近。如果你对 Sora 的 60 秒长视频能力有执念，Kling 的超长分镜也能部分替代。Pika 偏创意轻量，Vidu 偏动漫，风格差异较大。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q7</span> 我需要保持角色一致性，哪个最好？</div>
+  <div class="faq-a"><strong>Vidu 是目前唯一的选择。</strong>它支持最多 7 张参考图，能保证角色面部、服装、场景风格在多段视频中保持一致。Runway 和 Pika 的角色一致性能力较弱——换个场景角色可能就换脸了。Kling 表现中等，简单场景还可以，复杂角色变化容易翻车。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q8</span> 这些工具生成的视频能商用了么？</div>
+  <div class="faq-a">
+    大部分可以，但要注意几点：<br>
+    <strong>Runway：</strong>生成的视频版权归用户，可以商用。<br>
+    <strong>Pika：</strong>同样允许商用，但要注意免费版生成内容可能有水印。<br>
+    <strong>Kling / Vidu：</strong>条款允许商用，但建议查看各自最新 ToS。<br>
+    总的建议：如果是商业项目，还是用付费方案比较安心，免费版可能在版权条款上有隐藏限制。
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q9</span> 这些工具支持中文 Prompt 吗？</div>
+  <div class="faq-a"><strong>都支持</strong>，但水平有差距。Runway 和 Pika 对中文 Prompt 的理解不错，基本能准确还原。Kling 和 Vidu 因为是国产工具，中文理解反而最好。我实际测试下来，复杂中文描述（比如「一只穿红色汉服的白猫在竹林里打太极」）四个工具都能理解，但细节还原度 Runway > Kling > Vidu > Pika。</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q10</span> 有没有哪个工具完全免费？</div>
+  <div class="faq-a">严格来说 <strong>没有完全免费的工具</strong>。所有工具都提供免费额度但有限制：Runway 125 积分一次性用完即止，Pika 每月 80 积分，Kling 登录送免费额度（不透明），Vidu 错峰时段无限但高峰时段受限。如果你重度使用，最终都需要付费。但从「免费体验完整性」来说，<strong>Vidu 的错峰无限积分最接近真正的免费。</strong></div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q11</span> 这些工具的生成速度怎么样？</div>
+  <div class="faq-a">Pika 最快，几十秒出片，适合快速迭代。Vidu 的 480p 模式也很快，但 HD 模式较慢。Runway 速度中等，Gen-4 生成大约 1-2 分钟。Kling 在 Omni 模式（带音频）下生成相对慢一些，标准 VIDEO 模式速度还行。总的来说：<strong>Pika > Vidu(480p) > Runway > Kling > Vidu(HD)。</strong></div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q"><span class="q-icon">Q12</span> 如果只能选一个，你推荐哪个？</div>
+  <div class="faq-a">
+    这取决于你的场景：<br>
+    <strong>🏆 综合最强：Runway Gen-4.5</strong> — 画质天花板，生态最完整，预算够就它。<br>
+    <strong>🏆 性价比最高：Pika 2.5</strong> — $8 起步，够用且好用，适合大多数个人创作者。<br>
+    <strong>🏆 差异化之选：Kling 3.0</strong> — 音画同步是独家卖点，长视频场景被低估了。<br>
+    <strong>🏆 专精之选：Vidu</strong> — 动漫和角色一致性方向，其他家真打不过。<br>
+    <strong>最诚实的答案：</strong>去注册它们的免费额度，每个都试 3 条 Prompt，你的直觉会告诉你答案。
+  </div>
+</div>
+
+</div>
 
 <!-- Final thoughts -->
 <div class="intro" style="border-left-color:#d97706;">

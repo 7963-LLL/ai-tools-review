@@ -553,7 +553,24 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 .trust-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
 .trust-item p { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin: 0; }
 
-/* ===== AI 热点动态列表 ===== */
+/* ===== AI 热点 ===== */
+.nf-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0 12px;
+  flex-wrap: wrap;
+}
+.nf-tab {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.nf-tab:hover { color: var(--text); background: var(--surface2); }
+.nf-tab.active { color: var(--text); background: var(--surface2); font-weight: 600; }
 .nf-box {
   background: var(--surface);
   border: 1px solid var(--border);

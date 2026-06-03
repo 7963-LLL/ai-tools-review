@@ -175,6 +175,14 @@
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
+  <div class="nf-tabs" id="nf-tabs">
+    <a href="#" class="nf-tab active" data-cat="">全部</a>
+    <a href="#" class="nf-tab" data-cat="ai-models">模型</a>
+    <a href="#" class="nf-tab" data-cat="ai-products">产品</a>
+    <a href="#" class="nf-tab" data-cat="industry">行业</a>
+    <a href="#" class="nf-tab" data-cat="paper">论文</a>
+    <a href="#" class="nf-tab" data-cat="tip">技巧</a>
+  </div>
   <div id="news-feed" class="nf-box">
     <div class="nf-loading">加载中...</div>
   </div>
@@ -185,12 +193,18 @@
 // AI 热点 + 语言切换
 (function() {
   var feed = document.getElementById('news-feed');
-  if (feed) {
+  var currentCat = '';
+  
+  function loadNews(cat) {
+    currentCat = cat;
     feed.innerHTML = '<div class="nf-loading">加载中...</div>';
     var s = document.createElement('script');
-    s.src = '/api/news?t=' + Date.now();
+    var url = '/api/news?t=' + Date.now();
+    if (cat) url += '&category=' + cat;
+    s.src = url;
     document.body.appendChild(s);
   }
+  
   window.renderNews = function() {
     var items = window.__newsData?.items || [];
     if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
@@ -210,7 +224,18 @@
     feed.innerHTML = html;
     window.__newsData = null;
   };
-  // Poll for data
+  
+  // Tab click
+  document.getElementById('nf-tabs')?.addEventListener('click', function(e) {
+    var tab = e.target.closest('.nf-tab');
+    if (!tab) return;
+    e.preventDefault();
+    document.querySelectorAll('.nf-tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    loadNews(tab.getAttribute('data-cat') || '');
+  });
+  
+  // Poll for initial data
   var wait = 0;
   function check() {
     if (window.__newsData) { window.renderNews(); return; }
@@ -219,6 +244,8 @@
     setTimeout(check, 200);
   }
   setTimeout(check, 100);
+  // Trigger initial load
+  loadNews('');
   
   // Language selector
   var langBtn = document.querySelector('.lang-select');

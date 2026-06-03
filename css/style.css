@@ -1,6 +1,5 @@
 /* AI工具评测站 - UI/UX Pro Max Design System v3 */
-/* Style: Vibrant & Block-based | Fonts: Space Grotesk / DM Sans */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* Style: Vibrant & Block-based | Fonts: system fonts (Google Fonts blocked in CN) */
 
 :root {
   --bg: #0F172A;
@@ -33,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; }
 
 .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
@@ -69,9 +68,8 @@ header .container {
   height: 56px;
 }
 .logo {
-  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
   font-size: 20px;
-  font-weight: 700;
   color: var(--text);
   text-decoration: none;
   letter-spacing: -0.3px;
@@ -151,8 +149,8 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 }
 .stat-item { text-align: center; }
 .stat-num {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 28px;
+  font-size: 30px;
+  font-weight: 800;
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -247,9 +245,8 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 .vs-item.chatgpt { background: rgba(34,197,94,0.12); color: var(--accent); }
 .vs-item.claude { background: rgba(139,92,246,0.12); color: #A78BFA; }
 .vs-divider {
-  font-family: 'Space Grotesk', sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-muted);
 }
 

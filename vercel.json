@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/news.mjs": {
+    "api/news.js": {
       "maxDuration": 10
     }
   }

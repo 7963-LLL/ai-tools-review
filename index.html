@@ -175,39 +175,64 @@
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div id="aihot-news" class="aihot-box">
-    <div class="aihot-loading">加载 AI 热点...</div>
+  <div class="news-list-box">
+    <a href="https://x.com/alibaba_cloud/status/2062113338994172169" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">1</span>
+      <span class="nl-title">Qwen Cloud全球AI黑客马拉松启动</span>
+      <span class="nl-source">阿里云</span>
+    </a>
+    <a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">2</span>
+      <span class="nl-title">Anthropic 分析 832 个 AI 恶意账户：中高风险攻击者半年从 33% 跃至 56%</span>
+      <span class="nl-source">Anthropic</span>
+    </a>
+    <a href="https://x.com/SiliconFlowAI/status/2062054848762450324" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">3</span>
+      <span class="nl-title">Karpathy 的 llm-wiki 项目获超五千星</span>
+      <span class="nl-source">SiliconFlow</span>
+    </a>
+    <a href="https://x.com/nousresearch/status/2061984028490990096" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">4</span>
+      <span class="nl-title">NousResearch 发布 Hermes Agent 桌面应用公测版</span>
+      <span class="nl-source">NousResearch</span>
+    </a>
+    <a href="https://www.ithome.com/0/867/123.htm" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">5</span>
+      <span class="nl-title">消息称 DeepSeek 首轮融资拟筹集 500 亿元，腾讯、宁德时代等参投</span>
+      <span class="nl-source">IT之家</span>
+    </a>
+    <a href="https://x.com/satyanadella/status/2061819524407640419" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">6</span>
+      <span class="nl-title">Satya Nadella 谈微软 Build 大会主旨演讲</span>
+      <span class="nl-source">Satya Nadella</span>
+    </a>
+    <a href="https://www.sensor-tower.com/blog/chatgpt-monthly-active-users" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">7</span>
+      <span class="nl-title">Sensor Tower：OpenAI 旗下 ChatGPT 月活已破 10 亿，史上最快</span>
+      <span class="nl-source">Sensor Tower</span>
+    </a>
+    <a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">8</span>
+      <span class="nl-title">美国发布行政令加强AI领导地位，Anthropic表示支持</span>
+      <span class="nl-source">白宫</span>
+    </a>
+    <a href="https://github.com/google-deepmind/science-skills" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">9</span>
+      <span class="nl-title">Google DeepMind 开源科学智能体工具包 Science Skills</span>
+      <span class="nl-source">DeepMind</span>
+    </a>
+    <a href="https://x.com/Microsoft/status/2061569814201049408" target="_blank" rel="noopener" class="nl-item">
+      <span class="nl-num">10</span>
+      <span class="nl-title">微软发布首款高级推理AI模型 MAI-Thinking-1</span>
+      <span class="nl-source">Microsoft</span>
+    </a>
   </div>
 
 </div>
 
 <script>
-// AI 热点 + 语言切换
+// Language selector
 (function() {
-  var newsBox = document.getElementById('aihot-news');
-  if (newsBox) {
-    fetch('/api/news?take=20').then(function(r) { return r.json(); }).then(function(data) {
-      var items = data.items || [];
-      if (items.length === 0) { newsBox.innerHTML = '<div class="aihot-empty">暂无热点</div>'; return; }
-      var html = '<div class="news-list">';
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        var source = (item.source || '').replace(/^X[：:]\\s*/,'').replace(/\\(.*?\\)/g,'').trim() || item.source || '';
-        if (source.length > 30) source = source.slice(0,27) + '...';
-        var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
-        var tags = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
-        var tag = item.category && tags[item.category] ? '<span class="news-tag">' + tags[item.category] + '</span>' : '';
-        html += '<div class="news-item">' +
-          (time ? '<span class="news-time">' + time + '</span>' : '') +
-          '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="news-title">' + (item.title || '') + '</a>' +
-          '<span class="news-meta"><span class="news-source">' + source + '</span>' + tag + '</span></div>';
-      }
-      html += '</div>';
-      newsBox.innerHTML = html;
-    }).catch(function() { newsBox.innerHTML = '<div class="aihot-empty">加载失败</div>'; });
-  }
-  
-  // Language selector
   var langBtn = document.querySelector('.lang-select');
   var langMenu = document.getElementById('lang-menu');
   if (langBtn && langMenu) {

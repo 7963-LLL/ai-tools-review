@@ -585,6 +585,10 @@ nav a:hover { color: var(--text); background: var(--surface2); }
   color: var(--text-muted);
   font-size: 14px;
 }
+.nf-scroll {
+  max-height: 600px;
+  overflow-y: auto;
+}
 .nf-item {
   display: flex;
   align-items: center;

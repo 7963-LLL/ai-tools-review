@@ -209,12 +209,28 @@
   window.renderNews = function(data) {
     var items = data?.items || [];
     if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
-    var html = '<div class="nf-list">';
+    var html = '<div class="nf-scroll">';
+    var today = new Date();
+    var todayStr = today.toISOString().slice(0,10);
+    var yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    var yesterdayStr = yesterday.toISOString().slice(0,10);
+    
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
       var src = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
-      if (src.length > 28) src = src.slice(0,25) + '...';
-      var tm = item.publishedAt ? item.publishedAt.slice(11,16) : '';
+      if (src.length > 22) src = src.slice(0,19) + '...';
+      
+      var tm = '';
+      var dateLabel = '';
+      if (item.publishedAt) {
+        var d = item.publishedAt.slice(0,10);
+        if (d === todayStr) dateLabel = '今天';
+        else if (d === yesterdayStr) dateLabel = '昨天';
+        else dateLabel = parseInt(item.publishedAt.slice(5,7)) + '/' + parseInt(item.publishedAt.slice(8,10));
+        tm = dateLabel + ' ' + item.publishedAt.slice(11,16);
+      }
+      
       html += '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="nf-item">' +
         (tm ? '<span class="nf-time">' + tm + '</span>' : '') +
         '<span class="nf-title">' + (item.title || '') + '</span>' +

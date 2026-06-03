@@ -169,192 +169,41 @@
     </div>
   </div>
 
-  <!-- AI 热点 - aihot 风格 -->
+  <!-- AI 热点 - 嵌入 aihot -->
   <div class="section-title">
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div id="aihot-wrap">
-    <div class="aihot-bar">
-      <span class="aihot-bar-title">精选</span>
-      <span class="aihot-bar-sub">AI 自动挑选的高价值内容</span>
-    </div>
-    <div class="aihot-tabs">
-      <a href="#" class="aihot-tab active" data-cat="">全部</a>
-      <a href="#" class="aihot-tab" data-cat="ai-models">模型</a>
-      <a href="#" class="aihot-tab" data-cat="ai-products">产品</a>
-      <a href="#" class="aihot-tab" data-cat="industry">行业</a>
-      <a href="#" class="aihot-tab" data-cat="paper">论文</a>
-      <a href="#" class="aihot-tab" data-cat="tip">技巧</a>
-    </div>
-    <div class="aihot-feed" id="news-feed">
-      <div class="aihot-loading"><span>加载 AI 热点...</span></div>
-    </div>
+  <div class="aihot-embed">
+    <iframe src="https://aihot.virxact.com" title="AIHOT" loading="lazy"></iframe>
   </div>
 
 </div>
 
 <script>
-// AI 热点 - aihot 风格
+// Language selector
 (function() {
-  var feed = document.getElementById('news-feed');
-  var currentCat = '';
-  var allItems = [];
-  
-  function loadNews(cat) {
-    feed.innerHTML = '<div class="aihot-loading"><span>加载 AI 热点...</span></div>';
-    currentCat = cat;
-    var url = 'https://aihot.virxact.com/api/public/items?mode=selected&take=30';
-    if (cat) url += '&category=' + cat;
-    
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        try {
-          var data = JSON.parse(xhr.responseText);
-          var items = data.items || [];
-          allItems = items;
-          renderItems(items);
-        } catch(e) {
-          feed.innerHTML = '<div class="aihot-empty">加载失败</div>';
-        }
-      } else {
-        feed.innerHTML = '<div class="aihot-empty">加载失败</div>';
-      }
-    };
-    xhr.onerror = function() {
-      feed.innerHTML = '<div class="aihot-empty">网络错误</div>';
-    };
-    xhr.send();
-  }
-  
-  function renderItems(items) {
-    if (items.length === 0) {
-      feed.innerHTML = '<div class="aihot-empty">暂无热点</div>';
-      return;
-    }
-    
-    var groups = {};
-    var now = new Date();
-    var todayStr = now.toISOString().slice(0,10);
-    var yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    var yesterdayStr = yesterday.toISOString().slice(0,10);
-    
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      var dateStr = item.publishedAt ? item.publishedAt.slice(0,10) : '最近';
-      if (!groups[dateStr]) groups[dateStr] = [];
-      groups[dateStr].push(item);
-    }
-    
-    var html = '';
-    var dateKeys = Object.keys(groups).sort().reverse();
-    
-    for (var d = 0; d < dateKeys.length; d++) {
-      var dateKey = dateKeys[d];
-      var dayItems = groups[dateKey];
-      
-      var dateLabel = '';
-      if (dateKey === todayStr) dateLabel = '今天';
-      else if (dateKey === yesterdayStr) dateLabel = '昨天';
-      else {
-        var parts = dateKey.split('-');
-        dateLabel = parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
-      }
-      
-      html += '<div class="ah-day">' +
-        '<div class="ah-day-bar" onclick="var n=this.nextElementSibling;n.style.display=n.style.display==\'none\'?\'\':\'none\';this.classList.toggle(\'collapsed\');">' +
-        '<span class="ah-day-label">' + dateLabel + '</span>' +
-        '<span class="ah-day-toggle">收起</span></div>' +
-        '<div class="ah-day-items">';
-      
-      for (var j = 0; j < dayItems.length; j++) {
-        var item = dayItems[j];
-        var time = item.publishedAt ? item.publishedAt.slice(11,16) : '';
-        
-        // Parse source
-        var sourceRaw = item.source || '';
-        var sourceMain = sourceRaw.replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim();
-        var sourceMeta = '';
-        var sourceMatch = sourceRaw.match(/\(([^)]+)\)/);
-        if (sourceMatch && !sourceMain.includes(sourceMatch[1])) {
-          sourceMeta = sourceMatch[1];
-        }
-        if (sourceMain.length > 28) sourceMain = sourceMain.slice(0,25) + '...';
-        
-        // Tags
-        var catLabels = { 'ai-models':'模型','ai-products':'产品','industry':'行业','paper':'论文','tip':'技巧' };
-        var tags = [];
-        if (item.category && catLabels[item.category]) tags.push(catLabels[item.category]);
-        var tagHtml = tags.length ? tags.map(function(t){ return '<span class="ah-tag">' + t + '</span>'; }).join('') : '';
-        
-        // Check source type for icon
-        var isX = sourceRaw.indexOf('X：') === 0;
-        var isPaper = sourceRaw.indexOf('论文') >= 0 || sourceRaw.indexOf('Paper') >= 0 || sourceRaw.indexOf('Research') >= 0;
-        var isRss = sourceRaw.indexOf('RSS') >= 0 || sourceRaw.indexOf('rss') >= 0;
-        var iconClass = isX ? 'x' : (isPaper ? 'paper' : (isRss ? 'rss' : 'web'));
-        var iconText = isX ? '𝕏' : (isPaper ? '📄' : (isRss ? '📡' : '🌐'));
-        
-        html += '<div class="ah-item">' +
-          '<span class="ah-time">' + time + '</span>' +
-          '<div class="ah-body">' +
-          '<div class="ah-source-line">' +
-          '<span class="ah-source-icon ' + iconClass + '">' + iconText + '</span>' +
-          '<span class="ah-source-name">' + sourceMain + '</span>' +
-          (sourceMeta ? '<span class="ah-source-meta">' + sourceMeta + '</span>' : '') +
-          '</div>' +
-          '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="ah-title">' + (item.title || '') + '</a>' +
-          (summary ? '<div class="ah-summary">' + summary + '</div>' : '') +
-          (tagHtml ? '<div class="ah-tag-row">' + tagHtml + '</div>' : '') +
-          '</div></div>';
-      }
-      
-      html += '</div></div>';
-    }
-    
-    feed.innerHTML = html;
-  }
-  
-  // Tab click handlers
-  document.addEventListener('click', function(e) {
-    var tab = e.target.closest('.aihot-tab');
-    if (tab) {
-      e.preventDefault();
-      document.querySelectorAll('.aihot-tab').forEach(function(t){ t.classList.remove('active'); });
-      tab.classList.add('active');
-      loadNews(tab.getAttribute('data-cat') || '');
-    }
-  });
-  
-  // Initial load
-    loadNews('');
-  
-    // Language selector
-    var langBtn = document.querySelector('.lang-select');
-    var langMenu = document.getElementById('lang-menu');
-    if (langBtn && langMenu) {
-      langBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        langMenu.classList.toggle('show');
-      });
-      document.addEventListener('click', function() {
+  var langBtn = document.querySelector('.lang-select');
+  var langMenu = document.getElementById('lang-menu');
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+    document.addEventListener('click', function() {
+      langMenu.classList.remove('show');
+    });
+    langMenu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var lang = this.getAttribute('data-lang');
+        var url = 'https://translate.google.com/translate?hl=' + lang + '&sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href.split('?')[0]);
+        window.open(url, '_blank');
         langMenu.classList.remove('show');
       });
-      langMenu.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function(e) {
-          e.preventDefault();
-          var lang = this.getAttribute('data-lang');
-          var url = 'https://translate.google.com/translate?hl=' + lang + '&sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href.split('?')[0]);
-          window.open(url, '_blank');
-          langMenu.classList.remove('show');
-        });
-      });
-    }
-  })();
-</script>
+    });
+  }
+})();
 
 <footer>
   <div class="container">

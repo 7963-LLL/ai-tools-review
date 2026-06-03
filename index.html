@@ -176,7 +176,7 @@
 (function() {
   var feed = document.getElementById('news-feed');
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://aihot.virxact.com/api/public/items?mode=selected&take=10', true);
+  xhr.open('GET', '/api/news?take=10', true);
   xhr.setRequestHeader('Accept', 'application/json');
   xhr.onload = function() {
     if (xhr.status === 200) {

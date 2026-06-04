@@ -176,86 +176,64 @@
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
-  <div class="nf-tabs" id="nf-tabs">
-    <a href="#" class="nf-tab active" data-cat="">全部</a>
-    <a href="#" class="nf-tab" data-cat="ai-models">模型</a>
-    <a href="#" class="nf-tab" data-cat="ai-products">产品</a>
-    <a href="#" class="nf-tab" data-cat="industry">行业</a>
-    <a href="#" class="nf-tab" data-cat="paper">论文</a>
-    <a href="#" class="nf-tab" data-cat="tip">技巧</a>
-  </div>
-  <div id="news-feed" class="nf-box">
-    <div class="nf-loading">加载中...</div>
+  <div class="nf-box">
+    <a href="https://www.ithome.com/0/959/607.htm" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 08:50</span>
+      <span class="nf-title">联合国报告：2030年AI数据中心水电消耗将翻倍</span>
+      <span class="nf-src">IT之家</span>
+    </a>
+    <a href="https://x.com/xai/status/2062294202625696081" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 06:03</span>
+      <span class="nf-title">Grok模型登陆Cloudflare AI Gateway</span>
+      <span class="nf-src">xAI</span>
+    </a>
+    <a href="https://x.com/openclaw/status/2062288421406785710" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 05:40</span>
+      <span class="nf-title">OpenClaw 2026.6.1发布：新增Windows节点与技能工坊</span>
+      <span class="nf-src">OpenClaw</span>
+    </a>
+    <a href="https://simonwillison.net/2026/Jun/3/uber-caps-usage" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 03:00</span>
+      <span class="nf-title">优步每月1,500美元的AI使用上限为AI工具定价提供参考</span>
+      <span class="nf-src">Hacker News 热门</span>
+    </a>
+    <a href="https://x.com/drfeifei/status/2062247238143996275" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 02:57</span>
+      <span class="nf-title">世界模型的功能分类</span>
+      <span class="nf-src">Fei-Fei Li</span>
+    </a>
+    <a href="https://research.google/blog/the-next-chapter-in-flood-resilience-open-sourcing-googles-hydrology-framework" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 02:49</span>
+      <span class="nf-title">洪水韧性新篇章：Google开源水文建模框架</span>
+      <span class="nf-src">Google Research：Blog</span>
+    </a>
+    <a href="https://x.com/cb_doge/status/2062242490745594085" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 02:38</span>
+      <span class="nf-title">Grok Imagine 1.5预览版发布</span>
+      <span class="nf-src">cb_doge</span>
+    </a>
+    <a href="https://x.com/nvidia/status/2062228974273716457" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 01:44</span>
+      <span class="nf-title">黄仁勋与纳德拉共议智能体AI时代</span>
+      <span class="nf-src">NVIDIA</span>
+    </a>
+    <a href="https://x.com/krea_ai/status/2062227837130887567" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 01:40</span>
+      <span class="nf-title">Ideogram v4.0发布：2K分辨率和JSON提示支持</span>
+      <span class="nf-src">Krea AI</span>
+    </a>
+    <a href="https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude" target="_blank" rel="noopener" class="nf-item">
+      <span class="nf-time">今天 01:23</span>
+      <span class="nf-title">Anthropic用Claude赋能自助数据分析</span>
+      <span class="nf-src">Claude：Blog</span>
+    </a>
   </div>
 
 </div>
 
 <script>
-// AI 热点 + 语言切换
+// 语言切换
 (function() {
-  var feed = document.getElementById('news-feed');
-  var currentCat = '';
-  
-  function loadNews(cat) {
-    currentCat = cat;
-    feed.innerHTML = '<div class="nf-loading">加载中...</div>';
-    var s = document.createElement('script');
-    var url = '/api/news?t=' + Date.now();
-    if (cat) url += '&category=' + cat;
-    s.src = url;
-    s.onerror = function() { feed.innerHTML = '<div class="nf-empty">加载失败</div>'; };
-    document.body.appendChild(s);
-  }
-  
-  window.renderNews = function(data) {
-    var items = data?.items || [];
-    if (items.length === 0) { feed.innerHTML = '<div class="nf-empty">暂无热点</div>'; return; }
-    var html = '<div class="nf-scroll">';
-    var today = new Date();
-    var todayStr = today.toISOString().slice(0,10);
-    var yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    var yesterdayStr = yesterday.toISOString().slice(0,10);
-    
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      var src = (item.source || '').replace(/^X[：:]\s*/,'').replace(/\(.*?\)/g,'').trim() || item.source || '';
-      if (src.length > 22) src = src.slice(0,19) + '...';
-      
-      var tm = '';
-      var dateLabel = '';
-      if (item.publishedAt) {
-        var d = item.publishedAt.slice(0,10);
-        if (d === todayStr) dateLabel = '今天';
-        else if (d === yesterdayStr) dateLabel = '昨天';
-        else dateLabel = parseInt(item.publishedAt.slice(5,7)) + '/' + parseInt(item.publishedAt.slice(8,10));
-        tm = dateLabel + ' ' + item.publishedAt.slice(11,16);
-      }
-      
-      html += '<a href="' + (item.url || '#') + '" target="_blank" rel="noopener" class="nf-item">' +
-        (tm ? '<span class="nf-time">' + tm + '</span>' : '') +
-        '<span class="nf-title">' + (item.title || '') + '</span>' +
-        (src ? '<span class="nf-src">' + src + '</span>' : '') +
-        '</a>';
-    }
-    html += '</div>';
-    feed.innerHTML = html;
-  };
-  
-  // Tab click
-  document.getElementById('nf-tabs')?.addEventListener('click', function(e) {
-    var tab = e.target.closest('.nf-tab');
-    if (!tab) return;
-    e.preventDefault();
-    document.querySelectorAll('.nf-tab').forEach(function(t){ t.classList.remove('active'); });
-    tab.classList.add('active');
-    loadNews(tab.getAttribute('data-cat') || '');
-  });
-  
-  // Initial load
-  loadNews('');
-  
-  // Language selector
   var langBtn = document.querySelector('.lang-select');
   var langMenu = document.getElementById('lang-menu');
   if (langBtn && langMenu) {

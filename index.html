@@ -180,62 +180,93 @@
     <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     AI 热点
   </div>
+  <div class="nf-tabs" id="nf-tabs">
+    <a href="#" class="nf-tab active" data-cat="all">全部</a>
+    <a href="#" class="nf-tab" data-cat="ai-models">模型</a>
+    <a href="#" class="nf-tab" data-cat="ai-products">产品</a>
+    <a href="#" class="nf-tab" data-cat="industry">行业</a>
+    <a href="#" class="nf-tab" data-cat="paper">论文</a>
+    <a href="#" class="nf-tab" data-cat="tip">技巧</a>
+  </div>
   <div class="nf-box">
-    <a href="https://www.ithome.com/0/959/607.htm" target="_blank" rel="noopener" class="nf-item">
+    <div class="nf-scroll" id="nf-scroll">
+    <a href="https://www.ithome.com/0/959/607.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
       <span class="nf-time">今天 08:50</span>
       <span class="nf-title">联合国报告：2030年AI数据中心水电消耗将翻倍</span>
       <span class="nf-src">IT之家</span>
     </a>
-    <a href="https://x.com/xai/status/2062294202625696081" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/xai/status/2062294202625696081" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
       <span class="nf-time">今天 06:03</span>
       <span class="nf-title">Grok模型登陆Cloudflare AI Gateway</span>
       <span class="nf-src">xAI</span>
     </a>
-    <a href="https://x.com/openclaw/status/2062288421406785710" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/openclaw/status/2062288421406785710" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
       <span class="nf-time">今天 05:40</span>
       <span class="nf-title">OpenClaw 2026.6.1发布：新增Windows节点与技能工坊</span>
       <span class="nf-src">OpenClaw</span>
     </a>
-    <a href="https://simonwillison.net/2026/Jun/3/uber-caps-usage" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://simonwillison.net/2026/Jun/3/uber-caps-usage" target="_blank" rel="noopener" class="nf-item" data-category="industry">
       <span class="nf-time">今天 03:00</span>
       <span class="nf-title">优步每月1,500美元的AI使用上限为AI工具定价提供参考</span>
       <span class="nf-src">Hacker News 热门</span>
     </a>
-    <a href="https://x.com/drfeifei/status/2062247238143996275" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/drfeifei/status/2062247238143996275" target="_blank" rel="noopener" class="nf-item" data-category="paper">
       <span class="nf-time">今天 02:57</span>
       <span class="nf-title">世界模型的功能分类</span>
       <span class="nf-src">Fei-Fei Li</span>
     </a>
-    <a href="https://research.google/blog/the-next-chapter-in-flood-resilience-open-sourcing-googles-hydrology-framework" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://research.google/blog/the-next-chapter-in-flood-resilience-open-sourcing-googles-hydrology-framework" target="_blank" rel="noopener" class="nf-item" data-category="paper">
       <span class="nf-time">今天 02:49</span>
       <span class="nf-title">洪水韧性新篇章：Google开源水文建模框架</span>
       <span class="nf-src">Google Research：Blog</span>
     </a>
-    <a href="https://x.com/cb_doge/status/2062242490745594085" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/cb_doge/status/2062242490745594085" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
       <span class="nf-time">今天 02:38</span>
       <span class="nf-title">Grok Imagine 1.5预览版发布</span>
       <span class="nf-src">cb_doge</span>
     </a>
-    <a href="https://x.com/nvidia/status/2062228974273716457" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/nvidia/status/2062228974273716457" target="_blank" rel="noopener" class="nf-item" data-category="industry">
       <span class="nf-time">今天 01:44</span>
       <span class="nf-title">黄仁勋与纳德拉共议智能体AI时代</span>
       <span class="nf-src">NVIDIA</span>
     </a>
-    <a href="https://x.com/krea_ai/status/2062227837130887567" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://x.com/krea_ai/status/2062227837130887567" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
       <span class="nf-time">今天 01:40</span>
       <span class="nf-title">Ideogram v4.0发布：2K分辨率和JSON提示支持</span>
       <span class="nf-src">Krea AI</span>
     </a>
-    <a href="https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude" target="_blank" rel="noopener" class="nf-item">
+    <a href="https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude" target="_blank" rel="noopener" class="nf-item" data-category="industry">
       <span class="nf-time">今天 01:23</span>
       <span class="nf-title">Anthropic用Claude赋能自助数据分析</span>
       <span class="nf-src">Claude：Blog</span>
     </a>
+    </div>
   </div>
 
 </div>
 
 <script>
+// AI 热点分类过滤
+(function() {
+  var tabs = document.querySelectorAll('.nf-tab');
+  var items = document.querySelectorAll('.nf-item');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      var cat = this.getAttribute('data-cat');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      items.forEach(function(item) {
+        if (cat === 'all' || item.getAttribute('data-category') === cat) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+
 // 语言切换
 (function() {
   var langBtn = document.querySelector('.lang-select');

@@ -161,7 +161,6 @@
       padding: 16px 20px;
       font-size: 15px;
       font-weight: 600;
-      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -170,23 +169,12 @@
     .faq-question:hover {
       background: rgba(0,212,255,0.03);
     }
-    .faq-question::after {
-      content: '+';
-      font-size: 20px;
-      color: var(--accent);
-      font-weight: 300;
-    }
-    .faq-question.active::after {
-      content: '−';
-    }
     .faq-answer {
       padding: 0 20px 16px;
       font-size: 14px;
       color: var(--text-dim);
       line-height: 1.7;
-      display: none;
     }
-    .faq-answer.show { display: block; }
     /* Testing methodology */
     .methodology-box {
       background: var(--surface);
@@ -752,14 +740,6 @@
 </footer>
 
 <script>
-  // FAQ toggle — click handler for all FAQ questions
-  document.querySelectorAll('.faq-question').forEach(function(q) {
-    q.addEventListener('click', function() {
-      this.classList.toggle('active');
-      var answer = this.nextElementSibling;
-      if (answer) answer.classList.toggle('show');
-    });
-  });
 </script>
 
 </body>

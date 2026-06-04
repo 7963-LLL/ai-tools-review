@@ -648,84 +648,84 @@
   <div class="faq-section">
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些 AI 编程工具免费吗？</div>
+      <div class="faq-question">这些 AI 编程工具免费吗？</div>
       <div class="faq-answer">
         大部分都有免费版，但功能有限制：<strong>Cursor</strong> 免费版 Agent 每天限制额度；<strong>Copilot</strong> 免费版每月 2000 次补全；<strong>Windsurf</strong> 免费版功能受限；<strong>Codex CLI</strong> 本身开源免费但需要 ChatGPT 订阅才能使用 OpenAI 模型；<strong>Claude Code</strong> 代码开源但需要 Claude Pro 订阅（$20/月）。说白了，轻度使用可以不花钱，天天重度用还是得掏钱。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">Cursor 和 Copilot 到底有什么区别？</div>
+      <div class="faq-question">Cursor 和 Copilot 到底有什么区别？</div>
       <div class="faq-answer">
         核心区别：<strong>Cursor 是一个完整的 IDE</strong>（基于 VS Code 魔改），AI 是原生嵌在骨子里的——补全、Agent、Bugbot 都是自带的。而 <strong>Copilot 是一个插件</strong>，可以装到各种 IDE 上。形象点说：Cursor 像一个为 AI 设计的房子，Copilot 像是给老房子加了个智能门锁。Cursor 的 Agent 能力更强、补全更快，但 Copilot 覆盖的 IDE 更多、企业集成更好。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 Python？</div>
+      <div class="faq-question">哪个最适合写 Python？</div>
       <div class="faq-answer">
         如果你做的是 <strong>数据科学 / 机器学习</strong>，Cursor Pro 最好——它对 Jupyter Notebook 支持好，补全速度快，数据管道代码生成效率高。如果你做的是 <strong>Web 后端 / 大型项目</strong>，Claude Code 更胜一筹——对 Django、FastAPI、SQLAlchemy 这些框架的理解深度明显更强，重构复杂逻辑特别靠谱。Copilot 也是很好的 Python 助手，尤其在 VS Code + Pylance 的组合下表现不俗。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 JavaScript / TypeScript？</div>
+      <div class="faq-question">哪个最适合写 JavaScript / TypeScript？</div>
       <div class="faq-answer">
-        <strong>Cursor Pro 的 Composer 模式</strong>在做前端重构时太方便了——你可以在一个视图中同时编辑 .tsx、.css、.test.ts 三个文件，改一个组件所有文件同步更新。Claude Code 对 TypeScript 类型推理非常精准，复杂泛型和类型体操类的代码它处理得比其他工具都好。两都上的组合（Cursor Pro + Claude Code）是全栈开发者的梦幻配置。
+        <strong>Cursor Pro 的 Composer 模式</strong>在做前端重构时太方便了——你可以在一个视图中同时编辑 .tsx、.css、.test.ts 三个文件，改一个组件所有文件同步更新。Claude Code 对 TypeScript 类型推理非常精准，复杂泛型和类型体操类的代码它处理得比其他工具都好。两者上的组合（Cursor Pro + Claude Code）是全栈开发者的梦幻配置。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">哪个最适合写 Rust / C++ / 系统编程？</div>
+      <div class="faq-question">哪个最适合写 Rust / C++ / 系统编程？</div>
       <div class="faq-answer">
         <strong>Claude Code</strong> 在系统编程领域有明显优势。它的代码推理能力最强，能理解 Rust 的生命周期标注、C++ 的模板元编程、内存管理这些复杂概念。我在测试中用了一个 Rust 的 async trait 项目，Claude Code 正确地分析了所有生命周期约束并且给出了正确的实现。Cursor 和 Copilot 对 Rust 也有基础支持，但在深度理解上差 Claude Code 一截。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">学生或个人开发者选哪个最划算？</div>
+      <div class="faq-question">学生或个人开发者选哪个最划算？</div>
       <div class="faq-answer">
         预算最紧张的情况下：<strong>Cursor Free + Codex CLI（已有 ChatGPT 的话）</strong> 组合拳，完全免费还能互补。如果愿意每月花点钱，<strong>Cursor Pro（$16/月年付）</strong> 是性价比最高的选择——一个订阅搞定日常所有编码需求。Copilot Free 也够学生入门用（每月 2000 次补全），而且 Copilot Pro 对学生有 GitHub Student Developer Pack 折扣。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">可以同时用多个 AI 编程工具吗？</div>
+      <div class="faq-question">可以同时用多个 AI 编程工具吗？</div>
       <div class="faq-answer">
         完全可以，而且我强烈推荐这种用法。我的日常组合就是 <strong>Cursor Pro</strong> 作为主力 IDE 写代码 + <strong>Claude Code</strong> 在终端里做大型重构和代码审查。它们互不冲突——Cursor 管日常，Claude Code 管大的改动。你甚至可以在 VS Code 里同时装着 Copilot 插件和 Cursor（当然后者本身就是 IDE），不过注意会有补全冲突。最佳实践是：一个主力工具 + 一个辅助工具。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具支持中文 prompt 吗？</div>
+      <div class="faq-question">这些工具支持中文 prompt 吗？</div>
       <div class="faq-answer">
         全部支持。五个工具的底层模型（GPT-4o、Claude、DeepSeek 等）都原生支持中文理解。我在测试中全用中文写的 prompt，每个工具都能正确理解需求并生成中文注释和说明。不过代码本身还是英文的（变量名、函数名），这是最佳实践。中文 prompt 的准确率在 95% 以上，跟英文 prompt 差距不大。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')）">哪个工具对隐私保护最好？</div>
+      <div class="faq-question">哪个工具对隐私保护最好？</div>
       <div class="faq-answer">
         <strong>Codex CLI</strong> 和 <strong>Claude Code</strong> 因为是开源的，可以在本地或者你自己的服务器上运行，数据不用经过第三方，隐私保护最好。Cursor 和 Copilot 都是云端服务，代码会发送到他们的服务器处理——不过他们都提供不训练模式，可以关闭代码被用来训练模型的功能。Windsurf 也是云端处理。如果你在公司做保密项目，选开源工具或确保关掉数据训练开关。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具能离线使用吗？</div>
+      <div class="faq-question">这些工具能离线使用吗？</div>
       <div class="faq-answer">
         目前<strong>不能完全离线使用</strong>——所有工具的 AI 功能都依赖云端模型推理。Codex CLI 和 Claude Code 虽然开源，但模型本身是云端的（需要 API 调用）。不过你可以在 Cursor 里配置本地模型（如 CodeLlama、DeepSeek Coder 等），实现部分离线。但说实话，本地模型的补全质量跟 GPT-4o 和 Claude 这些云端模型比还有差距。真正完全离线的高质量 AI 编程助手，目前还没有成熟产品。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">这些工具支持 JetBrains IDE 吗？</div>
+      <div class="faq-question">这些工具支持 JetBrains IDE 吗？</div>
       <div class="faq-answer">
         <strong>GitHub Copilot</strong> 支持最好——原生 JetBrains 插件，IntelliJ IDEA、PyCharm、WebStorm、GoLand 等全系列都支持。<strong>Claude Code</strong> 也在 JetBrains 上提供了插件支持。<strong>Cursor</strong> 不支持——它是一个独立的 VS Code 分支 IDE，没法装到 JetBrains 上。<strong>Windsurf</strong> 也是独立 IDE。总的来说，如果你是 JetBrains 的忠实用户，Copilot 是最稳妥的选择。
       </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('show')">2026 年新增了哪些重要功能？</div>
+      <div class="faq-question">2026 年新增了哪些重要功能？</div>
       <div class="faq-answer">
         2026 年各工具都有大更新：Cursor 发布了 Bugbot 自动代码审查和 Ultra 计划；GitHub Copilot 推出了 Agent Mode 和 Copilot CLI；Windsurf 从 Devin Desktop 品牌升级并推出了多 Agent 编排；Codex CLI 从实验版进入稳定期，增加了 sandbox 执行模式；Claude Code 突破了 130k stars，并推出了 MCP 协议的正式版。总体来说，Agent 自动化和多工具协同是今年的主旋律。
       </div>

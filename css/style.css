@@ -799,3 +799,39 @@ footer a { color: var(--text-muted); text-decoration: none; }
   .featured-card { flex-direction: column; text-align: center; }
   .featured-visal { display: none; }
 }
+
+/* ===== Daily Banner ===== */
+.daily-banner {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.daily-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.03) 20px,
+    rgba(255,255,255,0.03) 40px
+  );
+  pointer-events: none;
+}
+.daily-banner a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+.daily-banner a:hover {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+}

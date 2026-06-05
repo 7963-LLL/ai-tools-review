@@ -606,6 +606,15 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 .vs-item.claude { background: #e8dbff; color: #6741d9; }
 .vs-divider { font-size: 13px; font-weight: 800; color: var(--text-muted); }
 
+/* ===== Previous Featured ===== */
+.prev-featured-list { display: flex; flex-direction: column; gap: 6px; margin: 0 0 32px; }
+.prev-featured-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+.prev-featured-item:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+.prev-date { font-size: 12px; color: var(--text-muted); white-space: nowrap; min-width: 80px; }
+.prev-title { flex: 1; font-size: 14px; color: var(--text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prev-arrow { font-size: 14px; color: var(--accent); opacity: 0; transition: opacity 0.2s; }
+.prev-featured-item:hover .prev-arrow { opacity: 1; }
+
 /* ===== Rank List ===== */
 .rank-list { counter-reset: rank; }
 .rank-item {

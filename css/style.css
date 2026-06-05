@@ -631,6 +631,10 @@ nav a:hover { color: var(--text); background: var(--surface2); }
 .featured-article .source-link { display: inline-block; margin-top: 1rem; color: var(--accent, #2563eb); text-decoration: underline; font-size: 0.9rem; }
 .featured-article-img { width: 100%; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .featured-article .body .key-number { display: inline-block; font-size: 2rem; font-weight: 800; color: var(--brand, #228be6); margin-right: 6px; }
+.featured-article .body img { max-width: 100%; border-radius: 10px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.featured-article .body .img-row { display: flex; gap: 12px; margin: 1.2rem 0; }
+.featured-article .body .img-row img { flex: 1; min-width: 0; margin: 0; }
+.featured-article .body .img-caption { font-size: 0.8rem; color: #888; text-align: center; margin-top: -0.5rem; margin-bottom: 1rem; }
 .back-link { display: inline-block; margin-bottom: 1.5rem; color: var(--accent, #2563eb); text-decoration: none; font-size: 0.9rem; }
 .back-link:hover { text-decoration: underline; }
 

@@ -1,115 +1,125 @@
+      <a href="https://x.com/shao__meng/status/2068306942184034471" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">昨天 20:16</span>
+        <span class="nf-title">开源教程《Deep Agents 实战》发布</span>
+        <span class="nf-src">邵猛</span>
+      </a>
+      <a href="https://x.com/AYi_AInotes/status/2068218661710512231" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 14:25</span>
+        <span class="nf-title">微软双向转售GPT与DeepSeek成全球最大AI中间商</span>
+        <span class="nf-src">阿易 AI Notes</span>
+      </a>
       <a href="https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">今天 06:51</span>
+        <span class="nf-time">昨天 06:51</span>
         <span class="nf-title">NVIDIA Research 发布 SpatialClaw：免训练空间推理框架</span>
         <span class="nf-src">MarkTechPost</span>
       </a>
       <a href="https://x.com/rohanpaul_ai/status/2068089038213693800" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">今天 05:50</span>
+        <span class="nf-time">昨天 05:50</span>
         <span class="nf-title">Figure机器人数首超人类员工</span>
         <span class="nf-src">Rohan Paul</span>
       </a>
       <a href="https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">今天 03:41</span>
+        <span class="nf-time">昨天 03:41</span>
         <span class="nf-title">JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案</span>
         <span class="nf-src">Hacker News 热门</span>
       </a>
       <a href="https://openrouter.ai/blog/insights/openrouter-vs-portkey" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">今天 03:00</span>
+        <span class="nf-time">昨天 03:00</span>
         <span class="nf-title">OpenRouter vs Portkey：你的团队该选哪个LLM网关？</span>
         <span class="nf-src">OpenRouter：Anno...</span>
       </a>
       <a href="https://x.com/dotey/status/2068042001895809420" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">今天 02:43</span>
+        <span class="nf-time">昨天 02:43</span>
         <span class="nf-title">baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI配图导出PPTX</span>
         <span class="nf-src">宝玉</span>
       </a>
       <a href="https://www.dwarkesh.com/p/the-sample-efficiency-black-hole-2" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">今天 00:45</span>
+        <span class="nf-time">昨天 00:45</span>
         <span class="nf-title">AI中心的数据黑洞</span>
         <span class="nf-src">Dwarkesh Patel：...</span>
       </a>
       <a href="https://x.com/demishassabis/status/2068002732250640603" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">今天 00:07</span>
+        <span class="nf-time">昨天 00:07</span>
         <span class="nf-title">AlphaFold 负责人 John Jumper 离职 Google DeepMind，加入 Anthropic</span>
         <span class="nf-src">Demis Hassabis</span>
       </a>
       <a href="https://openrouter.ai/blog/insights/openrouter-vs-litellm" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 23:00</span>
+        <span class="nf-time">06/19 23:00</span>
         <span class="nf-title">OpenRouter vs LiteLLM：如何选择 LLM 网关</span>
         <span class="nf-src">OpenRouter：Anno...</span>
       </a>
       <a href="https://www.interconnects.ai/p/banning-open-source-ai-would-be-a" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 21:02</span>
+        <span class="nf-time">06/19 21:02</span>
         <span class="nf-title">禁止开源AI将是一个错误</span>
         <span class="nf-src">Nathan Lambert：...</span>
       </a>
       <a href="https://blog.cloudflare.com/temporary-accounts" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">昨天 21:00</span>
+        <span class="nf-time">06/19 21:00</span>
         <span class="nf-title">Cloudflare 为 AI 智能体推出临时账户</span>
         <span class="nf-src">Cloudflare Blog</span>
       </a>
       <a href="https://x.com/omarsar0/status/2067952726282031411" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 20:48</span>
+        <span class="nf-time">06/19 20:48</span>
         <span class="nf-title">/youtube-notetaker：YT 视频转 Artifacts</span>
         <span class="nf-src">Elvis Saravia</span>
       </a>
       <a href="https://mp.weixin.qq.com/s/rGoYnUcBRkfRKQPbIaawyg" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 17:48</span>
+        <span class="nf-time">06/19 17:48</span>
         <span class="nf-title">Humanize PPT v0.9：为演讲而生的开源PPT Skill</span>
         <span class="nf-src">公众号：卡尔的AI沃茨</span>
       </a>
       <a href="https://www.elastic.co/search-labs/blog/agent-memory-elasticsearch" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 13:01</span>
+        <span class="nf-time">06/19 13:01</span>
         <span class="nf-title">我们在 Elasticsearch 上构建了一个持久化代理内存层，其召回率为0.89</span>
         <span class="nf-src">Hacker News 热门</span>
       </a>
       <a href="https://x.com/AYi_AInotes/status/2067832098816250346" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">昨天 12:49</span>
+        <span class="nf-time">06/19 12:49</span>
         <span class="nf-title">阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式</span>
         <span class="nf-src">阿易 AI Notes</span>
       </a>
       <a href="https://x.com/AYi_AInotes/status/2067819352926150953" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 11:58</span>
+        <span class="nf-time">06/19 11:58</span>
         <span class="nf-title">DeepSeek研究员开源AutoResearch：AI自主跑通285B模型RL研究闭环</span>
         <span class="nf-src">阿易 AI Notes</span>
       </a>
       <a href="https://www.marktechpost.com/2026/06/18/salesforce-codegen-tutorial-generate-validate-and-rerank-python-functions-with-unit-tests-and-safety-checks" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 10:44</span>
+        <span class="nf-time">06/19 10:44</span>
         <span class="nf-title">Salesforce CodeGen教程：生成、验证并重排序Python函数（含单元测试与安全检查）</span>
         <span class="nf-src">MarkTechPost</span>
       </a>
       <a href="https://www.ithome.com/0/966/295.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 07:56</span>
+        <span class="nf-time">06/19 07:56</span>
         <span class="nf-title">八部门联合发文力推"人工智能 + 消费"，扩大 AI 手机电脑及智能网联汽车消费</span>
         <span class="nf-src">IT之家</span>
       </a>
       <a href="https://x.com/rohanpaul_ai/status/2067755504613613699" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">昨天 07:45</span>
+        <span class="nf-time">06/19 07:45</span>
         <span class="nf-title">AI 员工 Viktor 登陆 Microsoft Teams，年化收入达 2000 万美元</span>
         <span class="nf-src">Rohan Paul</span>
       </a>
       <a href="https://openrouter.ai/blog/tutorials/openclaw-openrouter" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 03:00</span>
+        <span class="nf-time">06/19 03:00</span>
         <span class="nf-title">OpenClaw 接入 OpenRouter</span>
         <span class="nf-src">OpenRouter：Anno...</span>
       </a>
       <a href="https://huggingface.co/blog/ServiceNow/mosaicleaks" target="_blank" rel="noopener" class="nf-item" data-category="paper">
-        <span class="nf-time">昨天 02:13</span>
+        <span class="nf-time">06/19 02:13</span>
         <span class="nf-title">MosaicLeaks： 你的研究智能体能保守秘密吗？</span>
         <span class="nf-src">Hugging Face：Blog</span>
       </a>
       <a href="https://alignment.openai.com/beneficial-rl" target="_blank" rel="noopener" class="nf-item" data-category="paper">
-        <span class="nf-time">昨天 02:00</span>
+        <span class="nf-time">06/19 02:00</span>
         <span class="nf-title">OpenAI 强化学习实现广泛且持久的有益模型</span>
         <span class="nf-src">OpenAI：Alignmen...</span>
       </a>
       <a href="https://techcrunch.com/2026/06/18/ai-data-centers-just-got-a-government-mandated-fast-lane-to-the-grid" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 01:49</span>
+        <span class="nf-time">06/19 01:49</span>
         <span class="nf-title">AI数据中心获政府强制电网快车道</span>
         <span class="nf-src">TechCrunch：AI</span>
       </a>
       <a href="https://openai.com/index/chatgpt-enterprise-spend-controls" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">昨天 01:00</span>
+        <span class="nf-time">06/19 01:00</span>
         <span class="nf-title">企业版新用量分析与更新的支出控制</span>
         <span class="nf-src">OpenAI：官网动态</span>
       </a>
@@ -237,14 +247,4 @@
         <span class="nf-time">06/18 03:35</span>
         <span class="nf-title">Cloudflare 将更多智能体框架引入平台，以 Flue 为首</span>
         <span class="nf-src">Cloudflare Blog</span>
-      </a>
-      <a href="https://x.com/AYi_AInotes/status/2067327021005656135" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">06/18 03:22</span>
-        <span class="nf-title">Matt Pocock 开源 skills v1：将技能描述 Token 成本降低 63%</span>
-        <span class="nf-src">阿易 AI Notes</span>
-      </a>
-      <a href="https://x.com/kimmonismus/status/2067310431669223425" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">06/18 02:16</span>
-        <span class="nf-title">Anthropic与DeepMind CEO呼吁G7组建AI联盟排除中国</span>
-        <span class="nf-src">Kim</span>
       </a>

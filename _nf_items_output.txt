@@ -1,45 +1,130 @@
+      <a href="https://runwayml.com/news/aleph-2-in-figma-weave" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">今天 07:18</span>
+        <span class="nf-title">Aleph 2.0 现已集成到 Figma Weave</span>
+        <span class="nf-src">Runway：News</span>
+      </a>
+      <a href="https://ipvm.com/reports/police-chiefs-track" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">今天 05:32</span>
+        <span class="nf-title">美国警长利用Flock车牌系统跟踪前女友案频发，Flock法务官承认"最常见滥用"</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://claude.com/blog/the-full-claude-desktop-experience-on-aws-google-cloud-and-microsoft-foundry" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">今天 05:19</span>
+        <span class="nf-title">在 AWS、Google Cloud 和 Microsoft Foundry 上使用完整版 Claude Desktop</span>
+        <span class="nf-src">Claude：Blog</span>
+      </a>
+      <a href="https://oak.space/oak/oak" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">今天 05:00</span>
+        <span class="nf-title">Show HN：Oak--专为代理设计的 Git 替代方案</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">今天 02:49</span>
+        <span class="nf-title">Google DeepMind 7500 万美元投资 A24，合作开发电影 AI 工具</span>
+        <span class="nf-src">TechCrunch：AI</span>
+      </a>
+      <a href="https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">今天 01:08</span>
+        <span class="nf-title">Google ADK 与 A2A 协议：跨语言多智能体团队构建实战</span>
+        <span class="nf-src">Google Develope...</span>
+      </a>
+      <a href="https://x.com/berryxia/status/2069090959938466298" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">今天 00:11</span>
+        <span class="nf-title">东京 AI 公司 Sakana AI 推出多智能体编排系统 Sakana Fugu</span>
+        <span class="nf-src">Berry Xia</span>
+      </a>
+      <a href="https://developers.googleblog.com/measuring-what-matters-with-jules" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">今天 00:08</span>
+        <span class="nf-title">Google Labs 提出用"洞察策略"评估 AI 编码智能体的主动性</span>
+        <span class="nf-src">Google Develope...</span>
+      </a>
+      <a href="https://www.ithome.com/0/967/234.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 23:13</span>
+        <span class="nf-title">开辟新赛道：小米 YU7 GT 创全球首个纽北自动驾驶圈速纪录，官方圈速榜新增"自动驾驶"分类</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/qVdfx01e9C9r5mGi0jh2BA" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">昨天 21:34</span>
+        <span class="nf-title">微信Agent小微灰度内测：主入口发消息红包，子入口可读聊天记录</span>
+        <span class="nf-src">公众号：数字生命卡兹克</span>
+      </a>
+      <a href="https://www.ithome.com/0/967/216.htm" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">昨天 21:25</span>
+        <span class="nf-title">Anthropic 工程负责人：Claude Code 让程序员更孤独</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://huggingface.co/blog/PaddlePaddle/pp-ocrv6" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">昨天 21:18</span>
+        <span class="nf-title">PP-OCRv6 on Hugging Face：50 语言 OCR，参数规模 1.5M 至 34.5M</span>
+        <span class="nf-src">Hugging Face：Blog</span>
+      </a>
+      <a href="https://cursor.com/blog/reward-hacking-coding-benchmarks" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">昨天 20:00</span>
+        <span class="nf-title">Cursor 审计发现奖励黑客行为淹没模型智能提升</span>
+        <span class="nf-src">Cursor Blog</span>
+      </a>
+      <a href="https://openai.com/index/daybreak-securing-the-world" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">昨天 18:00</span>
+        <span class="nf-title">OpenAI 发布 Daybreak 安全工具：Codex Security 与 GPT-5.5-Cyber</span>
+        <span class="nf-src">OpenAI：官网动态</span>
+      </a>
+      <a href="https://x.ai/news/introducing-goal" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">昨天 08:00</span>
+        <span class="nf-title">Grok Build 推出 /goal 模式，支持长时间自主任务执行</span>
+        <span class="nf-src">xAI：News</span>
+      </a>
+      <a href="https://x.com/AYi_AInotes/status/2068637890247016607" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">06/21 18:11</span>
+        <span class="nf-title">美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型</span>
+        <span class="nf-src">阿易 AI Notes</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/xrTg2Bdy3FF3gn3C_gVBJQ" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">06/21 12:51</span>
+        <span class="nf-title">腾讯元宝父亲节活动：上传照片生成与年轻爸爸的合影</span>
+        <span class="nf-src">公众号：腾讯元宝</span>
+      </a>
       <a href="https://x.com/shao__meng/status/2068306942184034471" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 20:16</span>
+        <span class="nf-time">06/20 20:16</span>
         <span class="nf-title">开源教程《Deep Agents 实战》发布</span>
         <span class="nf-src">邵猛</span>
       </a>
       <a href="https://x.com/AYi_AInotes/status/2068218661710512231" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 14:25</span>
+        <span class="nf-time">06/20 14:25</span>
         <span class="nf-title">微软双向转售GPT与DeepSeek成全球最大AI中间商</span>
         <span class="nf-src">阿易 AI Notes</span>
       </a>
       <a href="https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">昨天 06:51</span>
+        <span class="nf-time">06/20 06:51</span>
         <span class="nf-title">NVIDIA Research 发布 SpatialClaw：免训练空间推理框架</span>
         <span class="nf-src">MarkTechPost</span>
       </a>
       <a href="https://x.com/rohanpaul_ai/status/2068089038213693800" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 05:50</span>
+        <span class="nf-time">06/20 05:50</span>
         <span class="nf-title">Figure机器人数首超人类员工</span>
         <span class="nf-src">Rohan Paul</span>
       </a>
       <a href="https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 03:41</span>
+        <span class="nf-time">06/20 03:41</span>
         <span class="nf-title">JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案</span>
         <span class="nf-src">Hacker News 热门</span>
       </a>
       <a href="https://openrouter.ai/blog/insights/openrouter-vs-portkey" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 03:00</span>
+        <span class="nf-time">06/20 03:00</span>
         <span class="nf-title">OpenRouter vs Portkey：你的团队该选哪个LLM网关？</span>
         <span class="nf-src">OpenRouter：Anno...</span>
       </a>
       <a href="https://x.com/dotey/status/2068042001895809420" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 02:43</span>
+        <span class="nf-time">06/20 02:43</span>
         <span class="nf-title">baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI配图导出PPTX</span>
         <span class="nf-src">宝玉</span>
       </a>
       <a href="https://www.dwarkesh.com/p/the-sample-efficiency-black-hole-2" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">昨天 00:45</span>
+        <span class="nf-time">06/20 00:45</span>
         <span class="nf-title">AI中心的数据黑洞</span>
         <span class="nf-src">Dwarkesh Patel：...</span>
       </a>
       <a href="https://x.com/demishassabis/status/2068002732250640603" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">昨天 00:07</span>
+        <span class="nf-time">06/20 00:07</span>
         <span class="nf-title">AlphaFold 负责人 John Jumper 离职 Google DeepMind，加入 Anthropic</span>
         <span class="nf-src">Demis Hassabis</span>
       </a>
@@ -162,89 +247,4 @@
         <span class="nf-time">06/18 18:36</span>
         <span class="nf-title">火山引擎上线豆包实时语音模型3.0 API 服务，开启邀测</span>
         <span class="nf-src">公众号：火山引擎</span>
-      </a>
-      <a href="https://www.ithome.com/0/966/154.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">06/18 17:03</span>
-        <span class="nf-title">八部门：用好个人消费贷款财政贴息政策，支持消费者购买 AI 相关产品</span>
-        <span class="nf-src">IT之家</span>
-      </a>
-      <a href="https://openai.com/index/diagnose-rare-childhood-diseases" target="_blank" rel="noopener" class="nf-item" data-category="paper">
-        <span class="nf-time">06/18 16:00</span>
-        <span class="nf-title">OpenAI与哈佛等合作研究：o3 Deep Research模型辅助诊断儿童罕见病，额外诊断率4.8%</span>
-        <span class="nf-src">OpenAI：官网动态</span>
-      </a>
-      <a href="https://www.ithome.com/0/966/066.htm" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 15:48</span>
-        <span class="nf-title">DeepSeek 识图模式正式上线 App 和网页端</span>
-        <span class="nf-src">IT之家</span>
-      </a>
-      <a href="https://x.com/vista8/status/2067513484364140994" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 15:43</span>
-        <span class="nf-title">免费开源乔木画布：AI生图+抠图，一键部署Vercel</span>
-        <span class="nf-src">Vista</span>
-      </a>
-      <a href="https://github.com/nvlabs/cutile-rs" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 11:09</span>
-        <span class="nf-title">cuTile Rust：安全无数据竞争的 GPU 内核系统</span>
-        <span class="nf-src">Hacker News 热门</span>
-      </a>
-      <a href="https://mp.weixin.qq.com/s/50q5uY849FKnBzk1Q04MRg" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
-        <span class="nf-time">06/18 10:31</span>
-        <span class="nf-title">首个统一科学大模型 LOGOS 正式开源</span>
-        <span class="nf-src">公众号：通义实验室</span>
-      </a>
-      <a href="https://x.com/midjourney/status/2067422898407837797" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 09:43</span>
-        <span class="nf-title">深入解析 Midjourney Scanner 技术内幕</span>
-        <span class="nf-src">Midjourney</span>
-      </a>
-      <a href="https://www.ithome.com/0/965/735.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">06/18 08:49</span>
-        <span class="nf-title">上交所发布指引：AI大模型企业可适用科创板第五套上市标准</span>
-        <span class="nf-src">IT之家</span>
-      </a>
-      <a href="https://x.com/Yuchenj_UW/status/2067401895178817999" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">06/18 08:19</span>
-        <span class="nf-title">Noam Shazeer 离开 Google 加入 OpenAI</span>
-        <span class="nf-src">Yuchen Jin</span>
-      </a>
-      <a href="https://arxiv.org/abs/2606.20521" target="_blank" rel="noopener" class="nf-item" data-category="paper">
-        <span class="nf-time">06/18 08:00</span>
-        <span class="nf-title">HumanScale：自我中心人类视频在具身预训练中可超越真实机器人数据</span>
-        <span class="nf-src">HuggingFace Dai...</span>
-      </a>
-      <a href="https://x.ai/news/introducing-word-addin" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 08:00</span>
-        <span class="nf-title">xAI 发布 Grok for Word 插件</span>
-        <span class="nf-src">xAI：News</span>
-      </a>
-      <a href="https://huggingface.co/blog/peft-beyond-lora" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">06/18 08:00</span>
-        <span class="nf-title">超越 LoRA：如何选择最佳参数高效微调技术？</span>
-        <span class="nf-src">Hugging Face：Blog</span>
-      </a>
-      <a href="https://huggingface.co/blog/is-it-agentic-enough" target="_blank" rel="noopener" class="nf-item" data-category="tip">
-        <span class="nf-time">06/18 08:00</span>
-        <span class="nf-title">AI 智能体够格吗？在自有工具上评测开源模型</span>
-        <span class="nf-src">Hugging Face：Blog</span>
-      </a>
-      <a href="https://www.ithome.com/0/965/694.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
-        <span class="nf-time">06/18 06:41</span>
-        <span class="nf-title">库克：AI 浪潮引发存储芯片价格暴涨，iPhone 等苹果产品涨价已"不可避免"</span>
-        <span class="nf-src">IT之家</span>
-      </a>
-      <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.181" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 06:07</span>
-        <span class="nf-title">Claude Code v2.1.181 发布</span>
-        <span class="nf-src">Claude Code：Git...</span>
-      </a>
-      <a href="https://github.blog/ai-and-ml/github-copilot/getting-more-from-each-token-how-copilot-improves-context-handling-and-model-routing" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 03:41</span>
-        <span class="nf-title">GitHub 发布 CC0-1.0 开源多语言仓库级数据集，覆盖 README、Issue 和 PR</span>
-        <span class="nf-src">GitHub Blog</span>
-      </a>
-      <a href="https://blog.cloudflare.com/agents-platform-flue-sdk" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
-        <span class="nf-time">06/18 03:35</span>
-        <span class="nf-title">Cloudflare 将更多智能体框架引入平台，以 Flue 为首</span>
-        <span class="nf-src">Cloudflare Blog</span>
       </a>

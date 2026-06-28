@@ -7,3 +7,6 @@ _stats.json
 aihot_raw.json
 aihot_selected.json
 _find_images.py
+_daily_update.py
+_test_output.txt
+

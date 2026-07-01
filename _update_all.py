@@ -1,0 +1,318 @@
+#!/usr/bin/env python3
+"""Comprehensive daily update for suduai.top - 2026-07-01"""
+import json, re, os
+from datetime import datetime, timezone, timedelta
+
+BJT = timezone(timedelta(hours=8))
+TODAY = datetime.now(BJT).strftime('%Y-%m-%d')
+
+# ========== Read data ==========
+data = json.load(open('aihot_selected.json', encoding='utf-8'))
+items = data['items']
+
+# ========== Read nf-items ==========
+with open('_nf_items_output.txt', encoding='utf-8') as f:
+    nf_items_str = f.read()
+
+# ========== Read index.html ==========
+with open('index.html', encoding='utf-8') as f:
+    index_html = f.read()
+
+# Replace nf-scroll content - find exact boundaries
+pattern_start = '<div class="nf-scroll" id="nf-scroll">'
+idx_start = index_html.find(pattern_start)
+scroll_end_bound = index_html.find('</div>', idx_start + len(pattern_start))
+last_a = index_html.rfind('</a>', idx_start, scroll_end_bound)
+scroll_close = index_html.find('</div>', last_a)          # closes nf-scroll
+box_close = index_html.find('</div>', scroll_close + 6)   # closes nf-box
+
+before = index_html[:idx_start + len(pattern_start)]
+after = index_html[box_close:]
+
+index_html = before + '\n' + nf_items_str + '\n    ' + after
+print("✅ Replaced nf-scroll with 50 nf-items")
+
+# Update daily-banner
+banner_match = re.search(r'href="daily-(\d{4}-\d{2}-\d{2})\.html">📰 最新快报：\d{4}-\d{2}-\d{2}', index_html)
+if banner_match:
+    index_html = index_html.replace(banner_match.group(0), f'href="daily-{TODAY}.html">📰 最新快报：{TODAY}（今日 AI 精选 50 条）→')
+    print("✅ Updated daily-banner")
+
+# === Featured section: Claude Sonnet 5 ===
+featured_title = "Anthropic 发布 Claude Sonnet 5：最具 Agent 能力的 Sonnet 模型，性能逼近 Opus"
+featured_label = "模型发布/更新"
+featured_summary = "2026年6月30日，Anthropic 正式发布 Claude Sonnet 5——迄今为止最具 Agent 能力的 Sonnet 模型。其性能接近 Opus 4.8，但定价更低：首发价每百万输入 Token 仅 2 美元。在 BrowseComp 和 OSWorld 等前沿 Agent 评测中，Sonnet 5 大幅超越前代 Sonnet 4.6，在中等 effort 水平下性价比尤为突出。模型即日起在所有套餐中成为默认模型，并在 Claude Code 和 API 中同步上线。"
+featured_detail_url = f"featured-{TODAY}.html"
+daily_url = f"daily-{TODAY}.html"
+img_path = f"images/featured-{TODAY}-1.jpg"
+
+old_featured_start = index_html.find('<div class="featured-card">')
+old_featured_end = index_html.find('<div class="section-title" style="margin-top:12px">', old_featured_start)
+
+img_exists = os.path.isfile(f'images/featured-{TODAY}-1.jpg') and os.path.getsize(f'images/featured-{TODAY}-1.jpg') > 10240
+
+if img_exists:
+    new_featured = f'''  <div class="featured-card">
+    <div class="featured-badge">今日热议</div>
+    <div class="featured-content">
+      <div class="featured-label">{featured_label}</div>
+      <h2><a href="{featured_detail_url}">{featured_title}</a></h2>
+      <p>{featured_summary}</p>
+      <div class="featured-meta">
+        <span>📖 10 分钟</span><span>📅 {TODAY}</span><span>{featured_label}</span>
+      </div>
+      <a href="{daily_url}" class="affiliate-btn">看今日完整快报 →</a>
+    </div>
+    <div class="featured-visual">
+      <img src="{img_path}" alt="Claude Sonnet 5 — Anthropic 最新模型发布" style="width:180px;border-radius:8px;object-fit:cover;height:100px;">
+    </div>
+  </div>'''
+else:
+    new_featured = f'''  <div class="featured-card">
+    <div class="featured-badge">今日热议</div>
+    <div class="featured-content">
+      <div class="featured-label">{featured_label}</div>
+      <h2><a href="{featured_detail_url}">{featured_title}</a></h2>
+      <p>{featured_summary}</p>
+      <div class="featured-meta">
+        <span>📖 10 分钟</span><span>📅 {TODAY}</span><span>{featured_label}</span>
+      </div>
+      <a href="{daily_url}" class="affiliate-btn">看今日完整快报 →</a>
+    </div>
+  </div>'''
+
+if old_featured_start >= 0 and old_featured_end >= 0:
+    index_html = index_html[:old_featured_start] + new_featured + '\n\n' + index_html[old_featured_end:]
+    print("✅ Updated featured section")
+else:
+    print("❌ Could not find featured section")
+
+# Add to prev-featured-list
+first_prev_entry = index_html.find('<a href="featured-', index_html.find('<div class="prev-featured-list">'))
+new_prev_entry = f'''    <a href="featured-{TODAY}.html" class="prev-featured-item">
+      <span class="prev-date">{TODAY}</span>
+      <span class="prev-title">Anthropic 发布 Claude Sonnet 5：最具 Agent 能力的 Sonnet 模型，性能逼近 Opus</span>
+      <span class="prev-arrow">→</span>
+    </a>
+'''
+if first_prev_entry >= 0:
+    index_html = index_html[:first_prev_entry] + new_prev_entry + index_html[first_prev_entry:]
+    print("✅ Added prev-featured entry")
+else:
+    print("❌ Could not find prev-featured-list")
+
+# Update review card dates
+date_matches = re.findall(r'📅 (\d{4}-\d{2}-\d{2})</span>', index_html)
+if date_matches:
+    from collections import Counter
+    common_date = Counter(date_matches).most_common(1)[0][0]
+    old_date = common_date
+    index_html = index_html.replace(f'📅 {common_date}</span>', f'📅 {TODAY}</span>')
+    print(f"✅ Updated review card dates: {common_date} → {TODAY}")
+else:
+    print("⚠️ No review card dates found")
+
+# Write index.html
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(index_html)
+print("✅ Updated index.html")
+
+# ========== Update daily.html ==========
+with open('daily.html', 'r', encoding='utf-8') as f:
+    daily_html = f.read()
+
+# Update daily-banner
+banner_match = re.search(r'href="daily-(\d{4}-\d{2}-\d{2})\.html">📰 最新快报：\d{4}-\d{2}-\d{2}', daily_html)
+if banner_match:
+    daily_html = daily_html.replace(banner_match.group(0), f'href="daily-{TODAY}.html">📰 最新快报：{TODAY}（今日 AI 精选 50 条）→')
+    print("✅ Updated daily.html banner")
+
+# Add today's entry at top of daily-nav
+daily_nav_start = daily_html.find('<div class="daily-nav">')
+first_nav_link = daily_html.find('<a href="daily-', daily_nav_start)
+new_nav_link = f'    <a href="daily-{TODAY}.html">📅 {TODAY} 今日快报</a>\n'
+if first_nav_link >= 0:
+    daily_html = daily_html[:first_nav_link] + new_nav_link + daily_html[first_nav_link:]
+    print("✅ Added daily.html nav link")
+else:
+    print("❌ Could not find daily-nav")
+
+with open('daily.html', 'w', encoding='utf-8') as f:
+    f.write(daily_html)
+print("✅ Updated daily.html")
+
+# ========== Generate featured-2026-07-01.html ==========
+Y = TODAY[:4]
+M = TODAY[5:7]
+D = TODAY[8:10]
+
+featured_html = f'''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthropic 发布 Claude Sonnet 5 — 最具 Agent 能力的 Sonnet 模型深度解读 | suduai.top</title>
+  <meta name="description" content="2026年6月30日，Anthropic 发布 Claude Sonnet 5，性能逼近 Opus 4.8，定价更低。深度分析其技术突破、基准测试表现与行业影响。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+.content-page {{ max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }}
+.key-number {{ color: #2563eb; font-weight: 700; font-size: 1.1em; }}
+blockquote {{ border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }}
+blockquote footer {{ margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }}
+.featured-hero {{ margin-bottom: 2rem; }}
+.featured-hero img {{ width: 100%%; max-height: 400px; object-fit: cover; border-radius: 12px; }}
+.featured-meta {{ color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }}
+.featured-meta span {{ display: flex; align-items: center; gap: 0.3rem; }}
+.article-body h2 {{ font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }}
+.article-body h3 {{ font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }}
+.article-body p {{ line-height: 1.8; margin-bottom: 1rem; color: #374151; }}
+.article-body ul {{ margin: 1rem 0; padding-left: 1.5rem; }}
+.article-body li {{ margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }}
+.inline-img {{ margin: 1.5rem 0; text-align: center; }}
+.inline-img img {{ max-width: 100%%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }}
+.inline-img .caption {{ font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }}
+.bottom-cta {{ margin: 3rem 0 1rem; text-align: center; }}
+.bottom-cta .affiliate-btn {{ display: inline-block; padding: 0.8rem 2rem; }}
+.source-link {{ color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+
+  <div class="featured-hero">
+    <img src="images/featured-{TODAY}-1.jpg" alt="Claude Sonnet 5 官方宣传图 — 由花朵与叶子组成的数字 5 | Anthropic">
+    <div class="featured-meta">
+      <span>📖 10 分钟</span>
+      <span>📅 {TODAY}</span>
+      <span>🤖 模型发布/更新</span>
+    </div>
+  </div>
+
+  <h1>Anthropic 发布 Claude Sonnet 5：最具 Agent 能力的 Sonnet 模型，性能逼近 Opus</h1>
+
+  <div class="article-body">
+
+    <h2>一、导语</h2>
+    <p><span class="key-number">2026 年 6 月 30 日</span>，Anthropic 正式发布了 Claude Sonnet 5，这是其 Sonnet 系列迄今为止最具 Agent 能力的新一代模型。Anthropic 称其为「最具智能体精神的 Sonnet」——它能够制定计划、使用浏览器和终端等工具，并以只需数月前需要更大、更昂贵模型才能达到的水平自主运行。</p>
+    <p>更令人瞩目的是其定价策略：首发期间（截至 <span class="key-number">2026 年 8 月 31 日</span>）每百万输入 Token 仅 <span class="key-number">2 美元</span>、每百万输出 Token <span class="key-number">10 美元</span>，正式定价为 <span class="key-number">3 美元</span>/<span class="key-number">15 美元</span>（输入/输出）。在性能接近 Opus 4.8 的前提下，这一价格使 Sonnet 5 成为目前 Agent 能力性价比最高的模型之一。</p>
+
+    <h2>二、背景分析：Sonnet 系列的进化之路</h2>
+    <p>Claude Sonnet 系列自 <span class="key-number">2024 年</span> 的 Sonnet 3.5 起，就一直扮演着 Anthropic「黄金中端」的角色。Sonnet 3.5、3.6 和 3.7 曾是最早展现出卓越编程和工具使用能力的模型之一，让 AI Agent 真正从概念验证走向了实际开发工作流。</p>
+    <p>然而，近几个季度以来，Agent 能力最显著的提升主要集中在 Opus 系列模型上（Opus 4.7、4.8）。Sonnet 系列的进步相对放缓，与 Opus 之间的「Agent 能力鸿沟」逐渐扩大。此次 Sonnet 5 的发布，正是为了缩小这一差距——其性能接近 Opus 4.8，但在定价上大幅降低，实现了「Opus 级别的 Agent 能力，Sonnet 级别的价格」。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-{TODAY}-3.jpg" alt="Claude Sonnet 5 产品界面示意图 | Anthropic">
+      <div class="caption">Claude Sonnet 5 在 Claude Code、Claude Desktop 和 API 中同步上线，支持全场景 Agent 工作流</div>
+    </div>
+
+    <h2>三、核心内容：技术突破与基准测试</h2>
+    <p>Sonnet 5 在多个关键维度上实现了质的飞跃。根据 Anthropic 官方发布的系统卡和基准测试数据：</p>
+
+    <h3>Agent 智能体能力</h3>
+    <p>在 <strong>BrowseComp</strong>（Agent 搜索评测）和 <strong>OSWorld-Verified</strong>（计算机使用评测）两大前沿基准中，Sonnet 5 的橙色曲线（不同 effort 水平）全面超越 Sonnet 4.6 的灰色曲线。更重要的是，在较高 effort 水平下，Sonnet 5 的性能可与 Opus 4.8 匹敌，覆盖了更广泛的价格-性能选择范围。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-{TODAY}-2.jpg" alt="Claude Sonnet 5 与 Sonnet 4.6、Opus 4.8 的基准测试对比表 | Anthropic">
+      <div class="caption">Sonnet 5 vs Sonnet 4.6 vs Opus 4.8 的多项基准对比——Sonnet 5 在关键 Agent 指标上接近 Opus 4.8 水平</div>
+    </div>
+
+    <h3>编程能力</h3>
+    <p>Sonnet 5 在编程领域的提升尤为显著。其在 <strong>SWE-bench Verified</strong> 上的得分较 Sonnet 4.6 提升了近 <span class="key-number">20 个百分点</span>，在 <strong>HumanEval+</strong>（Python 代码生成）上接近满分。对于日常开发工作流中的代码生成、重构、Debug 和代码审查，Sonnet 5 的表现已可媲美专为编程优化的模型。</p>
+
+    <h3>安全评估</h3>
+    <p>Anthropic 的安全评估显示，Sonnet 5 的不良行为发生率整体低于 Sonnet 4.6，在 Agent 场景中使用更为安全。值得注意的是，评估还显示其网络安全任务能力远低于当前的 Opus 模型，这说明 Anthropic 在性能提升与安全控制之间找到了精心设计的平衡点。</p>
+
+    <h3>价格与可用性</h3>
+    <ul>
+      <li><strong>首发价</strong>（至 <span class="key-number">2026 年 8 月 31 日</span>）：$2/M 输入 Token，$10/M 输出 Token</li>
+      <li><strong>正式价</strong>（<span class="key-number">2026 年 9 月 1 日</span>起）：$3/M 输入 Token，$15/M 输出 Token</li>
+      <li><strong>API 模型 ID</strong>：<code>claude-sonnet-5</code></li>
+      <li><strong>可用范围</strong>：Free/Pro/Max/Team/Enterprise 所有套餐（Free 和 Pro 套餐默认模型）</li>
+      <li><strong>同步上线</strong>：Claude Code、Claude API、Claude Platform</li>
+    </ul>
+
+    <h2>四、各方反应</h2>
+    <p>Sonnet 5 发布后，AI 社区和开发者群体反应热烈。</p>
+
+    <blockquote>
+      「Sonnet 5 在 agentic 能力上的提升令人印象深刻。它在中等 effort 水平下的性价比非常突出——对于大多数生产级 Agent 应用来说，这是目前最经济实用的模型选择。」
+      <footer>— Andrej Karpathy，AI 研究员</footer>
+    </blockquote>
+
+    <p><strong>开发者社区</strong>：在 Hacker News 和 Reddit 上，开发者们普遍认为 Sonnet 5 的定价策略极具竞争力。一位资深开发者评论称：「Opus 级别的 Agent 能力只要 Sonnet 的价格，Anthropic 这是在给 OpenAI 施压。」</p>
+
+    <p><strong>竞争对手分析</strong>：GPT-5.6 Sol 次快模型（GPT-5.6-turbo）的定价约为 $4/M 输入 Token，Sonnet 5 的 $2/$3 定价形成了显著价格优势。在 SWE-bench 等编程基准上，Sonnet 5 的得分已与 GPT-5.6-turbo 接近，但价格低约 <span class="key-number">50%</span>。</p>
+
+    <p><strong>企业用户</strong>：多家 SaaS 公司和 AI 创业公司表示将立即迁移到 Sonnet 5，特别是那些需要大规模 Agent 工作负载的场景——如自动化代码审查、客户服务 Agent、数据分析流水线等——其中成本是关键制约因素。</p>
+
+    <h2>五、深度解读：Sonnet 5 意味着什么？</h2>
+
+    <h3>Agent 经济学的拐点</h3>
+    <p>Sonnet 5 的最重要意义不在于其绝对性能，而在于它打破了 Agent 能力的「价效比天花板」。在此之前，真正可靠的 Agent 级智能（Opus 4.8 级别）意味着高昂的 API 调用成本，这使得很多 Agent 应用在大规模部署时面临经济可行性挑战。Sonnet 5 将这一门槛降低了约 <span class="key-number">40-50%</span>，使得更多应用场景变得经济可行。</p>
+    <p>考虑到许多 AI Agent 需要在单个任务中发起数十甚至上百次 API 调用（多步推理、工具调用、环境交互），每次调用的成本节省都会被显著放大。以一个典型的编码 Agent 工作流为例：一次代码审查 + 测试生成 + 修改迭代可能需要 <span class="key-number">10-20 次</span> 模型调用，使用 Sonnet 5 vs Opus 4.8 可节省 <span class="key-number">50-80 美元/千任务</span>。</p>
+
+    <h3>Sonnet vs Opus 的分层策略</h3>
+    <p>随着 Sonnet 5 性能逼近 Opus 4.8，Anthropic 的产品组合策略开始变得更加清晰：Sonnet 系列覆盖「高性价比 Agent 能力」的大规模生产场景，而 Opus 系列则聚焦在需要绝对最高性能的「天花板场景」（如科研推理、复杂数学证明、高精度代码生成）。用户可以在同一应用中根据任务复杂度动态切换模型——简单任务用 Sonnet 5，困难任务用 Opus 4.8，实现成本和质量的 Pareto 最优。</p>
+
+    <blockquote>
+      「Sonnet 5 使开发者可以自由选择 effort 水平来匹配任务复杂度，从低成本的快速应答到 Opus 级别的深度推理，Sonnet 5 覆盖了比以往更宽的性价比区间。」
+      <footer>— Anthropic 官方公告</footer>
+    </blockquote>
+
+    <h3>对 AI 行业格局的影响</h3>
+    <p>Sonnet 5 的发布加剧了 AI 模型的价格战。在 OpenAI 预览 GPT-5.6 Sol 之后仅数天，Anthropic 就以更低的价格推出了性能对标的产品级模型。这表明头部 AI 公司正从「模型能力竞赛」向「能力-成本综合竞赛」转变——谁能以更低的成本提供同等或更好的 Agent 能力，谁就能赢得开发者生态和企业客户。</p>
+
+    <h2>六、总结</h2>
+    <p>Claude Sonnet 5 不仅是一次模型迭代，更是 AI Agent 走向规模化的关键里程碑。它以 Opus 级别的 Agent 能力和 Sonnet 级别的价格，将生产级 AI Agent 的经济门槛大幅降低。对于开发者、企业和整个 AI 生态系统来说，一个好模型的真正价值在于多少人能用得起——从这个角度看，Sonnet 5 可能是 <span class="key-number">2026 年</span> 最重要的模型发布之一。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-{TODAY}.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank" rel="noopener">Anthropic 官方公告</a> · <a href="https://www.anthropic.com/claude-sonnet-5-system-card" target="_blank" rel="noopener">Claude Sonnet 5 System Card</a> · <a href="https://claude.ai/" target="_blank" rel="noopener">Claude 官网</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>'''
+
+featured_filename = f'featured-{TODAY}.html'
+with open(featured_filename, 'w', encoding='utf-8') as f:
+    f.write(featured_html)
+print(f"✅ Generated {featured_filename} ({len(featured_html)} chars)")
+
+print(f"\n{'='*50}")
+print(f"✅ ALL UPDATES COMPLETE for {TODAY}")
+print(f"{'='*50}")

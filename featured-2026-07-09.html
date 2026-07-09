@@ -1,183 +1,4 @@
-#!/usr/bin/env python3
-"""Comprehensive daily update script for suduai.top - generates all pages"""
-import json, re, os
-from datetime import datetime, timezone, timedelta
-
-BJT = timezone(timedelta(hours=8))
-TODAY = datetime.now(BJT).strftime('%Y-%m-%d')
-TODAY_DT = datetime.now(BJT)
-Y, M, D = TODAY[:4], TODAY[5:7], TODAY[8:10]
-
-print(f"Running update for {TODAY}")
-
-# ========== Read data ==========
-data = json.load(open('aihot_selected.json', encoding='utf-8'))
-items = data['items']
-
-# ========== Read generated nf-items ==========
-with open('_nf_items_output.txt', encoding='utf-8') as f:
-    nf_items_str = f.read()
-
-# ========== Read current index.html ==========
-with open('index.html', encoding='utf-8') as f:
-    index_html = f.read()
-
-# === Step 1: Replace nf-items in index.html ===
-pattern_start = '<div class="nf-scroll" id="nf-scroll">'
-idx_start = index_html.find(pattern_start)
-idx_end = index_html.find('</div>\n\n</div>', idx_start)
-
-if idx_start >= 0 and idx_end >= 0:
-    before_scroll = index_html[:idx_start + len(pattern_start)]
-    after_scroll = index_html[idx_end:]
-    index_html = before_scroll + '\n' + nf_items_str + '\n    ' + after_scroll
-    print("✅ Replaced nf-scroll content")
-else:
-    print("⚠️ Could not find nf-scroll pattern, trying fallback...")
-    ss = index_html.find('id="nf-scroll"')
-    if ss >= 0:
-        div_start = index_html.rfind('<div', 0, ss)
-        div_close_tag = index_html.find('>', div_start)
-        content_start = div_close_tag + 1
-        depth = 1
-        i = content_start
-        while depth > 0 and i < len(index_html):
-            if index_html[i:i+4] == '<div':
-                depth += 1
-                i += 4
-            elif index_html[i:i+6] == '</div>':
-                depth -= 1
-                if depth == 0:
-                    break
-                i += 6
-            else:
-                i += 1
-        if depth == 0:
-            index_html = index_html[:content_start] + '\n' + nf_items_str + '\n    ' + index_html[i:]
-            print("✅ Replaced nf-scroll (fallback)")
-        else:
-            print("❌ Could not parse nf-scroll")
-
-# === Step 2: Update daily-banner ===
-banner_match = re.search(r'href="daily-(\d{4}-\d{2}-\d{2})\.html">📰 最新快报：\d{4}-\d{2}-\d{2}', index_html)
-if banner_match:
-    old_banner = banner_match.group(0)
-    new_banner = f'href="daily-{TODAY}.html">📰 最新快报：{TODAY}'
-    index_html = index_html.replace(old_banner, new_banner)
-    print(f"✅ Updated daily-banner to {TODAY}")
-else:
-    print("⚠️ Could not find daily-banner")
-
-# === Step 3: Update featured section ===
-# Pick the best featured topic - Microsoft Frontier Company
-featured_title = "Microsoft 成立「Frontier Company」：25 亿美元派驻 6000 名 AI 工程师到企业现场"
-featured_label = "行业动态"
-featured_summary = "2026 年 7 月，Microsoft 宣布成立「Microsoft Frontier Company」——一个以 25 亿美元预算、6000 名行业与工程专家为核心的 AI 部署运营公司。该部门由 Rodrigo Kede Lima 领导，将工程师直接派驻到 LSEG、Unilever、Novo Nordisk 等客户现场，从内部设计和部署 AI 系统。这一举动紧随 OpenAI 的 DeployCo（40 亿美元）和 Anthropic 的合资公司之后，标志着企业 AI 部署已从「工具销售」全面转向「结果驱动的现场工程」。Microsoft 强调其平台中立策略，支持 OpenAI、Anthropic、自有模型和开源模型的多模型架构。"
-featured_detail_url = f"featured-{TODAY}.html"
-daily_url = f"daily-{TODAY}.html"
-img_path1 = f"images/featured-{TODAY}-1.jpg"
-
-old_featured_start = index_html.find('<div class="featured-card">')
-old_featured_end = index_html.find('<div class="section-title" style="margin-top:12px">', old_featured_start)
-
-img_exists = os.path.isfile(img_path1) and os.path.getsize(img_path1) > 10240
-
-if img_exists:
-    new_featured = f'''  <div class="featured-card">
-    <div class="featured-badge">今日热议</div>
-    <div class="featured-content">
-      <div class="featured-label">{featured_label}</div>
-      <h2><a href="{featured_detail_url}">{featured_title}</a></h2>
-      <p>{featured_summary}</p>
-      <div class="featured-meta">
-        <span>📖 10 分钟</span><span>📅 {TODAY}</span><span>{featured_label}</span>
-      </div>
-      <a href="{daily_url}" class="affiliate-btn">看今日完整快报 →</a>
-    </div>
-    <div class="featured-visual">
-      <img src="{img_path1}" alt="Microsoft Frontier Company — AI 企业级部署" style="width:180px;border-radius:8px;object-fit:cover;height:100px;">
-    </div>
-  </div>'''
-else:
-    new_featured = f'''  <div class="featured-card">
-    <div class="featured-badge">今日热议</div>
-    <div class="featured-content">
-      <div class="featured-label">{featured_label}</div>
-      <h2><a href="{featured_detail_url}">{featured_title}</a></h2>
-      <p>{featured_summary}</p>
-      <div class="featured-meta">
-        <span>📖 10 分钟</span><span>📅 {TODAY}</span><span>{featured_label}</span>
-      </div>
-      <a href="{daily_url}" class="affiliate-btn">看今日完整快报 →</a>
-    </div>
-  </div>'''
-
-if old_featured_start >= 0 and old_featured_end >= 0:
-    index_html = index_html[:old_featured_start] + new_featured + '\n\n' + index_html[old_featured_end:]
-    print("✅ Updated featured section")
-else:
-    print("❌ Could not find featured section")
-
-# === Step 4: Add to prev-featured-list ===
-first_prev_entry = index_html.find('<a href="featured-', index_html.find('<div class="prev-featured-list">'))
-
-new_prev_entry = f'''    <a href="featured-{TODAY}.html" class="prev-featured-item">
-      <span class="prev-date">{TODAY}</span>
-      <span class="prev-title">Microsoft 成立「Frontier Company」：25 亿美元派驻 6000 名 AI 工程师到企业现场</span>
-      <span class="prev-arrow">→</span>
-    </a>
-'''
-
-if first_prev_entry >= 0:
-    index_html = index_html[:first_prev_entry] + new_prev_entry + index_html[first_prev_entry:]
-    print("✅ Added prev-featured entry")
-else:
-    print("❌ Could not find prev-featured-list")
-
-# === Step 5: Update review card dates ===
-date_matches = re.findall(r'📅 (\d{4}-\d{2}-\d{2})</span>', index_html)
-if date_matches:
-    from collections import Counter
-    common_date = Counter(date_matches).most_common(1)[0][0]
-    old_date = common_date
-    index_html = index_html.replace(f'📅 {common_date}</span>', f'📅 {TODAY}</span>')
-    print(f"✅ Updated review card dates: {common_date} → {TODAY}")
-else:
-    print("⚠️ No review card dates found to update")
-
-# === Step 6: Write updated index.html ===
-with open('index.html', 'w', encoding='utf-8') as f:
-    f.write(index_html)
-print("✅ Updated index.html")
-
-# ========== Step 7: Update daily.html ==========
-with open('daily.html', 'r', encoding='utf-8') as f:
-    daily_html = f.read()
-
-# Update daily-banner in daily.html
-banner_match = re.search(r'href="daily-(\d{4}-\d{2}-\d{2})\.html">📰 最新快报：\d{4}-\d{2}-\d{2}', daily_html)
-if banner_match:
-    daily_html = daily_html.replace(banner_match.group(0), f'href="daily-{TODAY}.html">📰 最新快报：{TODAY}')
-    print("✅ Updated daily.html banner")
-
-# Add today's entry at top of daily-nav
-daily_nav_start = daily_html.find('<div class="daily-nav">')
-first_nav_link = daily_html.find('<a href="daily-', daily_nav_start)
-
-new_nav_link = f'    <a href="daily-{TODAY}.html">📅 {TODAY} 今日快报</a>\n'
-
-if first_nav_link >= 0:
-    daily_html = daily_html[:first_nav_link] + new_nav_link + daily_html[first_nav_link:]
-    print("✅ Added daily.html nav link")
-else:
-    print("❌ Could not find daily-nav")
-
-with open('daily.html', 'w', encoding='utf-8') as f:
-    f.write(daily_html)
-print("✅ Updated daily.html")
-
-# ========== Step 8: Generate featured-YYYY-MM-DD.html ==========
-featured_html = f'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -189,28 +10,28 @@ featured_html = f'''<!DOCTYPE html>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="favicon.png">
 <style>
-.content-page {{ max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }}
-.key-number {{ color: #2563eb; font-weight: 700; font-size: 1.1em; }}
-blockquote {{ border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }}
-blockquote footer {{ margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }}
-.featured-hero {{ margin-bottom: 2rem; }}
-.featured-hero img {{ width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }}
-.featured-meta {{ color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }}
-.featured-meta span {{ display: flex; align-items: center; gap: 0.3rem; }}
-.article-body h2 {{ font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }}
-.article-body h3 {{ font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }}
-.article-body p {{ line-height: 1.8; margin-bottom: 1rem; color: #374151; }}
-.article-body ul {{ margin: 1rem 0; padding-left: 1.5rem; }}
-.article-body li {{ margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }}
-.inline-img {{ margin: 1.5rem 0; text-align: center; }}
-.inline-img img {{ max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }}
-.inline-img .caption {{ font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }}
-.bottom-cta {{ margin: 3rem 0 1rem; text-align: center; }}
-.bottom-cta .affiliate-btn {{ display: inline-block; padding: 0.8rem 2rem; }}
-.source-link {{ color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }}
-table {{ width: 100%; border-collapse: collapse; margin: 1.5rem 0; }}
-th, td {{ padding: 0.6rem 1rem; border: 1px solid #e5e7eb; text-align: left; }}
-th {{ background: #f3f4f6; font-weight: 600; color: #374151; }}
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }
+.featured-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+th, td { padding: 0.6rem 1rem; border: 1px solid #e5e7eb; text-align: left; }
+th { background: #f3f4f6; font-weight: 600; color: #374151; }
 </style>
 </head>
 <body>
@@ -235,10 +56,10 @@ th {{ background: #f3f4f6; font-weight: 600; color: #374151; }}
 <div class="content-page">
 
   <div class="featured-hero">
-    <img src="images/featured-{TODAY}-1.jpg" alt="Microsoft Frontier Company — AI 企业级部署的战略布局 | Microsoft">
+    <img src="images/featured-2026-07-09-1.jpg" alt="Microsoft Frontier Company — AI 企业级部署的战略布局 | Microsoft">
     <div class="featured-meta">
       <span>📖 10 分钟</span>
-      <span>📅 {TODAY}</span>
+      <span>📅 2026-07-09</span>
       <span>🏭 行业动态</span>
     </div>
   </div>
@@ -280,7 +101,7 @@ th {{ background: #f3f4f6; font-weight: 600; color: #374151; }}
     <p>Satya Nadella 的一句话概括了这一原则：<strong>「没有社会许可，允许 AI 吞噬它所部署的公司内部的情报。」</strong>Microsoft 强调，客户的 IP、数据和竞争优势绝不会被用于训练模型，也不会以将其差异化商品化的方式使用。</p>
 
     <div class="inline-img">
-      <img src="images/featured-{TODAY}-2.jpg" alt="Microsoft Frontier Company 官网 Hero 展示 — AI 企业级部署的端到端愿景 | Microsoft">
+      <img src="images/featured-2026-07-09-2.jpg" alt="Microsoft Frontier Company 官网 Hero 展示 — AI 企业级部署的端到端愿景 | Microsoft">
       <div class="caption">Microsoft Frontier Company 官网 Hero 视觉，展示了从制造业到医疗到零售的 AI 转型全景</div>
     </div>
 
@@ -332,7 +153,7 @@ th {{ background: #f3f4f6; font-weight: 600; color: #374151; }}
   </div>
 
   <div class="bottom-cta">
-    <a href="daily-{TODAY}.html" class="affiliate-btn">看今日完整快报 →</a>
+    <a href="daily-2026-07-09.html" class="affiliate-btn">看今日完整快报 →</a>
   </div>
 
   <div class="source-link">
@@ -349,24 +170,4 @@ th {{ background: #f3f4f6; font-weight: 600; color: #374151; }}
 </footer>
 
 </body>
-</html>'''
-
-with open(f'featured-{TODAY}.html', 'w', encoding='utf-8') as f:
-    f.write(featured_html)
-print(f"✅ Generated featured-{TODAY}.html ({len(featured_html)} chars)")
-
-# ========== Verify images ==========
-img1 = f'images/featured-{TODAY}-1.jpg'
-img2 = f'images/featured-{TODAY}-2.jpg'
-if os.path.isfile(img1):
-    print(f"✅ {img1} exists ({os.path.getsize(img1)} bytes)")
-else:
-    print(f"⚠️ {img1} not found")
-if os.path.isfile(img2):
-    print(f"✅ {img2} exists ({os.path.getsize(img2)} bytes)")
-else:
-    print(f"⚠️ {img2} not found")
-
-print(f"\n{'='*50}")
-print(f"✅ All updates complete for {TODAY}")
-print(f"{'='*50}")
+</html>

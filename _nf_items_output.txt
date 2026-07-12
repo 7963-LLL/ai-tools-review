@@ -1,0 +1,250 @@
+      <a href="https://www.ithome.com/0/975/634.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">今天 07:21</span>
+        <span class="nf-title">彭博社揭秘苹果起诉 OpenAI 内幕：前员工一句"哈哈"成窃密关键</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://the-decoder.com/terrorist-groups-are-using-every-major-ai-chatbot-for-attack-planning-and-weapons-development" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">今天 01:04</span>
+        <span class="nf-title">研究：博科圣地已使用ChatGPT、Claude等主流AI聊天机器人用于袭击策划与武器开发</span>
+        <span class="nf-src">The Decoder：AI ...</span>
+      </a>
+      <a href="https://x.com/sama/status/2075985056846451123" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">今天 00:46</span>
+        <span class="nf-title">OpenAI 发布 GPT-5.6 系列医疗评估结果</span>
+        <span class="nf-src">Sam Altman</span>
+      </a>
+      <a href="https://www.mixfont.com/ghost-font" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">今天 00:31</span>
+        <span class="nf-title">Ghost Font：一种人类能读懂但AI无法识别的反AI字体</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://www.marktechpost.com/2026/07/11/ant-groups-robbyant-unveils-lingbot-va-2-0" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">昨天 15:56</span>
+        <span class="nf-title">蚂蚁集团 Robbyant 发布 LingBot-VA 2.0，首个原生具身基础模型</span>
+        <span class="nf-src">MarkTechPost</span>
+      </a>
+      <a href="https://www.ithome.com/0/975/469.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 15:33</span>
+        <span class="nf-title">11天Claude Fable 5写超100万行代码：Rust重构JavaScript运行时Bun</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://x.com/AYi_AInotes/status/2075761215251312722" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 09:56</span>
+        <span class="nf-title">OpenAI GPT-5.6-Sol 删光 AI 创业者 Matt Shumer 的 Mac 硬盘</span>
+        <span class="nf-src">阿易 AI Notes</span>
+      </a>
+      <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.207" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">昨天 08:52</span>
+        <span class="nf-title">Claude Code v2.1.207 发布</span>
+        <span class="nf-src">Claude Code：Git...</span>
+      </a>
+      <a href="https://www.theverge.com/tech/964416/meta-instagram-ai-muse-image-deepfakes" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 07:49</span>
+        <span class="nf-title">Meta 关闭 Instagram 用户可基于公开账户生成 AI 深度伪造图片的功能</span>
+        <span class="nf-src">The Verge：AI</span>
+      </a>
+      <a href="https://x.com/dotey/status/2075712647723397452" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">昨天 06:43</span>
+        <span class="nf-title">苹果起诉OpenAI窃取商业机密开发AI硬件</span>
+        <span class="nf-src">宝玉</span>
+      </a>
+      <a href="https://casp.ac/reports/ai-enabled-terrorism" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">昨天 06:07</span>
+        <span class="nf-title">博科圣地如何利用前沿AI技术</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://cdn.openai.com/pdf/04d1d1e4-bc75-476a-97cf-49055cd98d31/cdc_proof.pdf" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">昨天 03:59</span>
+        <span class="nf-title">OpenAI 论文：GPT-5.6 Sol Ultra 证明图论"循环双覆盖猜想"</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://x.com/thexpin/status/2075640168896516139" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">昨天 01:55</span>
+        <span class="nf-title">宇树G1人形机器人完成首例活体微创手术</span>
+        <span class="nf-src">X.PIN</span>
+      </a>
+      <a href="https://x.com/ClaudeDevs/status/2075635283211772279" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">昨天 01:36</span>
+        <span class="nf-title">Claude Code桌面版新增应用内浏览器</span>
+        <span class="nf-src">Claude Devs</span>
+      </a>
+      <a href="https://x.com/perplexity_ai/status/2075599540640714863" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 23:14</span>
+        <span class="nf-title">Perplexity 推出跨模型信用额度分析功能</span>
+        <span class="nf-src">Perplexity</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/Haqbjim9YGmRu1XpxG_VvA" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 21:58</span>
+        <span class="nf-title">百度搭子在成都AI Day发布四项更新：个人版升级、自媒体套件、企业版及搭子联盟</span>
+        <span class="nf-src">公众号：百度智能云</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/1eo7rrCAH-OA0TnXwwqJEg" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">07/10 17:59</span>
+        <span class="nf-title">小红书发布大模型新架构 PIPO</span>
+        <span class="nf-src">公众号：小红书技术</span>
+      </a>
+      <a href="https://www.ithome.com/0/975/078.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/10 15:26</span>
+        <span class="nf-title">扎克伯格首度回应 Meta"算力过剩"：没人会嫌算力太多，但租出去更赚钱</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://x.com/rohanpaul_ai/status/2075480331600417141" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 15:20</span>
+        <span class="nf-title">马斯克承认Anthropic是当前AI领导者</span>
+        <span class="nf-src">Rohan Paul</span>
+      </a>
+      <a href="https://x.com/elonmusk/status/2075478792273842370" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 15:14</span>
+        <span class="nf-title">Elon Musk 转发用户称赞 Grok Build 的反馈</span>
+        <span class="nf-src">Elon Musk</span>
+      </a>
+      <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.206" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 09:45</span>
+        <span class="nf-title">Claude Code v2.1.206 发布</span>
+        <span class="nf-src">Claude Code：Git...</span>
+      </a>
+      <a href="https://thinkingmachines.ai/blog/the-future-worth-building-is-human" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 08:00</span>
+        <span class="nf-title">Thinking Machines Lab：构建延伸人类意志与判断的 AI</span>
+        <span class="nf-src">Thinking Machin...</span>
+      </a>
+      <a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 06:18</span>
+        <span class="nf-title">Show HN： 如何在我的低配置电脑上运行 GLM-5.2</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 05:47</span>
+        <span class="nf-title">AI 能否回答 3 万亿美元的问题？</span>
+        <span class="nf-src">TechCrunch：AI</span>
+      </a>
+      <a href="https://www.pangram.com/blog/ai-in-your-feed" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 05:46</span>
+        <span class="nf-title">社交媒体AI生成内容泛滥：LinkedIn超过40%长文为AI写作</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://bun.com/blog/bun-in-rust" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/10 05:46</span>
+        <span class="nf-title">Bun 被 Anthropic 收购后用 Rust 重写，月下载超 2200 万</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://microsoft.github.io/flint-chart" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 05:46</span>
+        <span class="nf-title">微软发布Flint：面向AI智能体的可视化语言</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://cognition.com/blog/swe-1-7" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/10 05:46</span>
+        <span class="nf-title">Cognition 推出 SWE-1.7，接近 GPT 5.5 与 Opus 智能水平</span>
+        <span class="nf-src">Hacker News 热门</span>
+      </a>
+      <a href="https://x.com/OpenAIDevs/status/2075331020090687666" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 05:27</span>
+        <span class="nf-title">ChatGPT Sites将创意变可发布网站</span>
+        <span class="nf-src">OpenAI Developers</span>
+      </a>
+      <a href="https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/10 05:21</span>
+        <span class="nf-title">Google 推出 LiteRT.js：高性能 Web AI 推理运行时</span>
+        <span class="nf-src">Google Develope...</span>
+      </a>
+      <a href="https://www.lmsys.org/blog/2026-07-10-rocm-miles-dsv4" target="_blank" rel="noopener" class="nf-item" data-category="paper">
+        <span class="nf-time">07/10 00:00</span>
+        <span class="nf-title">DeepSeek-V4 Flash 强化学习训练登陆 AMD Instinct MI355X GPU，由 Miles 框架支持</span>
+        <span class="nf-src">LMSYS：Blog</span>
+      </a>
+      <a href="https://www.ithome.com/0/974/782.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/09 23:48</span>
+        <span class="nf-title">消息称特斯拉三代擎天柱人形机器人初步定型，马斯克放话达不成产能目标就开掉整个采购团队</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://mistral.ai/news/manage-prompts-and-skills-in-studio" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/09 22:33</span>
+        <span class="nf-title">Mistral 推出 Studio，为 AI 提示词和技能提供系统记录</span>
+        <span class="nf-src">Mistral AI：News</span>
+      </a>
+      <a href="https://x.com/OpenBMB/status/2075218678027850154" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/09 22:01</span>
+        <span class="nf-title">TeXada：基于MiniCPM的本地数学Agent发布</span>
+        <span class="nf-src">面壁智能 OpenBMB</span>
+      </a>
+      <a href="https://x.com/AIatMeta/status/2075218647359111460" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 22:00</span>
+        <span class="nf-title">Meta 发布 Muse Spark 1.1 模型</span>
+        <span class="nf-src">AI at Meta</span>
+      </a>
+      <a href="https://www.anthropic.com/news/reflect-with-claude" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/09 21:40</span>
+        <span class="nf-title">Claude 推出反思功能（Beta）</span>
+        <span class="nf-src">Anthropic：Newsroom</span>
+      </a>
+      <a href="https://www.ithome.com/0/974/744.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/09 21:01</span>
+        <span class="nf-title">法国对英伟达反垄断调查接近尾声，聚焦 CUDA 生态和产业投资</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/iCq4jVlTdKOt74zAMYIIdw" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 19:58</span>
+        <span class="nf-title">美团 LongCat-2.0 正式开源，同步开放国产卡推理代码</span>
+        <span class="nf-src">公众号：龙猫LongCat</span>
+      </a>
+      <a href="https://openai.com/index/chatgpt-for-your-most-ambitious-work" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 18:00</span>
+        <span class="nf-title">OpenAI 推出 ChatGPT Work：可跨应用自主工作的 AI 智能体</span>
+        <span class="nf-src">OpenAI：官网动态</span>
+      </a>
+      <a href="https://openai.com/index/gpt-5-6" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 18:00</span>
+        <span class="nf-title">GPT-5.6 系列模型发布：Sol、Terra、Luna</span>
+        <span class="nf-src">OpenAI：官网动态</span>
+      </a>
+      <a href="https://www.marktechpost.com/2026/07/09/nvidia-releases-nemotron-labs-3-puzzle-75b-a9b-a-compressed-hybrid-moe-llm-delivering-2-03x-server-throughput-at-matched-user-throughput" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 16:47</span>
+        <span class="nf-title">NVIDIA 发布 Nemotron-Labs-3-Puzzle-75B-A9B：压缩混合 MoE 模型，服务器吞吐量提升 2.03 倍</span>
+        <span class="nf-src">MarkTechPost</span>
+      </a>
+      <a href="https://www.ithome.com/0/974/517.htm" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 15:06</span>
+        <span class="nf-title">蚂蚁灵波开源全球首个面向具身智能的MoE视频基模LingBot-Video</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://www.ithome.com/0/974/508.htm" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 14:53</span>
+        <span class="nf-title">蚂蚁灵波开源实时交互世界模型 LingBot-World 2.0</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://x.com/karminski3/status/2075045139970760921" target="_blank" rel="noopener" class="nf-item" data-category="tip">
+        <span class="nf-time">07/09 10:31</span>
+        <span class="nf-title">蚂蚁灵波LingBot-Vision实测：1B参数越级打平DINOv3</span>
+        <span class="nf-src">karminski</span>
+      </a>
+      <a href="https://www.marktechpost.com/2026/07/08/lingbot-vla-2-0" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 08:45</span>
+        <span class="nf-title">Robbyant 发布 LingBot-VLA 2.0：开源 6B 跨实体机器人视觉-语言-动作模型</span>
+        <span class="nf-src">MarkTechPost</span>
+      </a>
+      <a href="https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot" target="_blank" rel="noopener" class="nf-item" data-category="ai-models">
+        <span class="nf-time">07/09 08:00</span>
+        <span class="nf-title">GPT-5.6 成为 Microsoft 365 Copilot 首选模型</span>
+        <span class="nf-src">OpenAI：官网动态</span>
+      </a>
+      <a href="https://www.tomtunguz.com/ollama-series-b" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/09 08:00</span>
+        <span class="nf-title">Ollama 开发者数达890万，B轮融资由Theory领投</span>
+        <span class="nf-src">Tomer Tunguz 博客</span>
+      </a>
+      <a href="https://www.ithome.com/0/974/275.htm" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/09 06:30</span>
+        <span class="nf-title">利润超10亿美元、ARR剑指千亿，Anthropic抢先OpenAI冲击IPO</span>
+        <span class="nf-src">IT之家</span>
+      </a>
+      <a href="https://x.com/runwayml/status/2074982268175630814" target="_blank" rel="noopener" class="nf-item" data-category="ai-products">
+        <span class="nf-time">07/09 06:21</span>
+        <span class="nf-title">Seedream 5.0 Pro 登陆 Runway，支持14种语言</span>
+        <span class="nf-src">Runway</span>
+      </a>
+      <a href="https://arstechnica.com/tech-policy/2026/07/lawsuit-grok-user-made-7k-child-sex-images-xai-only-reported-one-gang-rape-prompt" target="_blank" rel="noopener" class="nf-item" data-category="industry">
+        <span class="nf-time">07/09 03:56</span>
+        <span class="nf-title">诉讼：男子使用Grok制作7000张继女色情图像后自杀</span>
+        <span class="nf-src">Ars Technica：AI</span>
+      </a>

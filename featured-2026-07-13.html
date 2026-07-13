@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥 | AI快报深度解读</title>
+  <meta name="description" content="安全研究员截获网络流量发现 xAI 的 Grok Build CLI 会静默上传整个代码仓库至 Google Cloud Storage 存储桶——包括 .env 文件、API 密钥和 git 历史记录，且关闭遥测后上传仍在继续。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .article-header {padding:2rem 0 1rem;}
+    .featured-label {display:inline-block;background:#2563eb;color:#fff;padding:0.25rem 0.75rem;border-radius:4px;font-size:0.85rem;margin-bottom:0.75rem;}
+    .article-body {max-width:720px;margin:0 auto;padding:0 1rem 3rem;line-height:1.8;font-size:1.05rem;}
+    .article-body h2 {font-size:1.4rem;margin:2.5rem 0 1rem;color:#111;}
+    .article-body h3 {font-size:1.15rem;margin:1.5rem 0 0.75rem;color:#333;}
+    .article-body p {margin:0.75rem 0;color:#333;}
+    .article-body blockquote {margin:1.5rem 0;padding:1rem 1.5rem;border-left:4px solid #2563eb;background:#f8faff;color:#444;font-style:italic;border-radius:0 8px 8px 0;}
+    .article-body .key-number {display:inline;color:#2563eb;font-weight:700;}
+    .article-body img {max-width:100%;border-radius:12px;margin:1.5rem 0;}
+    .article-body code {background:#f0f0f0;padding:0.15rem 0.4rem;border-radius:4px;font-size:0.95em;}
+    .bottom-cta {text-align:center;padding:3rem 0;}
+    .bottom-cta .affiliate-btn {display:inline-block;background:#2563eb;color:#fff;padding:0.75rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:1.05rem;}
+    .bottom-cta .affiliate-btn:hover {background:#1d4ed8;}
+    .article-meta {color:#6b7280;font-size:0.9rem;margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;}
+    .featured-image-wrap {text-align:center;margin:1.5rem 0;}
+    .featured-image-wrap img {max-width:100%;border-radius:12px;}
+    .original-link {display:inline-block;margin-top:1.5rem;color:#2563eb;text-decoration:none;font-weight:500;}
+    .original-link:hover {text-decoration:underline;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+  <div class="article-header">
+    <span class="featured-label">行业动态</span>
+    <h1 style="font-size:1.8rem;margin:0.5rem 0;">xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥</h1>
+    <div class="article-meta">
+      <span>📅 2026-07-13</span>
+      <span>📖 8-10 分钟</span>
+      <span>🏷️ 行业动态</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+<p>2026 年 7 月 12 日，安全研究员 cereblab 在 GitHub Gist 上发布了一份详尽的网络流量分析报告，揭示了 xAI 官方推出的 Grok Build CLI 存在严重的隐私泄露问题——这款被宣传为「local-first」的 AI 编程代理，实际上在后台将整个代码仓库完整上传至 xAI 控制的 Google Cloud Storage 存储桶，包括用户的 <code>.env</code> 文件、数据库凭据和 API 密钥。</p>
+<p>在测试中，面对一个 <span class="key-number">12 GB</span> 的大型仓库，Grok Build CLI 成功上传了 <span class="key-number">5.1 GB</span> 数据。即便用户通过设置关闭了遥测选项，上传行为仍旧没有停止。这一发现迅速登上 Hacker News 首页，引发了关于 AI 编程工具数据隐私安全的大规模讨论。</p>
+
+<div class="featured-image-wrap"><img src="images/featured-2026-07-13-1.jpg" alt="Grok Build CLI security analysis" style="width:100%;max-width:600px;"></div>
+
+<h2>背景分析：Grok Build 的「local-first」承诺</h2>
+<p>2026 年 5 月 25 日，xAI 正式发布了 Grok Build CLI——一款面向专业软件开发者的 AI 编码代理工具。该工具被定位为 Claude Code、OpenAI Codex CLI 的直接竞争对手，宣称具备计划-审查-批准工作流、并行子代理、以及完全在本地运行的能力。xAI 的官方公告中明确使用了「local-first」的描述，暗示「在终端会话期间，用户代码不会传输到 xAI 服务器」。</p>
+<p>这一承诺对于开发者社区至关重要：AI 编码工具需要读取代码库才能理解上下文、辅助开发，但「读取哪些文件」和「是否上传整个仓库」之间存在本质区别。在 Grok Build 之前，Claude Code 和 Codex CLI 均已建立了明确的文件读取模型——只发送模型实际需要的上下文文件，而非整个仓库的 git bundle。</p>
+<blockquote>「xAI 将 Grok Build 营销为 'local-first'——这个词暗示你的代码库留在了你的机器上。而网络流量分析讲述了一个完全不同的故事。」——安全研究员 cereblab，GitHub Gist</blockquote>
+<p>Grok Build 发布后获得了相当数量的早期采用者——尤其是 xAI 通过 SuperGrok 和 X Premium Plus 订阅渠道发布了该工具，这意味着相当数量的付费用户已在其生产环境中使用了 Grok Build。</p>
+
+<h2>核心发现：双通道数据传输与秘密上传</h2>
+<p>cereblab 的测试方法直接而有效：拦截 Grok Build CLI v0.2.93 运行期间的所有网络流量，分析数据去向。他的测试揭示了两条并行的数据通道：</p>
+<p><strong>通道一（可见）：模型请求</strong>。当 Grok Build 读取文件时，文件内容被序列化为模型请求的一部分，发送至 <code>cli-chat-proxy.grok.com</code>。这是预期行为——AI 编码代理需要上下文来工作。但研究员在测试文件中植入了蜜罐数据 <code>API_KEY=CANARY7F3A9-SECRET-should-not-leave</code>，这串蜜罐确实出现在了传输流中。</p>
+<p><strong>通道二（隐藏）：整仓上传</strong>。这是改变风险评估的核心发现。Grok Build 通过第二条独立的网络通道——向 <code>/v1/storage</code> 端点发起 <code>POST</code> 请求——将整个工作区以 git bundle 的形式上传至名为 <code>grok-code-session-traces</code> 的 GCS 存储桶。在一个 12 GB 的测试仓库上，成功传输了 5.1 GB 数据。</p>
+<p>更令人担忧的是，这些上传行为在用户关闭「遥测」设置后仍在继续。cereblab 确认，Grok Build 的配置界面中的遥测开关仅仅控制了一个 flag 的发送，但并不影响后台整仓上传端点的行为。</p>
+<blockquote>「5.1 GB 数据被传输至一个 Google Cloud Storage 存储桶。包括 48 KB 的文件，其中包含数据库凭据和 API 密钥。这些内容的传输完全没有得到用户的知情同意。」——cereblab</blockquote>
+<p>在一个独立的分析中，另一位研究员追踪到 Grok Build CLI 还会上传仓库的全部 git 历史记录——不仅仅是当前工作区的文件。这意味着即便开发者删除了敏感文件，旧的版本仍然可以通过 git 历史被上传。</p>
+
+<h2>各方反应</h2>
+<p><strong>xAI / Elon Musk</strong>：事件曝光数小时后，Elon Musk 在 X 上回应称「这是 beta 版本的 bug，将在下一个版本修复」。但该回应并未解释数据上传的目的——xAI 是否在使用上传的数据训练模型？数据是否已被转存或分析？这些关键问题未被回答。</p>
+<p><strong>安全社区</strong>：Hacker News 上的讨论迅速升温。大量安全工程师指出，这不仅是 Grok Build 的问题——所有 AI 编码代理都需要解决 .env 文件和敏感数据的处理问题。Keyway 的安全研究显示，当 AI 代理具有 shell 访问权限时，.gitignore 等忽略文件可以被绕过。</p>
+<p><strong>开发者群体</strong>：在 X 上，大量开发者表达了愤怒和不信任。「local-first 这个词现在成了鬼故事的开头」——一位开发者如此评论。部分开发者表示将暂停使用 Grok Build 直到 xAI 公布完整的事后分析报告。</p>
+<p><strong>竞争对手</strong>：Anthropic 和 OpenAI 均未就此事发表正式评论。但值得注意的是，这起事件实际上对整个 AI 编码代理行业提出了共同挑战——如何在提供智能上下文理解和保护用户隐私之间建立真正的信任机制。</p>
+
+<h2>深度解读：AI 编码代理的信任危机</h2>
+<p>Grok Build 的数据上传事件并非孤例，但它暴露了一个行业级的系统性问题——AI 编码工具的隐私透明度。</p>
+<p>首先，<strong>「local-first」的定义需要被重新审视</strong>。Grok Build 的案例表明，一个被广泛使用的营销词可以成为掩盖隐私风险的遮羞布。真正的「local-first」需要满足：（1）代码仅在用户主动操作时传输；（2）用户能清晰看到传输了哪些数据；（3）数据传输可以完全被禁用而不影响核心功能。</p>
+<p>其次，<strong>后端存储的安全责任</strong>。所有上传数据存储在 Google Cloud Storage 的 <code>grok-code-session-traces</code> 存储桶中。虽然 GCS 本身提供加密，但 xAI 内部员工对数据的访问权限、数据保留策略、以及是否用于模型训练，这些问题至今没有答案。</p>
+<p>第三，<strong>行业监管启示</strong>。就在上周，法国反垄断调查机构将目光投向了 CUDA 生态。Grok Build 事件可能加速全球监管机构对 AI 开发者工具的隐私审查——类似于 GDPR 对网站 Cookie 的监管，AI 编码工具的数据处理方式可能很快需要强制性的透明度披露。</p>
+<blockquote>「当开发者无法就他们的工具分享什么数据作出知情决定时，同意就已经被打破了——无论意图如何。」——ByteIota 评论</blockquote>
+<p>从技术角度看，最佳实践已经出现：零磁盘密钥管理——将凭据存储在远程保管库中，在运行时注入，使得本地根本不存在 .env 文件。Keyway 等初创公司正在推动这一方向。</p>
+
+<h2>总结</h2>
+<p>Grok Build 的静默上传事件不仅仅是一个 beta bug，而是 AI 编码代理行业信任机制的一次集中危机。在 AI 工具日益嵌入开发者日常工作流的今天，工具厂商必须将其数据处理的细节完全公开、透明地告知用户。对于 xAI 而言，快速修复漏洞只是第一步——重建开发者社区对其隐私承诺的信任，需要更深入的事后分析和更彻底的信息披露。对于整个行业，这起事件应该成为制定 AI 编码工具隐私标准的催化剂。</p>
+
+  <div class="original-link">
+    <a href="https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg" target="_blank" rel="noopener">📎 查看原文 →</a>
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-2026-07-13.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

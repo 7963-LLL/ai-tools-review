@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek-V4-Pro 正式版上线：Terminal Bench 87.9 领跑 Agent 基准，峰谷定价开启新一轮价格战 | suduai.top</title>
+  <meta name="description" content="2026年8月13日，DeepSeek-V4-Pro 正式版在 APP、网页端和 API 同步上线。Agent 基准全面拉升、原生支持 Responses API、API 峰谷定价闲时半价，深入分析其技术升级与行业影响。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }
+.featured-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-08-16-1.jpg" alt="DeepSeek-V4-Pro 官方发布图 | DeepSeek">
+    <div class="featured-meta">
+      <span>📖 10 分钟</span>
+      <span>📅 2026-08-16</span>
+      <span>🤖 模型发布</span>
+    </div>
+  </div>
+
+  <h1>DeepSeek-V4-Pro 正式版上线：Terminal Bench 87.9 领跑 Agent 基准，峰谷定价开启新一轮价格战</h1>
+
+  <div class="article-body">
+
+    <h2>一、导语</h2>
+    <p><span class="key-number">2026 年 8 月 13 日</span>，DeepSeek 宣布 DeepSeek-V4-Pro 正式版在 APP、网页端和 API 同步上线，API 调用方式不变，模型名 <code>deepseek-v4-pro</code> 即指向最新版本。与 Preview 相比，正式版把火力集中在 Agent 能力上：Terminal Bench 2.1 得分 <span class="key-number">87.9</span>，HLE（带工具）<span class="key-number">60.0</span>，原生支持 OpenAI Responses API 格式并一键适配 Codex，同时新增 low / high / max 三档思考强度。API 定价也迎来结构性调整——峰谷定价，闲时价格仅为高峰时段的一半。</p>
+    <p>更值得玩味的是时间窗口：就在前一天（<span class="key-number">8 月 12 日</span>），xAI 刚刚发布主打长时运行智能体的 Grok 4.6；同一天，DeepSeek-V4-Pro 也登陆硅基流动开放 1M 上下文。头部模型厂商的 Agent 军备竞赛，正在以「天」为单位推进。</p>
+
+    <h2>二、背景分析：为什么这个正式版重要？</h2>
+    <p>DeepSeek V4 系列的节奏值得复盘。V4-Pro 与 V4-Flash 的 API 早在 <span class="key-number">2026 年 4 月 24 日</span> 就已开放，当时使用的模型名还是 preview 语义；<span class="key-number">7 月 31 日</span>，V4-Flash 正式版率先公测，Terminal Bench 2.1 拿到 <span class="key-number">82.7</span>；直到 8 月 13 日，V4-Pro 才正式收尾。整个 V4 系列从预览到正式，跨度接近四个月——期间 OpenAI、Anthropic、Google 的 Agent 类模型密集换代，DeepSeek 用「Flash 先上、Pro 后补」的节奏把 Agent 能力一点点补齐，这次正式版几乎是对 Preview 的全面重做。</p>
+    <p>更重要的是行业背景：Ars Technica 本周的报道标题直接点破——<strong>OpenAI 和 Anthropic 正在打价格战，而中国对手步步紧逼</strong>。DeepSeek 正是这场价格战里最锋利的变量：它同时拥有开源权重、顶尖基准和极低定价三张牌。</p>
+
+    <h2>三、核心内容：正式版的三板斧</h2>
+
+    <h3>1. Agent 基准全面拉升，生产环境是主战场</h3>
+    <p>官方更新日志用一句话定性：「正式版 DeepSeek V4 Pro 极大增强了 Agent 能力，在生产环境中的性能表现提升尤为显著。」</p>
+    <blockquote>
+      「正式版 DeepSeek V4 Pro 极大增强了 Agent 能力，在生产环境中的性能表现提升尤为显著。」
+      <footer>— DeepSeek 官方更新日志（2026-08-13）</footer>
+    </blockquote>
+    <p>具体基准如下：HLE（不带工具 / 带工具）<span class="key-number">42.7 / 60.0</span>，Terminal Bench 2.1 <span class="key-number">87.9</span>，NL2Repo <span class="key-number">61.5</span>，Cybergym <span class="key-number">83.3</span>，DeepSWE <span class="key-number">62.7</span>，Toolathlon-Verified <span class="key-number">74.1</span>，Agents' Last Exam <span class="key-number">25.7</span>，AutomationBench（公开）<span class="key-number">31.8</span>，DSBench-FullStack <span class="key-number">71.1</span>，DSBench-Hard <span class="key-number">67.2</span>。Terminal Bench 与 Cybergym 双双超过 80 分，意味着模型在真实终端操作、网络安全这类「动手」场景里的执行可靠性，已经进入可用区间。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-08-16-2.jpg" alt="DeepSeek API 平台官方公告图 | DeepSeek">
+      <div class="caption">DeepSeek 官方平台公告图：V4-Pro 正式版同步上线 APP、网页端与 API</div>
+    </div>
+
+    <h3>2. 原生 Responses API + 一键适配 Codex：抢开发者工作流入口</h3>
+    <p>DeepSeek API 现已原生支持 OpenAI Responses API 格式，并针对性适配 Codex——用户通过官方提供的一键配置脚本，即可把 Codex 指向 DeepSeek 后端。这一手与 Google 的 Gemini 3.7 Flash（同样主打编程与智能体）思路一致：<strong>模型能力之外，开发者工具链的「换芯成本」才是护城河</strong>。</p>
+
+    <h3>3. 三档思考强度 + 峰谷定价：成本结构的精细化</h3>
+    <p>V4-Pro 与 V4-Flash 的思考模式现支持 <span class="key-number">low / high / max</span> 三档强度：简单任务用 low，日常 Agent 任务用 high，复杂场景开 max。配合 8 月 17 日 0 时生效的峰谷定价（闲时价格为高峰时段一半），DeepSeek 实质上把「思考深度」和「调用时段」都变成了可调的成本旋钮——这对大批量跑 Agent 的开发者是实打实的成本结构变化。</p>
+
+    <h2>四、各方反应</h2>
+    <p><strong>生态侧</strong>：8 月 12 日，DeepSeek-V4-Pro 登陆硅基流动（SiliconFlow），支持 <span class="key-number">1M</span> 上下文，国产推理服务商第一时间跟进。</p>
+    <p><strong>竞争侧</strong>：发布窗口几乎被同行填满——xAI 的 Grok 4.6（8 月 12 日，强化长时运行智能体）、Google DeepMind 的 Gemini 3.7 Flash（编程与智能体工作模型）、通义千问 Qwen3.8 系列开源、智谱 GLM-5.3（编程能力开源第一）接连登场。有行业评论称，DeepSeek V4 Pro 与 Grok 4.6 同日前后发布，「双双逼近 Claude Fable 5 的体验」。</p>
+    <blockquote>
+      「OpenAI 与 Anthropic 正在打价格战，而中国 AI 对手正在快速逼近——DeepSeek 的定价策略让闭源厂商的每一轮涨价都如履薄冰。」
+      <footer>— 综合 Ars Technica 等本周行业报道</footer>
+    </blockquote>
+    <p><strong>开发者侧</strong>：Reddit 与国内技术社区讨论集中在两处——一是 Responses API 兼容让现有 OpenAI 生态代码几乎零成本迁移；二是峰谷定价对夜间批量任务的吸引力，有开发者调侃「把 Agent 挪到后半夜跑，成本直接砍半」。</p>
+
+    <h2>五、深度解读：这意味着什么？</h2>
+    <h3>Agent 竞争从「基准表演」进入「生产环境」</h3>
+    <p>HLE 带工具 <span class="key-number">60.0</span> 与 Terminal Bench <span class="key-number">87.9</span> 的组合说明一件事：模型厂商已经不再满足于「聊天榜单」上的数字，而是比拼在真实终端、真实代码仓库、真实漏洞环境里的执行成功率。Agent 不再是被展示的 demo，而是被按次计费的生产力工具——这解释了为什么 DeepSeek 要同步推出思考强度分档与峰谷定价：用量上去了，成本结构必须跟上。</p>
+    <h3>峰谷定价是把价格战打到了「调度经济学」</h3>
+    <p>过去的价格战比的是每百万 token 单价，DeepSeek 的峰谷定价则把算力时段变成了商品：闲时半价本质上是把 GPU 空转成本转嫁给价格敏感型用户，既提高算力利用率，又用价格锚点继续挤压对手。对 Claude、GPT 等闭源高价模型而言，这种「弹性定价」的压迫感比单纯降价更难受。</p>
+    <h3>对工具站读者的实用建议</h3>
+    <p>如果你在用 Codex 或兼容 OpenAI 格式的 Agent 框架：可以直接按官方文档把 base_url 切到 DeepSeek 试试，<span class="key-number">1M</span> 上下文 + Responses API 对长会话型 Agent 尤其友好；批量任务尽量排到闲时时段，成本立减一半；简单问答用 low 思考档即可，把 high/max 留给真正复杂的推理与工具调用场景。</p>
+
+    <h2>六、总结</h2>
+    <p>DeepSeek-V4-Pro 正式版用「生产级 Agent 基准 + 原生 Responses API + 峰谷定价」三张牌，把中国大模型的价格战从「每百万 token 单价」推向了「算力时段调度」的新维度——当对手还在比拼参数与榜单时，DeepSeek 已经开始拼成本结构的精细度了。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-2026-08-16.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://api-docs.deepseek.com/zh-cn/updates" target="_blank" rel="noopener">DeepSeek API 官方更新日志</a> · <a href="https://x.com/SiliconFlowAI/status/2088127458558271885" target="_blank" rel="noopener">硅基流动：V4 Pro 上线（1M 上下文）</a> · <a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">xAI Grok 4.6 官方公告</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

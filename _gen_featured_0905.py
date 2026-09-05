@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+"""Generate featured-2026-09-05.html — GPT-6 Astra full rollout + Altman apology + ARC-AGI-3."""
+from datetime import datetime, timezone, timedelta
+
+BJT = timezone(timedelta(hours=8))
+TODAY = datetime.now(BJT).strftime('%Y-%m-%d')
+assert TODAY == '2026-09-05', TODAY
+
+TITLE = 'GPT-6 Astra 全量上线却先道歉：奥尔特曼承认发布「很乱」，ARC-AGI-3 效率首超人类、96% 关卡动作少于人类中位数'
+
+hero_img = f'images/featured-{TODAY}-1.jpg'
+inline_img = f'images/featured-{TODAY}-2.jpg'
+
+body = f'''
+<div class="article-body">
+
+    <h2>一、导语</h2>
+    <p>过去 48 小时，AI 圈最戏剧化的剧情属于 OpenAI。<span class="key-number">9 月 3 日</span>，被称为「迄今最智能版本」的 GPT-6 Astra 开始上线；<span class="key-number">9 月 4 日</span>，CEO 萨姆·奥尔特曼却在 X 上罕见承认这次发布「很乱」；<span class="key-number">9 月 5 日</span>，模型终于向所有 Plus / Business 用户全面铺开。混乱的另一面是硬数据：在 ARC-AGI-3 上，Astra 以 <span class="key-number">62.7%</span> 的成绩登顶，接入官方 Provider Adapter 后更达 <span class="key-number">99.9%</span>，并首次在动作效率上超越人类基线——<span class="key-number">96%</span> 的关卡动作数低于人类中位数。一场「史上最强发布」为何变成「先道歉、再补发」？效率神话背后，不透明的推理机制又为何让安全圈皱眉？</p>
+
+    <h2>二、背景分析：为什么这次发布如此重要？</h2>
+    <p>GPT-6 Astra 是 OpenAI 对「智能体原生」路线的一次总押注：官方宣称其在电脑使用、浏览、软件工程、科学与专业工作上达到「最先进性能」，目标用户不止是聊天的 C 端消费者，更是要把模型塞进 ChatGPT Work、Codex、API、微软 Azure 与亚马逊 Bedrock 的整个企业管道。正因覆盖面极广，它的上线节奏就成了检验 OpenAI 生产能力的压力测试——而这套管道在第一天就出了岔子。</p>
+    <p>前置条件同样值得注意：上一代模型刚因「隐藏思维链」的可监控性争议被反复讨论，而 Astra 又把内部推理状态做得更加不透明（即 TechCrunch 所称的 opaque recurrence）。安全与效率的拉扯，从架构层面就埋下了伏笔。</p>
+
+    <h2>三、核心内容：从「很乱」到全量铺开</h2>
+    <h3>1. 混乱的 72 小时与补偿机制</h3>
+    <p>按 OpenAI 原计划，Astra 应在「几天内」覆盖 Plus、Pro、Business、Enterprise 全部档位并开放 API 与云渠道。实际执行中，企业安全客户反而先于高价 Pro 订阅者拿到访问权限，习惯了「首发即用」的 Pro 用户强烈不满。为安抚情绪，OpenAI 从 <span class="key-number">9 月 4 日</span>起推出补偿：付费用户每缺少一天 Astra 访问，就获得一次额度重置。奥尔特曼随后公开致歉，承认整个上线过程「很乱」，并在今天宣布向 Work / Codex 中所有 Plus、Pro、Enterprise、Business、Business Premium 用户开放。</p>
+    <h3>2. ARC-AGI-3：效率首超人类</h3>
+    <p>ARC Prize 官方博客（9 月 3 日）给出独立评测：GPT-6 Astra 在 ARC-AGI-3 Semi-Private 上，标准 harness 得分 <span class="key-number">62.7%</span>（成本 <span class="key-number">$26K</span>）；接入保留不透明推理状态、支持长对话压缩的 Provider Adapter harness 后，得分冲到 <span class="key-number">99.9%</span>（成本 <span class="key-number">$19K</span>）。更关键的是效率维度：Astra 在 <span class="key-number">96%</span> 的关卡中动作数少于测试人类的中位数——这是该系列基准上机器首次在动作效率上压过人类。</p>
+    <div class="inline-img">
+      <img src="{inline_img}" alt="ARC-AGI-3 排行榜：GPT-6 Astra Standard 与 Provider Adapter 成绩 | ARC Prize">
+      <div class="caption">ARC-AGI-3 排行榜：GPT-6 Astra 标准与 Provider Adapter 双版本成绩（来源：ARC Prize 官方博客）</div>
+    </div>
+    <h3>3. opaque recurrence：效率的来源，也是争议的焦点</h3>
+    <p>ARC Prize 观察到，Astra 会把陌生环境转成紧凑的符号世界模型：把游戏机制写成逻辑规则，自创领域速记来跟踪状态与规划动作。这套「不透明循环推理」让它少走弯路，但也意味着外部难以审计它每一步在想什么——OpenAI 的 <span class="key-number">117</span> 页系统卡与安全概览正是围绕这类风险展开，Gary Marcus 等批评者据此提出鲁棒性与可监控性质疑。</p>
+    <h3>4. 安全评测：幻觉更少，注入仍可破</h3>
+    <p>The Decoder 的测试显示，Astra 幻觉比前代更少，能拦截 <span class="key-number">99.99%</span> 的直接提示词注入；但当攻击藏在模型读取的文档里时，被攻破率仍有 <span class="key-number">8.5%</span>——作为对比，Claude Opus 5 为 <span class="key-number">4.8%</span>。对要处理真实数据的自主智能体而言，这个数字依然偏高。</p>
+
+    <blockquote>
+      「GPT-6 Astra 在 ARC-AGI-3 上的动作效率超过了人类基线：在 96% 的关卡中，它用的动作比测试人类的中位数更少。」
+      <footer>— ARC Prize 官方博客《OpenAI's GPT-6 Astra on ARC-AGI-3》（2026-09-03，作者 Greg Kamradt）</footer>
+    </blockquote>
+
+    <h2>四、各方反应：基准打架，巨头抢跑</h2>
+    <p>围绕 Astra 的评测结论并不一致：Epoch AI 给到 <span class="key-number">169</span> 分、排在最前；Artificial Analysis 却认为它不优于前代、且落后于 Claude Fable 5.1，编码智能体虽追平 Fable 5，价格却涨到约 <span class="key-number">2.5</span> 倍。ARC Prize 首席、ARC-AGI 作者 François Chollet 不认为这是 AGI 的证据，但坦言进展速度「是我预期的两倍」，并据此提前了自己的 AGI 时间线预测；Greg Brockman 则强调基准正趋于饱和。商业侧同样热闹：Perplexity 宣布接入 Astra 并称其在 WANDR 评测居首；Satya Nadella 宣布模型上线 Microsoft Foundry，早期客户已在 Azure 使用。</p>
+
+    <h2>五、深度解读：这意味着什么？</h2>
+    <h3>1. opaque recurrence 是效率与监管的岔路口</h3>
+    <p>Astra 用不透明的内部推理换来了行动效率的飞跃，但企业客户与审计方真正想要的是可观察性。当「最强模型」和「最可审计模型」开始分道扬镳，安全概览与系统卡这类「事后说明」能否替代「过程透明」，将是智能体落地企业场景的核心争论。</p>
+    <h3>2. 发布混乱暴露了能力与运营的落差</h3>
+    <p>模型再强，权限分批、渠道错位也会瞬间烧掉用户信任——奥尔特曼的道歉与额度补偿，说明 OpenAI 已把发布节奏当作与模型能力同等重要的产品问题。</p>
+    <h3>3. 基准分歧与 ARC-AGI-3 的「饱和」信号</h3>
+    <p>同一模型在不同基准上评价两极，本身就是行业信号：单一榜单的时代正在结束，效率、成本、安全与可审计性会共同决定一款模型的真实地位。</p>
+
+    <h2>六、总结</h2>
+    <p>GPT-6 Astra 用 96% 关卡超越人类的效率数据证明了自己，也用一次「很乱」的上线提醒行业：当模型强到改写基准，发布纪律与可监控性才是下一个战场。</p>
+
+  </div>
+'''
+
+html = f'''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{TITLE} | suduai.top</title>
+  <meta name="description" content="2026年9月5日，GPT-6 Astra 向所有 Plus/Business 用户铺开，奥尔特曼为发布混乱致歉；ARC Prize 官方评测显示其在 ARC-AGI-3 上 62.7% 登顶、96% 关卡动作效率超越人类基线，opaque recurrence 机制引发安全争议。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+.content-page {{ max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }}
+.key-number {{ color: #2563eb; font-weight: 700; font-size: 1.1em; }}
+blockquote {{ border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }}
+blockquote footer {{ margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }}
+.featured-hero {{ margin-bottom: 2rem; }}
+.featured-hero img {{ width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }}
+.featured-meta {{ color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }}
+.featured-meta span {{ display: flex; align-items: center; gap: 0.3rem; }}
+.article-body h2 {{ font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }}
+.article-body h3 {{ font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }}
+.article-body p {{ line-height: 1.8; margin-bottom: 1rem; color: #374151; }}
+.article-body ul {{ margin: 1rem 0; padding-left: 1.5rem; }}
+.article-body li {{ margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }}
+.inline-img {{ margin: 1.5rem 0; text-align: center; }}
+.inline-img img {{ max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }}
+.inline-img .caption {{ font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }}
+.bottom-cta {{ margin: 3rem 0 1rem; text-align: center; }}
+.bottom-cta .affiliate-btn {{ display: inline-block; padding: 0.8rem 2rem; }}
+.source-link {{ color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+
+  <div class="featured-hero">
+    <img src="{hero_img}" alt="ARC Prize 官方评测：GPT-6 Astra 动作效率超越人类基线散点图 | ARC Prize">
+    <div class="featured-meta">
+      <span>📖 9 分钟</span>
+      <span>📅 {TODAY}</span>
+      <span>🤖 模型发布/更新</span>
+    </div>
+  </div>
+
+  <h1>{TITLE}</h1>
+
+{body}
+
+  <div class="bottom-cta">
+    <a href="daily-{TODAY}.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://arcprize.org/blog/astra" target="_blank" rel="noopener">ARC Prize 官方博客：OpenAI's GPT-6 Astra on ARC-AGI-3</a> · <a href="https://www.ithome.com/0/998/661.htm" target="_blank" rel="noopener">IT之家：奥尔特曼致歉 GPT-6 Astra 上线混乱</a> · <a href="https://openai.com/index/safety-overview-gpt-6-astra" target="_blank" rel="noopener">OpenAI 官方：GPT-6 Astra 安全概览</a> · <a href="https://the-decoder.com/benchmarks-disagree-on-gpt-6-astra-but-its-human-beating-efficiency-on-arc-agi-3-pulls-chollets-agi-forecast-forward" target="_blank" rel="noopener">The Decoder：基准分歧与 Chollet 提前 AGI 预测</a> · <a href="https://the-decoder.com/openais-gpt-6-astra-hallucinates-less-but-remains-vulnerable-to-hidden-prompt-injections" target="_blank" rel="noopener">The Decoder：幻觉更少但隐藏注入仍可破</a> · <a href="https://x.com/sama/status/2096008528834244741" target="_blank" rel="noopener">Sam Altman（X）</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>'''
+
+fname = f'featured-{TODAY}.html'
+open(fname, 'w', encoding='utf-8').write(html)
+print(f'✅ Generated {fname}')
+
+import re
+raw = open(fname, encoding='utf-8').read()
+start = raw.find('<div class="article-body">')
+end = raw.find('<div class="bottom-cta">', start)
+cn = len(re.findall(r'[\u4e00-\u9fff]', raw[start:end]))
+print(f'Chinese chars in article-body: {cn}')

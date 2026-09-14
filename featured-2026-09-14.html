@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek V4.1-Flash 发布：KV cache 压到 890 字节/Token、比 V1 小 437 倍，V4-Pro 今日起被强制路由 | suduai.top</title>
+  <meta name="description" content="2026年9月10日 DeepSeek 开源 V4.1-Flash：552B MoE、8B/16B 非对称激活、1M 上下文、全局 KV cache 890 字节/Token；9月14日北京时间12:00 起所有 V4-Pro 请求被强制路由到它并按 Flash 价格计费。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }
+.featured-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-09-14-1.jpg" alt="DeepSeek 官方智能体基准对比图：V4.1-Flash 在 CyberGym 88.1、DeepSWE v1.1 74.2 上领先 Kimi-K3、GLM-5.3、Opus5 与 GPT5.6-Sol | DeepSeek 官方">
+    <div class="featured-meta">
+      <span>📖 10 分钟</span>
+      <span>📅 2026-09-14</span>
+      <span>🤖 模型发布/更新</span>
+    </div>
+  </div>
+
+  <h1>DeepSeek V4.1-Flash 发布：KV cache 压到 890 字节/Token、比 V1 小 437 倍，V4-Pro 今日起被强制路由</h1>
+
+
+<div class="article-body">
+
+    <h2>一、导语</h2>
+    <p>9 月 10 日，DeepSeek 把 V4.1-Flash 的权重放上 Hugging Face：MIT 许可、<span class="key-number">552B</span> 参数的 MoE 模型，只在输入侧激活 <span class="key-number">8B</span>、输出侧激活 <span class="key-number">16B</span>。真正让开发者坐不住的是另外两个数字——全局 KV cache 从 DeepSeek-V1 的 <span class="key-number">389,120</span> 字节/Token 压到 <span class="key-number">890</span> 字节/Token，缩小 <span class="key-number">437</span> 倍；缓存命中的输入价格降到 <span class="key-number">$0.003</span>/百万 Token。而北京时间 9 月 14 日 12:00 起，所有发往 <code>deepseek-v4-pro</code> 的请求被静默改道到 V4.1-Flash、按 Flash 价计费。DeepSeek 用一次强制路由，替自己的旗舰按下了退场键。</p>
+
+    <h2>二、背景分析：智能体的账单，一半印在缓存上</h2>
+    <p>要理解这次发布的分量，得先看 DeepSeek 的 V4 家底：V4-Pro 是 <span class="key-number">1.6T</span> 总参数、49B 激活的旗舰，V4-Flash 是 <span class="key-number">284B</span> 总参数、13B 激活的走量款，两者都支持 100 万 Token 上下文。V4.1-Flash 的 552B 主干几乎是 V4-Flash 的两倍，却仍然只激活 8B/16B——参数变大、算力消耗不变，这是「非对称架构」的字面意思。</p>
+    <p>前置条件是行业成本的迁移。当模型从「聊天」走向「智能体」，一次任务的成本结构已经变了：请求里塞进几万到几十万 Token 的代码库、日志与工具返回，缓存命中往往占了账单的大头，长上下文的内存占用则决定吞吐和并发上限。DeepSeek 官方说得很直白：缓存命中费用常占智能体成本的一大部分，压缩缓存就是直接砍成本。V4.1-Flash 不是一次单纯的「加参数」，而是一次对长上下文经济性的重新定价。</p>
+
+    <h2>三、核心内容：把 KV cache 砍到 890 字节</h2>
+    <h3>1. 架构：8B 读、16B 写，读得便宜、写得贵</h3>
+    <p>V4.1-Flash 采用新的 Causal Encoder-Decoder（因果编码器—解码器）架构：读 Prefill 只激活 <span class="key-number">8B</span> 参数，写 Decode 激活 <span class="key-number">16B</span>。稀疏层里每层配 <span class="key-number">1</span> 个共享专家加 <span class="key-number">384</span> 个路由专家，每个 Token 只走 <span class="key-number">6</span> 个路由专家；另加 <span class="key-number">196B</span> 参数的 Engram 条件记忆（按 Token 查表稀疏访问）、Single-Pass mHC 残差混合与 DSpark 投机解码。推理侧还给了 <code>reasoning_effort</code> 整数 <span class="key-number">1–100</span> 的连续档位，让用户自己拿成本换准确率。</p>
+    <h3>2. KV cache：一代缩 3.9 倍，四代缩 437 倍</h3>
+    <p>官方给出的代际曲线很直观：DeepSeek-V1（2023.11）<span class="key-number">389,120</span> 字节/Token → V3.2（2025.12）<span class="key-number">48,068</span>（小 8.1 倍）→ V4-Flash（2026.04）<span class="key-number">3,514</span>（小 13.7 倍）→ V4.1-Flash（2026.09）<span class="key-number">890</span> 字节（小 3.9 倍）。相比上一代 V4-Flash，HBM 需求降到 <span class="key-number">1/4</span>、SSD 存储降到 <span class="key-number">1/8</span>。实现手段是把主 KV 缓存做成 FP4（E2M1 格式，每 16 个通道配一个 E4M3 缩放因子）。对要跑 2000 张 GPU 加存储集群的部署方来说，这四个数字比任何榜单名次都值钱。</p>
+    <h3>3. 价格：缓存命中 $0.003，且高峰时段半价</h3>
+    <p>新价格 2026 年 9 月 10 日 04:00 UTC 生效，继续走峰谷两档：非高峰时缓存命中输入 <span class="key-number">$0.003</span>、未命中输入 <span class="key-number">$0.15</span>、输出 <span class="key-number">$0.6</span>（每百万 Token）；高峰时段翻倍为 <span class="key-number">$0.006</span> / <span class="key-number">$0.3</span> / <span class="key-number">$1.2</span>。高峰定义为工作日 01:00–04:00 与 06:00–10:00 UTC，其余时间（含周末与公共假日）均为非高峰，价格直接砍半。</p>
+    <div class="inline-img">
+      <img src="images/featured-2026-09-14-2.jpg" alt="DeepSeek 官方 API 定价表：V4.1-Flash 缓存命中输入 $0.003、未命中 $0.15、输出 $0.6（非高峰） | DeepSeek 官方">
+      <div class="caption">DeepSeek 官方 API 定价：V4.1-Flash 峰谷两档价格，2026-09-10 04:00 UTC 生效（来源：DeepSeek API 文档）</div>
+    </div>
+    <h3>4. 时间线：周一中午，旗舰被强制改名</h3>
+    <p>发布公告里最不寻常的一条是退役安排：V4-Flash 与 V4-Flash-Vision-Exp 已经退休，旧模型名暂时兼容转发到 V4.1-Flash；而北京时间 <span class="key-number">9 月 14 日 12:00</span> 起，直到 V4.1-Pro 发布为止，所有 <code>deepseek-v4-pro</code> 请求都会路由到 V4.1-Flash 并按 Flash 价格计费。官方给出的理由是对比测试后「V4.1-Flash 在性能、成本、速度和总时长上全面超越 V4-Pro」。至于 V4.1-Pro 何时到，公告没给日期。首批适配方是 WorkBuddy（含 CodeBuddy）与 OpenCode。</p>
+    <h3>5. 跑分：编码与智能体领先，硬推理仍有落差</h3>
+    <p>官方自评里，GPQA Diamond <span class="key-number">90.9</span>、HLE <span class="key-number">36.8</span>、Codeforces 评分 <span class="key-number">3471</span>、Terminal-Bench 2.1 <span class="key-number">90.6</span>。官方发布的智能体对比图上，V4.1-Flash 在 DeepSWE v1.1 拿 <span class="key-number">74.2</span>（Opus5 74.0、GPT5.6-Sol 73.0）、CyberGym <span class="key-number">88.1</span>、Automation-Bench <span class="key-number">54.8</span> 均居首；唯独 Terminal-Bench 3.0 只有 <span class="key-number">30.0</span>，落后 Opus5 的 43.3 与 GPT5.6-Sol 的 34.4。</p>
+
+    <h2>四、各方反应：便宜是真的，代价也是真的</h2>
+    <p>第三方评测给出了目前最完整的一张成绩单。Artificial Analysis 的综合 Intelligence Index 给它 <span class="key-number">40</span> 分，排在 113 款模型的第 6 位，明确「超过 GPT-5.6 Luna」；在偏行政事务的 AutomationBench-AA 上拿到榜首，超过 GPT-6 Astra；输出速度 <span class="key-number">198</span> Token/秒（第 5），只有 Gemini 3.8 Flash 与 Muse Spark 1.3 更快；按峰值价折算每任务成本 <span class="key-number">$0.27</span>。</p>
+    <p>但同一份评测也点出了短板：V4.1-Flash 完成单个任务的输出 Token 消耗明显高于 V4-Pro 与 Claude Fable 5.1，导致「单价便宜」被「话多」部分吃掉。heise 的评价是「一个弱点是相对较高的 Token 消耗」；Artificial Analysis 还提到它在知识缺口处更容易产生幻觉。TheNextWeb 的怀疑更直接：基准可与 Opus 5 在编码上掰手腕，但硬推理仍落后，而且这些数字都还没有独立复现。</p>
+    <p>竞争面的摩擦同样出现在这一周。Anthropic 发布报告指控包括 DeepSeek 在内的多家中国公司对 Claude 发起蒸馏攻击，累计发现近 <span class="key-number">2 亿</span> 次相关交互、涉及五个活动——技术竞争已经外溢成规则与合规之争。生态侧则一片热闹：DeepInfra 挂出 <span class="key-number">$0.20</span> 输入 / <span class="key-number">$0.60</span> 输出 / <span class="key-number">$0.006</span> 缓存的托管价格，Baseten 同步上线；中文开发者社区实测后给出的感受是缓存命中输入降价 7 倍多、输出价格砍掉约三分之二。</p>
+
+    <blockquote>
+      「经过大量测试，V4.1-Flash 在性能、成本、速度和总时长上全面超越 V4-Pro，因此我们计划有序退役 V4-Pro。」
+      <footer>— DeepSeek API 文档《DeepSeek-V4.1-Flash: Smarter, Faster, More Efficient》（2026-09-10）</footer>
+    </blockquote>
+
+    <h2>五、深度解读：三个趋势，一个提醒</h2>
+    <h3>1. 开源模型第一次在「智能体成本曲线」上压过闭源旗舰</h3>
+    <p>过去开源模型的常用打法是「同分更便宜」。V4.1-Flash 换了个位置：它在 AutomationBench-AA 这类自动化任务上直接拿第一，同时把每任务成本压在 $0.27。当企业开始按「每个业务流程多少钱」而不是「每百万 Token 多少钱」做预算，MIT 许可的权重就成了采购谈判里的一张硬牌。</p>
+    <h3>2. 长上下文竞赛的计量单位，从参数换成了 KV cache</h3>
+    <p>437 倍的代际压缩说明一件事：100 万上下文的门槛已经过了，接下来拼的是「跑得起」。HBM 只剩 1/4、SSD 只剩 1/8，意味着同样的机器能塞下更多并发会话——这才是压价的钱从哪来。谁先在缓存上做出结构性节省，谁就掌握降价空间。</p>
+    <h3>3. 强制路由是一次高风险的信任实验</h3>
+    <p>不新增模型名、不涨价，直接把旗舰请求改道到小模型，等于把「迁移决定权」从用户手里收走。省下的是运维复杂度，赌上的是企业客户的确定性需求——直到 V4.1-Pro 出现之前，所有 V4-Pro 用户都只能在 Flash 上跑。</p>
+    <h3>4. 提醒：单价低不等于总账低</h3>
+    <p>输出 Token 消耗偏高，会让「每百万 Token 单价」和「每任务实际花费」出现分叉。对按次计费的智能体产品，部署前应该按自己任务的真实 Token 曲线做一次估算，而不是照搬价格表。</p>
+
+    <h2>六、总结</h2>
+    <p>DeepSeek 用一台 8B/16B 激活的 552B 模型和 890 字节的 KV cache，把长上下文智能体的成本曲线又往下压了一档，也顺手给「旗舰」这个词重新定了价——真正的分水岭不是它比谁聪明，而是从今天中午起，DeepSeek 最贵的那条产品线不存在了。</p>
+
+  </div>
+
+
+  <div class="bottom-cta">
+    <a href="daily-2026-09-14.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://api-docs.deepseek.com/news/news260910" target="_blank" rel="noopener">DeepSeek 官方：DeepSeek-V4.1-Flash: Smarter, Faster, More Efficient</a> · <a href="https://api-docs.deepseek.com/zh-cn/updates" target="_blank" rel="noopener">DeepSeek API 文档：更新日志与定价</a> · <a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash" target="_blank" rel="noopener">Artificial Analysis：DeepSeek V4.1 Flash 评测</a> · <a href="https://the-decoder.com/new-deepseek-model-v4-1-flash-cuts-memory-needs-for-ai-agents" target="_blank" rel="noopener">The Decoder：V4.1-Flash 削减智能体内存需求</a> · <a href="https://www.heise.de/en/news/DeepSeek-V4-1-Flash-More-performance-than-V4-Pro-at-lower-prices-11450079.html" target="_blank" rel="noopener">heise online：更低价格、更高性能，但 Token 消耗偏高</a> · <a href="https://thenextweb.com/news/deepseek-v4-1-flash-launch-v4-pro-retired-price-cut" target="_blank" rel="noopener">The Next Web：V4.1-Flash 发布、V4-Pro 退役</a> · <a href="https://www.marktechpost.com/2026/09/10/deepseek-ai-released-deepseek-v4-1-flash-with-1m-context-fp4-kv-cache-and-cross-layer-attention-reuse" target="_blank" rel="noopener">MarkTechPost：1M 上下文、FP4 KV 缓存与跨层注意力复用</a> · <a href="https://www.baseten.co/blog/deepseek-v41-flash-more-efficient-prefill-for-coding-agents" target="_blank" rel="noopener">Baseten：CED 架构降低编码智能体 prefill 开销</a> · <a href="https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek" target="_blank" rel="noopener">TechCrunch：Anthropic 指控蒸馏攻击</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

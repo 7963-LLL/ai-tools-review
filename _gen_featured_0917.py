@@ -4,7 +4,7 @@ TODAY = '2026-09-17'
 tpl = open('featured-2026-09-16.html', encoding='utf-8').read()
 
 head_part = tpl[:tpl.index('  <div class="featured-hero">')]
-tail_part = tpl[tpl.index('<footer>'):]
+tail_part = tpl[tpl.rindex('<footer>'):]  # page footer, NOT the blockquote <footer>
 
 TITLE = 'Apple Siri AI 测试版上线：重写两年的助手，把 iPhone、Watch 和 Vision Pro 连成同一段记忆'
 DESC = ('苹果发布下一代 Apple Intelligence，重构后的 Siri AI 随 2027 软件版本以英文测试版上线，'
@@ -19,7 +19,7 @@ head_part = re.sub(r'(<meta name="description" content=").*?(">)', lambda m: m.g
 
 BODY = f'''
   <div class="featured-hero">
-    <img src="images/featured-{TODAY}-1.jpg" alt="Apple 官方新闻稿主图：新一代 Apple Intelligence 驱动的 Siri AI | Apple 官方">
+    <img src="images/featured-{TODAY}-1.jpg" alt="Apple 官方图：新一代 Apple Intelligence 驱动的 Siri AI 对话界面 | Apple 官方">
     <div class="featured-meta">
       <span>📖 12 分钟</span>
       <span>📅 {TODAY}</span>
@@ -109,5 +109,7 @@ assert html.count('<blockquote>') == 1
 assert BODY.count('class="key-number"') >= 9, BODY.count('class="key-number"')
 assert html.count('class="key-number"') >= 9
 assert f'daily-{TODAY}.html' in html
+assert 'Detecting and countering misuse' not in html, 'old article leaked in'
+assert html.count('<div') == html.count('</div>'), (html.count('<div'), html.count('</div>'))
 kn = html.count('class="key-number"')
 print(f'✅ featured-{TODAY}.html  正文中文字数={cjk}  图片=3  key-number={kn}')

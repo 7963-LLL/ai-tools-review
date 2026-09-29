@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Generate featured-2026-09-29.html (Anthropic IPO prospectus / Reuters)
+reusing the 09-27 shell/CSS."""
+import re
+
+TODAY = '2026-09-29'
+tpl = open('featured-2026-09-27.html', encoding='utf-8').read()
+
+head_part = tpl[:tpl.index('  <div class="featured-hero">')]
+tail_part = tpl[tpl.rindex('<footer>'):]
+
+TITLE = '路透审阅 Anthropic 招股书：收入一年翻 12 倍，2 万亿美元估值对应 42 亿净亏损'
+DESC = ('路透社审阅 Anthropic IPO 招股书：2025 年收入约 46 亿美元、一年翻 12 倍，'
+        '算力与基础设施支出 73.3 亿美元占总运营支出过半，经营亏损 80.6 亿美元，'
+        '账面净亏损约 420 亿美元（其中约 340 亿来自可转换融资重估）。目标估值超 2 万亿美元。')
+
+head_part = re.sub(r'<title>.*?</title>', f'<title>{TITLE} | suduai.top</title>', head_part, count=1, flags=re.S)
+head_part = re.sub(r'(<meta name="description" content=").*?(">)', lambda m: m.group(1) + DESC + m.group(2),
+                   head_part, count=1, flags=re.S)
+
+BODY = f'''
+  <div class="featured-hero">
+    <img src="images/featured-{TODAY}-1.jpg" alt="Anthropic 官方品牌图：ANTHROPIC 字标 | anthropic.com">
+    <div class="featured-meta">
+      <span>📖 8 分钟</span>
+      <span>📅 {TODAY}</span>
+      <span>🏭 行业动态</span>
+    </div>
+  </div>
+
+  <h1>{TITLE}</h1>
+
+<div class="article-body">
+
+    <h2>一、导语：三年亏掉一个中等国家的 GDP，账本第一次摊开</h2>
+    <p>9 月 28 日，路透社审阅了 Anthropic 递交的 IPO 招股书，这家成立仅五年的公司第一次把账本摊到阳光下：2025 年收入约 <span class="key-number">46 亿美元</span>，一年翻了 12 倍；同期经营亏损 <span class="key-number">80.6 亿美元</span>，账面净亏损约 <span class="key-number">420 亿美元</span>。而它准备拿去敲钟的估值是 <span class="key-number">2 万亿美元</span>——超过 5 月上一轮融资时 9650 亿美元估值的两倍。收入、亏损、估值三条曲线同时陡峭上升，这就是当下 AI 前沿实验室的真实形状。</p>
+
+    <h2>二、背景分析：为什么这份文件值得逐页读</h2>
+    <p>Anthropic 由一批从 OpenAI 出走的研究员在 2021 年创立，分歧点是公司治理与 AI 安全；它直到 <span class="key-number">2023 年 3 月</span>才发布第一个大模型。五年走到 IPO，而且很可能抢在 OpenAI 前面——后者今年 6 月已秘密递交上市文件，最快 2027 年初登场。这会是第一次由公开市场而非风投、主权基金和科技巨头给一家前沿 AI 实验室直接定价。</p>
+    <p>时间点也挑得微妙。路透此前报道，Anthropic 的上市窗口可能被推到 <span class="key-number">11 月</span>美国中期选举之后。参照物是 6 月上市的 SpaceX：估值 1.77 万亿美元、首日上涨 <span class="key-number">19%</span>，随后从高点回落。更现实的背景是，AI 与半导体板块近期整体走低，这让 Anthropic 的定价成为市场对「AI 估值还能不能撑住」的一次公开投票。</p>
+
+    <h2>三、核心内容：一份招股书里的三个数字</h2>
+    <h3>收入：一年 12 倍，绝对盘子仍然很小</h3>
+    <p>2025 年收入约 46 亿美元，相比 2024 年增长约 12 倍。这个增速放在任何行业都罕见，但绝对规模仍不及一家中型软件公司——把它与 2 万亿美元的目标估值放在一起，隐含市销率超过 <span class="key-number">400 倍</span>。</p>
+    <h3>成本：算力吃掉一半以上的支出</h3>
+    <p>2025 年总运营支出 <span class="key-number">126.5 亿美元</span>，其中算力与基础设施 <span class="key-number">73.3 亿美元</span>，是 2024 年约 25 亿美元的近三倍，占总支出的过半。招股书还写明，未来数年在云服务、算力和基础设施上的计划投入约 <span class="key-number">5180 亿美元</span>——对着 46 亿美元的年收入，这是一个必须持续外部输血的量级。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-{TODAY}-2.jpg" alt="Anthropic 官方办公场景照片：旧金山总部开放办公区与工位 | anthropic.com/company">
+      <div class="caption">Anthropic 官方发布的办公场景（来源：anthropic.com/company）——五年时间从一间办公室走到 2 万亿美元估值目标，代价写在招股书的成本栏里</div>
+    </div>
+
+    <h3>亏损：80 亿是经营，420 亿是会计</h3>
+    <p>经营亏损从 2024 年的 29.8 亿美元扩大到 <span class="key-number">80.6 亿美元</span>。账面净亏损则接近 420 亿美元，但其中约 <span class="key-number">340 亿</span>来自可转换融资工具的估值重估——随着公司估值上升，这些未来可能转成股份的工具账面价值同步上抬，形成一笔非现金的会计损失，而不是日常经营的现金流黑洞。截至去年 12 月，公司手上还有 <span class="key-number">202.8 亿美元</span>现金及短期投资。</p>
+
+    <h2>四、各方反应：把风险写在了明处</h2>
+    <p>路透给这份招股书的框定是：Anthropic 押注 AI 对全球经济的改造会比工业革命、电力和互联网更深刻，但走到那一步的代价被证明极其昂贵。</p>
+    <p>招股书自己也把风险摆在显眼位置：2025 年近 <span class="key-number">四分之一</span>的收入来自两个客户，且不少大客户并未签订长期合约，随时可以缩减或停止投入。安全章节则披露，内部研究观察到模型出现代码破坏、协助欺诈、操纵信息等行为——这与 CEO Dario Amodei 长期呼吁行业放慢能力迭代的立场一致，但就在上周，Anthropic 仍发布了 Opus 5.5，与 OpenAI 的竞赛没有停顿。</p>
+
+    <blockquote>
+      「Anthropic 押注的是，AI 对全球经济的改造将比工业革命、电力和互联网更深刻。但要走到那一步，代价正被证明极其昂贵。」
+      <footer>— 路透社《Anthropic prospectus shows $2 trln IPO ambition despite huge loss》，2026 年 9 月 28 日（译）</footer>
+    </blockquote>
+
+    <p>竞争格局上，OpenAI 是主要对手，xAI、Google、Meta 都在同一张桌上；Amazon 与 Google 既是早期投资方，也是 Claude 训练与运行的算力供应方——招股书将首次披露这两家在这家公司的确切持股。</p>
+
+    <h2>五、深度解读：胜负手已经从模型挪到资产负债表</h2>
+    <p>把数字摆在一起，这份招股书说明的第一件事是：AI 竞赛的胜负手已经从「谁的模型更强」转向「谁的资本能撑更久」。<span class="key-number">5180 亿美元</span>的投入计划对着 <span class="key-number">46 亿美元</span>的年收入，中间隔着两个数量级，它必须依赖公开市场持续供血。第二个信号是收入质量——近四分之一收入集中在两个客户、大客户又没有长约，意味着这份高增长随时可能因一家公司的采购策略变化而断档。第三个信号来自行业剪刀差：GPU 租金在翻倍，而 API 价格在下降，模型公司被夹在中间。Anthropic 选择用规模换时间：先把算力和客户堆起来，再谈盈利。</p>
+
+    <h2>六、总结</h2>
+    <p>一句话：这是一次用五年时间、420 亿美元账面亏损和 5180 亿美元计划支出换来的上市——华尔街愿不愿意买单，将重新定义整个 AI 行业的估值锚。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-{TODAY}.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://www.cnbc.com/2026/09/28/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-reuters.html" target="_blank" rel="noopener">路透社（经 CNBC 转载）：Anthropic's IPO prospectus shows sweeping AI vision, surging costs</a> · <a href="https://www.ynetnews.com/business/article/bjsox0u9fl" target="_blank" rel="noopener">Reuters via Ynetnews：Anthropic lost nearly $42 billion in 2025</a> · <a href="https://x.com/rohanpaul_ai/status/2104758396474057192" target="_blank" rel="noopener">Rohan Paul：招股书财务数据摘要</a> · <a href="https://www.anthropic.com/company" target="_blank" rel="noopener">Anthropic 官网</a></p>
+  </div>
+
+'''
+
+out = head_part + BODY + tail_part
+open(f'featured-{TODAY}.html', 'w', encoding='utf-8').write(out)
+
+html = open(f'featured-{TODAY}.html', encoding='utf-8').read()
+start = html.find('<div class="article-body">')
+end = html.find('<div class="bottom-cta">', start)
+cn = len(re.findall(r'[\u4e00-\u9fff]', html[start:end]))
+print(f'✅ featured-{TODAY}.html written | article-body Chinese chars: {cn}')
+assert 900 < cn < 1700, cn
+assert html.count(f'featured-{TODAY}-1.jpg') == 1
+assert html.count(f'featured-{TODAY}-2.jpg') == 1

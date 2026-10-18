@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta 开源 816B 的 Muse Spark Open：1M 上下文、42B 激活，两台 Mac Studio 就能跑 | suduai.top</title>
+  <meta name="description" content="Meta 发布开放权重模型 Muse Spark Open：816B 总参数、42B 激活、1M token 上下文、原生多模态，Code Arena WebDev 得分 1511 位居美国开源模型第一，OpenRouter 定价输入 $1.25/M、输出 $4.25/M。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; }
+.featured-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-page">
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-10-18-1.jpg" alt="Meta 官方 Muse Spark Open 发布主视觉：蓝色光轨与 THE MOST CAPABLE US OPEN-WEIGHT MODEL TO DATE | pytorch.org">
+    <div class="featured-meta">
+      <span>📖 8 分钟</span>
+      <span>📅 2026-10-18</span>
+      <span>🤖 模型发布</span>
+    </div>
+  </div>
+
+  <h1>Meta 开源 816B 的 Muse Spark Open：1M 上下文、42B 激活，两台 Mac Studio 就能跑</h1>
+
+<div class="article-body">
+
+    <h2>一、导语：美国最强开源模型，交到了开发者手里</h2>
+    <p>Meta 把自家最强的一代模型开出来了。Muse Spark Open 总参数 <span class="key-number">816B</span>、每个 token 只激活 <span class="key-number">42B</span>，上下文窗口 <span class="key-number">1M token</span>，原生吃文本、图像、音频、视频四种输入。它不是实验室里的权重文件：发布当日同步上架 Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter、Together 七家推理平台，权重可从这里以外的 Hugging Face、Amazon SageMaker、Google Cloud Model Garden、Microsoft Foundry 直接下载。</p>
+    <p>更狠的是两个数字：Code Arena 的 WebDev 榜上，「Muse Spark Open (Max)」拿到 <span class="key-number">1511 分</span>，是美国开源模型第一、开源总榜第 13；Artificial Analysis 智能指数 <span class="key-number">39 分</span>，比第二名 Reflection Beam 的 30 分高出一整档。Meta 自己在博客里写得很直白：这是「迄今最强的美国开放权重模型」。</p>
+
+    <h2>二、背景分析：开源这条线，Meta 不能丢</h2>
+    <p>要理解这次发布，得先看 Meta 的处境。过去一年它的闭源前沿模型被 OpenAI、Google、Anthropic 反复压制，而 Llama 系的开源口碑又被 DeepSeek、Qwen、Kimi 这些中国团队一点点啃掉。今年 8 月，Meta 先用 Muse Glimmer 这个小号稠密模型探路，同时放出闭源的 Muse Spark 打能力榜——Muse Spark Open 就是这条产品线的第三步：把最强的那个规模，做成能下载的权重。</p>
+    <p>技术上也做了铺垫。同代的 Helion GPU kernel 已经在 SGLang 里跑了几个月，这次直接内置进开源版，官方给的数字是在 NVIDIA 与 AMD GPU 上取得 <span class="key-number">1.03–3.95 倍</span>的 kernel 级加速、AMD MI350 上端到端提速 <span class="key-number">3%</span>。换句话说，权重还没下完，推理栈已经替你调好了。</p>
+    <p>许可证也换了。这次不是 Llama Community License，而是新的 Muse Model License——条款细节尚未被广泛审读，但对商用部署的团队来说，这是发布当天最该先读的一页。</p>
+
+    <h2>三、核心内容：816B 是怎么省着花的</h2>
+    <p>架构是一套 62 层、隐层 8192 的稀疏 MoE：每层 <span class="key-number">256 个专家</span>，每个 token 只挑 <span class="key-number">8 个</span>，专家吃掉了全部参数的约 <span class="key-number">97%</span>。所以显存里躺着的是整个 816B（BF16 safetensors 约 <span class="key-number">1.5TB</span>），算力开销却按 42B 走。1M 上下文的代价也很具体：每个 token 的 KV cache 约 <span class="key-number">250KB</span>，撑满 100 万 token 要 <span class="key-number">266GB</span>——这也是官方推荐 BF16 用 4 节点 × 8 张 H200（TP=32）、而 NVFP4 量化版能压到单台 B200 节点的原因。视觉编码器 <span class="key-number">1.8B</span> 参数，音频按每 80 毫秒一个 token 折算。</p>
+
+    <p>最出人意料的是端侧。Meta 用 MLX 张量并行把每一层拆到两台 Apple M5 Ultra Mac Studio 上，靠 Thunderbolt 5 的 RDMA 直连：各存一半权重、各算一半计算，权重全程不动，只在机器间传几十 KB 的中间结果。官方博客的说法很产品经理：</p>
+    <blockquote>
+      「我们相信未来属于所有人，其中也包括把先进模型跑在任何地方的自由，包括在自己家里。」
+      <footer>— Meta AI Research 官方博客《Introducing Muse Spark Open》</footer>
+    </blockquote>
+    <p>价格同样关键。OpenRouter 上输入 <span class="key-number">$1.25</span>／百万 token、输出 <span class="key-number">$4.25</span>／百万 token——比同级别闭源前沿模型低一个量级，而 1M 上下文的成本又被这个单价放大成实打实的工程决策。</p>
+
+    <h2>四、各方反应：硬件厂抢 Day-0，榜单先打起来</h2>
+    <p>硬件侧的反应最快。Intel 当天发布 Day-0 支持公告，用 vLLM 的 llm-compressor 加 AutoRound 算法，从原始 BF16 权重直接量化出 MXFP4（面向 GPU D 系列）和 INT4（面向 Xeon，仅权重量化）两套版本，配套 vLLM 与 SGLang 的上游支持。一个 816B 的模型能在发布当天跑上 Xeon，说明生态配合已经不是「等社区适配」的节奏了。</p>
+    <p>榜单侧的对照也很有意思。同一天 Artificial Analysis 放出 Reflection 首个开源模型 Beam 的评测：智能指数 <span class="key-number">30</span> 分，美国开源第二，仅次于 Muse Spark Open 的 39。Arena 则把 Muse Spark Open 拉进 Agent Arena 让用户实测，Code Arena 的 1511 分紧随其后公布。三家独立评测机构在同一周给出互不矛盾的数字，这在这类「自评自夸」的发布里并不常见。</p>
+    <p>竞品的压力是另一面。DeepSeek 这两天发布 V4.1-Flash-1017，多个基准提升而 API 价格不变，紧接着开放了自研搜索 API；Google 的 Gemini 4 Argon 在 ARC-AGI-3 上刷到 <span class="key-number">97.5%</span>。开放权重这条赛道，现在是美国的 Meta 对上中国的 DeepSeek、Qwen、Kimi、StepFun——而后者的成本优势依然明显。</p>
+
+    <h2>五、深度解读：开源竞争的重心变了</h2>
+    <p>第一层变化是「开源」的含义。过去开源模型的卖点是便宜、可微调；Muse Spark Open 直接把 1M 上下文、原生多模态、Agent 工具调用一起放出来，等于把「前沿能力」本身当成了开源标的。这会把下游应用的想象空间从「套壳聊天」推到「整套代码库级别的自主改代码」，也解释了为什么它首发就配套 Muse Code 这种端到端 agent 产品。</p>
+    <p>第二层是成本结构的重排。816B 的显存门槛注定大多数团队不会自建，真正的分发靠 OpenRouter 这类聚合平台和 Fireworks、Groq 这类专用推理商。结果是：权重开源了，生意却更集中在推理层。谁把 NVFP4、MXFP4 这些低精度路径调得最顺，谁就拿走调用量。</p>
+    <p>第三层是端侧的那条暗线。两台 Mac Studio 跑 816B，本质上是把「个人拥有前沿模型」从口号变成了配置清单。它对云厂商短期没有威胁，但对隐私敏感、离线可用的场景（医疗、法务、独立开发者）是一记实打实的开门锤；真正被削弱的，是那些只靠「模型能力」收月费的中层产品。安全侧，Meta 也明确说开源版「增加了额外的安全后训练」，并按 Meta Superintelligence Scaling Framework 逐项过阈值才放行——开放权重与安全的矛盾，它选择用「发布前评测」而不是「不发布」来回答。</p>
+
+    <h2>六、总结</h2>
+    <p>一句话：Meta 用 816B／42B 激活、1M 上下文、$1.25 的输入单价和两台 Mac Studio 的端侧方案，把「美国最强开源模型」这张牌打成了产品而不是姿态——接下来要看的是 Muse Model License 的细则，以及 266GB 的 KV cache 到底有多少团队真愿意付。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-2026-10-18.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://pytorch.org/blog/muse-spark-open/" target="_blank" rel="noopener">PyTorch 官方博客：Muse Spark Open</a> · <a href="https://huggingface.co/blog/meta-muse-spark-open" target="_blank" rel="noopener">Hugging Face：Welcome Muse Spark Open</a> · <a href="https://research.meta.ai/blog/muse-spark-open" target="_blank" rel="noopener">Meta AI Research：Introducing Muse Spark Open</a> · <a href="https://artificialanalysis.ai/articles/reflection-beam" target="_blank" rel="noopener">Artificial Analysis：Reflection Beam 评测</a> · <a href="https://aihot.news/items" target="_blank" rel="noopener">AIHOT 精选</a></p>
+  </div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -74,6 +74,11 @@ CATEGORY_ORDER = ['ai-products', 'industry', 'ai-models', 'paper', 'tip']
 data = json.load(open('aihot_selected.json'))
 items = data['items']
 
+# ponytail: alias unmapped API categories into existing tabs (no new tab needed)
+CAT_ALIAS = {'opinion': 'tip'}
+for it in items:
+    it['category'] = CAT_ALIAS.get(it.get('category'), it.get('category') or '')
+
 # Today's date
 today = datetime.now(BJT).strftime('%Y-%m-%d')
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Push HEAD tree via Git Data API (github.com:443 blocked from this host; api.github.com reachable)."""
 import base64, json, os, subprocess, sys, urllib.request, urllib.error
+from datetime import datetime, timezone, timedelta
+
+TODAY = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d')
 
 REPO = '7963-LLL/ai-tools-review'
 BRANCH = 'master'
@@ -46,7 +49,7 @@ for f in files:
 new_tree = api('POST', '/repos/%s/git/trees' % REPO,
                {'base_tree': base['tree']['sha'], 'tree': tree})
 commit = api('POST', '/repos/%s/git/commits' % REPO,
-             {'message': '每日更新 2026-10-22', 'tree': new_tree['sha'], 'parents': [base_sha]})
+             {'message': '每日更新 ' + TODAY, 'tree': new_tree['sha'], 'parents': [base_sha]})
 if 'sha' not in commit:
     raise SystemExit('commit failed: %s' % commit)
 upd = api('PATCH', '/repos/%s/git/refs/heads/%s' % (REPO, BRANCH),

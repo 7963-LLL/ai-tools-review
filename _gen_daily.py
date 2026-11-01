@@ -78,6 +78,13 @@ items = data['items']
 CAT_ALIAS = {'opinion': 'tip'}
 for it in items:
     it['category'] = CAT_ALIAS.get(it.get('category'), it.get('category') or '')
+    # ponytail: API v1 schema — source is {name}, url moved into links.original
+    src = it.get('source')
+    if isinstance(src, dict):
+        it['source'] = src.get('name') or ''
+    if not it.get('url'):
+        links = it.get('links') or {}
+        it['url'] = links.get('original') or links.get('aihot') or ''
 
 # Today's date
 today = datetime.now(BJT).strftime('%Y-%m-%d')

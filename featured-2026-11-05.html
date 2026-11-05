@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.8 万亿参数、5.6TB 权重：Kimi K3.1 Pro 开源了，也把「本地跑不动」一起开源了 | suduai.top</title>
+  <meta name="description" content="月之暗面兑现 10 月 24 日的承诺，在 Hugging Face 开放 Kimi K3.1 Pro 权重：2.8 万亿总参数、1040 亿激活、100 万 Token 上下文。Agent Arena 净改进率 +5.1% 居开放模型第一，Terminal-Bench 4.0 得 65.7%。但 BF16 权重 5.6TB，INT4 仍要 1.4TB。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z33SFE6V0H');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447" crossorigin="anonymous"></script>
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; font-style: normal; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 360px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container content-page">
+
+  <h1>2.8 万亿参数、5.6TB 权重：Kimi K3.1 Pro 开源了，也把「本地跑不动」一起开源了</h1>
+  <div class="featured-meta">
+    <span>📅 2026-11-05</span><span>📖 11 分钟</span><span>开源模型</span>
+  </div>
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-11-05-1.jpg" alt="Kimi K3.1 Pro 官方发布视觉（来源：kimi.com 官方技术博客）">
+  </div>
+
+  <div class="article-body">
+
+    <p>11 月 5 日，月之暗面把 Kimi K3.1 Pro 的权重放上 Hugging Face，兑现了 10 月 24 日发布时那句「权重将在 11 月 4 日前开放」。这份权重有 <span class="key-number">2.8 万亿</span>总参数，混合专家架构下单次推理只激活约 <span class="key-number">1040 亿</span>，支持 100 万 Token 上下文。同一天，Agent Arena 用它 <span class="key-number">1.75 万</span>次真实智能体会话算出的榜单也更新了：K3.1 Pro 在开放权重模型里排第一，全部参评模型里排第 13，净改进率 <span class="key-number">+5.1%</span>，上一代 K3 是 +0.9%。但另一组数字同样刺眼——BF16 权重约 5.6TB，INT4 量化后仍要 1.4TB。这是一次真正的开源，也是一次大多数人用不上的开源。</p>
+
+    <h2>一、背景：K3 的底座，加了一轮更贵的后训练</h2>
+    <p>K3.1 Pro 不是新架构，而是 K3 的后训练版本。月之暗面在技术博客里说得很直白：以 K3 为基座，投入了明显更大的后训练算力，做覆盖数百个下游领域的大规模联合强化学习。为了让这些 RL 算力「每一份都换回稳定、可预测的收益」，他们把整条栈都改了——RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度，以及一套共享的环境质量检查平台。</p>
+    <p>结构上还有一处关键改动：部分全注意力层被替换成门控稀疏注意力层，用来压低长上下文建模的开销。这解释了 100 万 Token 上下文为什么能和 2.8 万亿参数同时出现——否则光是注意力本身就会把推理成本吃穿。</p>
+
+    <h2>二、核心：一张表里的三个位置</h2>
+    <p>先看硬指标。Terminal-Bench 4.0 用严格的任务级测试考真实终端环境里的编码智能体，K3.1 Pro 得 <span class="key-number">65.7%</span>，高于 GPT-6 Astra 的 <span class="key-number">58.2%</span>，距 Claude Opus 5.5 的 <span class="key-number">66.4%</span> 只差 0.7 个百分点。在自家考长程多步执行的 Kimi Code Bench 3.0 Long-horizon 上，它拿 <span class="key-number">61.2%</span>，比 K3 的 55.95% 高出一截。</p>
+    <p>3D 方向是这一代新长出来的能力。BenchCAD 考的是从多视角渲染图反推 CAD 代码，K3.1 Pro 带工具拿 <span class="key-number">92.7%</span>，接近 Opus 5.5 的 96.2% 和 GPT-6 Astra 的 95.9%。官方演示里，它能在 Unity、Unreal、Godot 里配合联网搜索和 3D 生成，从一句需求直接产出可玩场景。金融方向则给了两个自测数字：Financial Modeling 比 K3 高 7.2 分，Financial Research 高 11.6 分，Business Operation 大约是 K3 的 <span class="key-number">4.2 倍</span>。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-11-05-2.jpg" alt="Kimi 官方 xdev-bench-hard 评测结果表（来源：kimi.com 官方技术博客）">
+      <div class="caption">官方技术博客里的 xdev-bench-hard 结果：Kimi K3.1 Pro 解出 81.0%，而未做网络风险削减的同管线检查点是 90.5%。</div>
+    </div>
+
+    <p>还有一组数字不太常被引用，但信息量最大：在内部的 Kimi Hallu Bench Hard 压力测试里，K3.1 Pro 的论断级幻觉率从 K3 的 <span class="key-number">23.4%</span> 降到 <span class="key-number">8.3%</span>，含至少一处事实错误的回答只有前代的 42.4%。对金融和投研场景来说，这一项的权重可能比 benchmark 排名更高。</p>
+
+    <h2>三、Agent Arena：一个不要求用户投票的排行榜</h2>
+    <p>这次排名的方法论比名次更值得看。Agent Arena 不做成对盲测，它从真实用户的智能体会话里提取信号——用户有没有明确确认任务完成、有没有表扬或投诉、有没有下纠正指令、Shell 命令有没有报错——再用一套叫「因果追踪」的随机化推断，估算每个模型相对平均水平的净改进率。</p>
+    <p>分项拆开看，K3.1 Pro 的改善集中在执行层而不是表达层：Bash Reliability 从 K3 的 <span class="key-number">-4.5%</span>（第 13 名）升到 <span class="key-number">+7.9%</span>，开放模型第一；Praise vs Complaint 从 +1.3% 升到 <span class="key-number">+7.7%</span>；Steerability 达到 <span class="key-number">+6.5%</span>，同样是开放模型首位；用户明确确认成功的 Confirmed Success 为 +3.9%，开放模型第四。</p>
+    <blockquote>
+      “Across coding, agentic, and knowledge benchmarks, K3.1 Pro matches or approaches the strongest proprietary models.”
+      <footer>—— Kimi K3.1 Pro 官方技术博客，2026 年 10 月 24 日</footer>
+    </blockquote>
+
+    <h2>四、各方反应：掌声和冷水一起来</h2>
+    <p>开源阵营的反应基本是正面的：2.8 万亿参数、开放权重、Agent 榜单第一，这三个标签凑在一起，是今年开源模型最有分量的一次发布。有人把它和 Mistral Large 4 的开放权重、DeepSeek V4.1 Flash 的低价路线放在一起，说「开放权重」已经成了中国和欧洲实验室共同的默认分发方式。</p>
+    <p>冷水则来自部署侧。IT之家在报道里点得很直接：可下载和可本地运行之间隔着一条鸿沟。5.6TB 的 BF16 权重、1.4TB 的 INT4 权重，单机消费级显卡基本不具备部署可能，连 8 卡 H100 的机器都要掂量存储和带宽。换句话说，这份「开源」服务的是云厂商、推理服务商和有集群的研究机构，不是那个想在自己 4090 上跑模型的普通开发者。</p>
+    <p>还有一个细节值得单独拎出来：为了让开放权重版本更安全，月之暗面在中期训练和 RL 两个阶段都识别并移除了网络攻击相关数据。代价是可量化的——xdev-bench-hard 上，未做削减的同管线检查点解出 <span class="key-number">90.5%</span> 的题目，最终版 K3.1 Pro 是 <span class="key-number">81.0%</span>。把「安全对齐的代价」用同一张表量出来，这在业内并不常见。</p>
+
+    <h2>五、深度解读：权重是分发渠道，不是产品</h2>
+    <p>把这两个数字放在一起看——2.8 万亿参数和 5.6TB 权重——会发现一个反直觉的结论：开放权重在这个量级上，主要不是「给社区用」，而是「给生态定标准」。真正的用户仍然是 API 调用者：Kimi.com、Kimi Work、Kimi Code、Kimi API 才是产品，权重是让云厂商敢接、让评测机构敢测、让企业敢做私有化部署的凭证。这也解释了为什么同时发了一个 Highspeed 版本，速度是 K3.1 Pro 的 2-3 倍。</p>
+    <p>对行业的三点含义。第一，开源模型的能力天花板已经贴近闭源前沿，差距从「代际」缩到「零点几个百分点」，但部署成本的天花板没动。第二，Agent 类评测正在从「回答质量」转向「执行可靠性」，Bash 报错率、任务确认率这些信号比 MMLU 更能预测真实体验。第三，安全数据的取舍开始被公开量化，未来监管和采购很可能会要求厂商披露这类「削减前后的对照数字」。</p>
+
+    <h2>六、总结</h2>
+    <p>一句话：Kimi K3.1 Pro 把「最强开放权重模型」和「最难本地部署的开放权重模型」同时做到了，<span class="key-number">65.7%</span> 的 Terminal-Bench 和 <span class="key-number">5.6TB</span> 的权重文件说的其实是同一件事——开放权重已经是大厂的模型分发渠道，而不是开发者的硬盘福利。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-2026-11-05.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://www.kimi.com/blog/kimi-k3-1-pro" target="_blank" rel="noopener">Kimi K3.1 Pro Tech Blog: Advancing Open Intelligence</a> · <a href="https://www.ithome.com/1/022/490.htm" target="_blank" rel="noopener">IT之家：月之暗面 2.8 万亿参数 Kimi K3.1 Pro 开放权重</a> · <a href="https://aihot.news/items" target="_blank" rel="noopener">AIHOT 精选</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

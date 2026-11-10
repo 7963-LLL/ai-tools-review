@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三块零返修的电路板、1000 个智能体、28.7 小时：Claude Fable 5.2 把「会写代码」变成了「能交硬件」 | suduai.top</title>
+  <meta name="description" content="Anthropic 发布 Claude Fable 5.2：FrontierCode 2.0 拿下 49.1% 历史最高分，价格降到每百万输入 8 美元；1000 个智能体 28.7 小时重证费马大定理；三块按模型设计文件直接出厂、电路零修改的电路板。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z33SFE6V0H');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447" crossorigin="anonymous"></script>
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; font-style: normal; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 360px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container content-page">
+
+  <h1>三块零返修的电路板、1000 个智能体、28.7 小时：Claude Fable 5.2 把「会写代码」变成了「能交硬件」</h1>
+  <div class="featured-meta">
+    <span>📅 2026-11-10</span><span>📖 12 分钟</span><span>模型发布 / 智能体工程</span>
+  </div>
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-11-10-1.jpg" alt="Claude 设计电子设备的完整链路：CAD 外壳、PCB 布局、固件代码、装配与成品（来源：Anthropic 官方研究页）">
+  </div>
+
+  <div class="article-body">
+
+    <p>11 月 9 日，Anthropic 发布 Claude Fable 5.2 与 Claude Mythos 5.2，两者是同一个底层模型的两个门牌。公告里塞了太多东西：FrontierCode 2.0 拿到 <span class="key-number">49.1%</span> 的历史最高分，价格降到每百万输入 <span class="key-number">8</span> 美元，1000 个智能体在 <span class="key-number">28.7</span> 小时里重证了费马大定理，三块按模型设计文件直接出厂的电路板通电即用、电路零修改。这不是一次常规迭代——它把「模型会写代码」和「模型能交付硬件」之间的距离，压到了一个季度以内。</p>
+
+    <h2>一、背景：一年前它们连电路板都排不好</h2>
+
+    <p>这条曲线有个很低的起点。据 Anthropic 官方研究页披露，一年多前他们开始测 Claude 设计基础电子电路，合作方是设计制造电路板的 Diode Computers。当时的任务是「读一颗芯片的数据手册，判断它需要哪些外围元件」，模型连电路板布局都做不可靠，也设计不出能互相装配的零件。</p>
+
+    <p>所以这次的三块板子不是天外飞来的演示。它是一条被连续训练推了一年多的曲线，和 9 月那次「几十个智能体 + 研究员指导 + Prove2Me 平台」完成的费马大定理形式化，属于同一条路线上的两个采样点。理解了这一点，才知道该兴奋在哪、不该兴奋在哪。</p>
+
+    <h2>二、核心：价格往下、分数往上，同时发生</h2>
+
+    <h3>2.1 便宜了，而且快了</h3>
+    <p>Fable 5.2 定价为每百万输入 <span class="key-number">8</span> 美元、输出 <span class="key-number">40</span> 美元，比 Fable 5.1 更低；可选的 fast mode 提到 <span class="key-number">16</span>/<span class="key-number">80</span> 美元，把 token 生成速度拉高最多 <span class="key-number">2.5</span> 倍。官方口径是输出速度比 5.1 快最多 <span class="key-number">30%</span>。</p>
+    <p>性能侧的关键数字：FrontierCode 2.0 在 Xhigh 档从 5.1 的 32.4% 直接跳到 <span class="key-number">49.1%</span>，提升 <span class="key-number">16.7</span> 个百分点；FrontierSWE v2 拿 <span class="key-number">69.9%</span>；AutomationBench 从 31.4% 涨到 <span class="key-number">51.4%</span>；OSWorld 2.1 计算机操作 <span class="key-number">89.3%</span>；带工具的 Humanity's Last Exam <span class="key-number">74.2%</span>；RoboDojo 机器人仿真从 27.6% 跳到 <span class="key-number">64.9%</span>，翻了一倍多。</p>
+    <p>更能说明问题的是性价比：在 High effort 下，Fable 5.2 与 Opus 5.5 的最高分基本持平（45.3% 对 45.5%），成本约为后者一半。也就是说，它不是在「更贵换更强」，而是在同一条成本曲线上整体东移。</p>
+
+    <h3>2.2 三块板子：从提示词到打样</h3>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-11-10-2.jpg" alt="Anthropic 官方研究页配图：电路板实物与布线示意（来源：Anthropic Research）">
+      <div class="caption">Anthropic 官方研究页配图：左侧为铜箔走线示意，右侧为真实电路板特写。</div>
+    </div>
+
+    <p>实验对象是三台设备：一个插 USB-C 的免提音箱（要求带麦克风、扬声器、蓝牙和 PCB 板载天线）、一个语音助手中枢、一只掌上电子宠物。Anthropic 给 Claude 的只有一个简单提示词，剩下的它自己走完：写设备规格、画原理图、决定元件在 PCB 上的位置、布铜线、在 CAD 里建外壳、写固件、做可制造性（DFM）检查，最后指导人类工程师按设计文件打样。</p>
+
+    <p>结果三块板子上电即用，<span class="key-number">0</span> 次电路返修。这个「零」比任何跑分都硬——电路板错一根走线就得重新打样，周期以周计。它意味着模型对几何、约束和下游影响的推理，已经能落在物理世界上。</p>
+
+    <h3>2.3 1000 个智能体，28.7 小时</h3>
+
+    <p>同一批公告里最容易被忽略、但影响最长远的是这个玩具实验：1000 个跑 Fable 5.2 早期版本的智能体，在没有 Prove2Me 平台、没有研究员 steering 的情况下，用 <span class="key-number">28.7</span> 小时复现了费马大定理的形式化证明。输出 token 只有 9 月那次的<span class="key-number">三分之一</span>，证明长度只有<span class="key-number">七分之一</span>。作为对照，9 月版本是 1 名研究员 + 几十个智能体、<span class="key-number">11</span> 天、约 <span class="key-number">60</span> 亿输出 token、<span class="key-number">1300</span> 万行 Lean 代码。</p>
+
+    <p>人类给的骨架很薄：<span class="key-number">60</span> 条待证陈述、一句话的经典路线草图、这些陈述用到的定义、以及 <span class="key-number">47</span> 条此前已证引理，再加上 lead / helper 的角色划分。没有别的指导。安全侧则是另一套工程：每个智能体跑在无网络的沙箱里，每条 shell 命令和文件编辑执行前都过一遍分类器，另有离线监控逐条审阅团队动作。</p>
+
+    <blockquote>
+      这个玩具实验表明，运行 Fable 5.2 这类模型的智能体团队，可以在精心设计的安全边界内完成宏大、长周期的目标。
+      <footer>—— Barry Zhang 等，《Safely scaling multi-agent teams with Claude Fable 5.2》，claude.dev</footer>
+    </blockquote>
+
+    <p>科学侧的另一个采样点来自 Mythos 5.2：它预测出完整的 AAV 衣壳结构（基因治疗用的病毒蛋白外壳，共 <span class="key-number">60</span> 条链）。做法是自己写代码在相邻五链分组上跑开源折叠模型，再用衣壳对称性拼合全部 60 条链；在 AAV2 上，预测结果与实验结构的误差约为<span class="key-number">一个原子宽度</span>。此外它还解决了黑洞物理里的两个开放问题。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-11-10-3.jpg" alt="Anthropic 官方发布页配图：蛋白质表面结构渲染（来源：anthropic.com）">
+      <div class="caption">Anthropic 官方发布页配图：蛋白质表面结构渲染，对应 Mythos 5.2 的结构预测能力。</div>
+    </div>
+
+    <h2>三、各方反应：同一天，三份站队</h2>
+
+    <p>评测机构 Artificial Analysis 当天给出结论：Fable 5.2 以 <span class="key-number">65</span> 分登顶 Intelligence Index v5，领先 Gemini 4 Carbon 的 <span class="key-number">60</span> 分和 Claude Opus 5.5 的 <span class="key-number">59</span> 分。这个差距不算碾压，但足以让它坐在第一的位置上。</p>
+
+    <p>应用层反应更快。Cognition 宣布 Fable 5.2 已在 Devin Desktop 和 Devin CLI 上线，并强调它在 FrontierCode 2.0 以 49.1 分排第一，且「低推理力度下用约三分之一的价格超过前代得分」。Higgsfield 把它接进 MCP，直接开 <span class="key-number">3</span> 天免费不限量。这两家不是在评测，是在抢客户——一个能自己改代码、自己布线的模型，对 agent 产品的边际价值远高于榜单上那几分。</p>
+
+    <p>竞争格局也没被甩开。FrontierCode 上 GPT-6 Astra 是 42.8%、Gemini 4 Carbon 41.1%；AutomationBench 上 Gemini 4 Carbon 的 53.9% 反而高于 Fable 5.2 的 51.4%。Anthropic 官方也在公告里明确劝退：日常编码和知识工作先用 Opus 5.5，遇到难度再向上切 Fable 或 Mythos，向下切 Sonnet 5.5 / Haiku 5.5。</p>
+
+    <p>安全侧的安排值得单独记一笔：Fable 与 Mythos 是同一个模型，差别只在门禁。Mythos 要拿到 Cyber 或生命科学验证计划（Life Sciences / Cyber Verification Program）的资格才能访问。同一个权重，两个门牌，这在主流厂商里还是第一次作为默认产品结构出现。</p>
+
+    <h2>四、深度解读：智能体的瓶颈从来不是「能不能做」</h2>
+
+    <p>第一层意义在成本结构。过去两年智能体落不了地，卡的不是单步能力，而是「每一步都要人复核」带来的人力成本。当模型同时做到更快、更便宜、更少返工，agent 的账才算得过来——三块零返修的电路板，本质上是一次人力复核成本趋零的演示。</p>
+
+    <p>第二层在治理范式。能力越强的模型越危险，这是行业共识；Anthropic 的解法不是阉割，而是分层准入：公开版带安全护栏，强能力版靠资质审核发放。这条路径如果被验证可行，会成为高危能力（生物、网络、自动化研发）的标准分发形态，而不是每家公司自己拍脑袋决定放不放。</p>
+
+    <p>第三层是别过度外推。1000 个智能体是官方自己反复强调的「玩具实验」：60 条陈述的骨架是人给的，路线草图是人给的，47 条引理是人给的，沙箱和分类器也是人装的。它证明的是「在给定问题分解下，规模化求解可行」，而不是「AI 能自己提出问题」。三块电路板同理——免提音箱和电子宠物属于低复杂度消费电子，离车规、医疗、射频前端还很远。真正的稀缺资源正在从「求解能力」移向「问题定义能力」。</p>
+
+    <h2>五、总结</h2>
+
+    <p>一句话：Fable 5.2 最重要的不是 49.1 分，而是它把「降价」和「变强」同时做到了——当能力提升不再需要加价，智能体才第一次成为一门算得过来的生意，而不再是发布会上的演示。</p>
+
+  </div>
+
+  <div class="bottom-cta">
+    <a href="daily-2026-11-10.html" class="affiliate-btn">看今日完整快报 →</a>
+  </div>
+
+  <div class="source-link">
+    <p>📌 主要信息来源：<a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" target="_blank" rel="noopener">Anthropic：Introducing Claude Fable 5.2 and Claude Mythos 5.2</a> · <a href="https://www.anthropic.com/research/claude-electronics-design" target="_blank" rel="noopener">Anthropic Research：Claude can design electronic prototypes</a> · <a href="https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/" target="_blank" rel="noopener">claude.dev：Safely scaling multi-agent teams</a> · <a href="https://x.com/ArtificialAnlys/status/2119878995386982508" target="_blank" rel="noopener">Artificial Analysis 评测</a> · <a href="https://aihot.news/items/va9trgwaw3r4por6vdqbjxrhd" target="_blank" rel="noopener">AIHOT 精选</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>88.2% 找到、54.8% 打通、71.0% 修好：Gemini 4 Carbon 把前沿模型的卖点换成了「能修漏洞」 | suduai.top</title>
+  <meta name="description" content="Google DeepMind 发布 Gemini 4 Carbon：Artificial Analysis 智能指数 59 分居首，SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%，价格与 Argon 同为每百万 token 2/10 美元，11 月 30 日后回到 4/20 美元。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z33SFE6V0H');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447" crossorigin="anonymous"></script>
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; font-style: normal; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container content-page">
+
+  <h1>88.2% 找到、54.8% 打通、71.0% 修好：Gemini 4 Carbon 把前沿模型的卖点换成了「能修漏洞」</h1>
+  <div class="featured-meta">
+    <span>📅 2026-11-12</span><span>📖 9 分钟</span><span>模型 / 安全</span>
+  </div>
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-11-12-1.jpg" alt="Gemini 4 Carbon 官方主视觉（来源：Google DeepMind 官方博客）">
+  </div>
+
+  <div class="article-body">
+
+    <p>过去一年「最强模型」这句话基本等于「更会写代码、更会考试」。Google DeepMind 这次换了口径：Gemini 4 Carbon 的官方发布稿第一段写的是「网络安全能力和长程智能体工作流」。给出的三组数字很具体——发现漏洞 <span class="key-number">88.2%</span>（SEC-bench Pro）、验证可利用性 <span class="key-number">54.8%</span>（ExploitGym）、生成根因补丁 <span class="key-number">71.0%</span>（CWE-bench v1）。捡漏、验证、修好，一条完整的防守链路，这是第一次有人把模型的 SOTA 打在这三个位置上。</p>
+
+    <h2>一、背景：先给防守方，再给所有人</h2>
+
+    <p>Carbon 不是空降的。两周前 Google 刚发布 Gemini 4 Argon，官方定位是「多数软件工程和知识工作的理想选择」；Carbon 则明确只做难任务——复杂多步调试、开放式科研，代价是用更多 token 去探索和验证。同一系列分成「够用」和「够深」两档，这是把 API 定价权分层的第一步。</p>
+
+    <p>更值得注意的是发布顺序。Google 先通过 Fairwind Program 把 Carbon 交给一批网络安全防守方，同时参与美国政府的前沿模型预发布测试流程，然后才向开发者、企业和普通用户开放。这个顺序在讲一件事：一个 88.2% 能自己找漏洞的模型，先被交到修漏洞的人手里。公平地说，这也是最好的市场教育——让安全团队先替你写案例。</p>
+
+    <h2>二、核心内容：一份不再只谈「聪明」的成绩单</h2>
+
+    <p>官方给出的外部基准里，最显眼的是 Artificial Analysis 智能指数 v5.0 上的 <span class="key-number">59</span> 分，排名第一。工程侧另有三组：CursorBench 4.0 在 high effort 下拿到 <span class="key-number">60.4%</span> 居首；WebDev Arena 上涨 <span class="key-number">89</span> elo 到 <span class="key-number">1768</span>，排第 <span class="key-number">4</span>；在 Perplexity 的 WANDR 和 Zapier 的 AutomationBench 上同样第一。</p>
+
+    <p>但官方真正想让人看的是成本那一列：在上述三个基准上，Carbon 的单任务成本比第二名的外部模型低 <span class="key-number">2</span> 倍以上；在和 Artificial Analysis 共同发布的多模态知识智能体基准 MKA 上排第二，单任务平均成本比第一名低 <span class="key-number">6</span> 倍以上。这句话的意思是，它不打算赢在峰值，而是赢在「跑一次多少钱」。</p>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-11-12-2.png" alt="Gemini 4 Carbon 官方评测表（来源：blog.google 官方发布稿）">
+      <div class="caption">Google 官方评测表：Carbon 在编码、智能体与网络安全三类基准上的位置（来源：blog.google）</div>
+    </div>
+
+    <p>价格把这套逻辑钉死了。Carbon 与 Argon 同价：输入每百万 token <span class="key-number">2</span> 美元、输出 <span class="key-number">10</span> 美元，缓存输入再打 95% 折扣。但这是「introductory price」——<span class="key-number">11 月 30 日</span>之后回到输入 <span class="key-number">4</span> 美元、输出 <span class="key-number">20</span> 美元。也就是说，现在这两个月是一个明确的时间窗：想压成本跑评测的团队，窗口只剩两周多。</p>
+
+    <h3>2.1 它卖的不只是模型，是「一个团队」</h3>
+
+    <p>同步预览的还有 Antigravity 里的 <code>/swarm</code>：一条提示词变成一个可实时追踪的智能体团队，Carbon 被安排去做架构设计、协调和审计这类最吃推理的角色，轻模型负责并行隔离工作区里的执行，另有一组对抗性验证器专门挑每个改动的毛病。官方给的案例都不小：7 份市政规划 PDF、<span class="key-number">206</span> 个工程图纸视图、一条提示词，一夜 <span class="key-number">10</span> 轮循环，产出 <span class="key-number">90.6</span> 万三角面的 Three.js 办公楼重建；还有用 CAD 图纸和 X 光片复原一台 61 键击弦机构的 1780 年古钢琴，放进带座位声学的音乐厅模型里。</p>
+
+    <p>科研侧的数据更硬。Google 的 AlphaProof Code 用 Carbon 生成数百万行 Lean 代码，把 Signal 协议的实际实现代码形式化验证了一遍——官方说法是，这类工作历史上要专家团队做几年。蛋白质结构预测那条线上，Carbon 在多智能体设置里跨 petabase 级未标注序列库检索远端同源序列，在 CASP17 盲测的 7 个低同源蛋白家族上把检索到的同源序列数量平均提高 <span class="key-number">40</span> 倍，且不需要重训模型。</p>
+
+    <h2>三、各方反应：从「基准第一」到「产线可用」</h2>
+
+    <p>Cursor 是最早给出独立数字的一方：high effort 下 CursorBench 4.0 得分 <span class="key-number">60.4%</span> 居首，配图标注成本 <span class="key-number">9.22</span> 美元。Wiz 说 Carbon 在其网页渗透测试基准上领先。Google 自家 Chrome 团队的说法更夸张：生成高质量补丁时，比另一家实验室的大型前沿模型好 <span class="key-number">10</span> 倍以上；内部基准上，Carbon 在开源仓库测试中相对 Argon 的召回率提升超过 <span class="key-number">25%</span>，还翻出了此前没人发现的真实逻辑缺陷。Cloud Vulnerability Research 团队用它把两个开源软件的 bug 从「疑似」证成「可实际利用」，帮助维护者改判为严重并紧急修复。</p>
+
+    <blockquote>
+      在扫描两家大型 SaaS 供应商时，模型在不到两小时内发现了 0-day 漏洞，把原本需要数周的漏洞研究压缩成一个下午。
+      <footer>—— Google DeepMind 官方发布稿（Carbon 安全能力部分）</footer>
+    </blockquote>
+
+    <div class="inline-img">
+      <img src="images/featured-2026-11-12-3.png" alt="Gemini 4 Carbon 在 CWE-bench 补丁生成基准上的官方图表（来源：blog.google）">
+      <div class="caption">官方图表：CWE-bench 上的补丁生成表现（来源：blog.google 官方发布稿）</div>
+    </div>
+
+    <p>对齐侧的数据同样给得很细，这在发布稿里不常见：Terminal-Bench 4.0 上的「作弊成功」降到 <span class="key-number">0.0%</span>，作弊尝试降到 <span class="key-number">0.4%</span>；内部团队实测中高危失准告警下降近 <span class="key-number">80%</span>；无依据论断减少约 <span class="key-number">2</span> 倍；在 Gray Swan 的间接提示注入基准上，攻击成功率从 Argon 的 <span class="key-number">0.7%</span> 降到 <span class="key-number">0.0%</span>；越权行为减少 <span class="key-number">26%</span>、服务不足减少 <span class="key-number">29%</span>。</p>
+
+    <h2>四、深度解读：三个变化</h2>
+
+    <p>第一，评测的话语权正在从「分数」转向「每任务成本」。Carbon 在两个基准上都不是绝对第一（MKA 第二），但都把成本压到对手的 1/2 到 1/6。这不是谦虚，是把竞争轴换了：当所有前沿模型的分数挤在 5 个百分点内，采购决策看的就是跑完一个任务的账单。OpenRouter 这两天连着发的几篇实测——量化精度对价格的影响、MCP 与 CLI 的上下文成本、Agent 无限循环烧钱——说的都是同一件事。</p>
+
+    <p>第二，安全能力开始成为商业卖点而不是合规成本。SEC-bench Pro 88.2%、两个开源软件 bug 被证成可利用、两小时挖出 0-day，这些是能写进采购 PPT 的句子。对一家企业来说，「能替我修漏洞」比「MMLU 高两分」好卖得多。</p>
+
+    <p>第三，<code>/swarm</code> 说明编排正在产品化。模型公司不再只卖 token，而是卖「一个可管理的智能体团队 + 追踪面板 + 验证器」。一旦开发者习惯在 Antigravity 里管一批 agent，迁移成本就从「换个 API key」变成「重写工作流」。</p>
+
+    <h2>五、总结</h2>
+
+    <p>Carbon 的意义不在于它又多考了几分，而在于 Google 把「前沿」的定义从「更聪明」改成了「能闭环修好一个真实漏洞，并且便宜到可以天天跑」。11 月 30 日之后价格翻倍，这个时间点会替很多人做完决定。</p>
+
+    <div class="bottom-cta">
+      <a href="daily-2026-11-12.html" class="affiliate-btn">看今日完整快报 →</a>
+    </div>
+
+    <p class="source-link">原文：<a href="https://deepmind.google/blog/gemini-4-carbon-is-now-available/" target="_blank" rel="noopener">Gemini 4 Carbon is now available — Google DeepMind Blog</a> ｜ 数据另见 <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/" target="_blank" rel="noopener">blog.google 发布稿</a></p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

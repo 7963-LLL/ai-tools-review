@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 小时、5000 人、两个版本号：Cursor 把 AI 编程工具的供应链风险摊开了 | suduai.top</title>
+  <meta name="description" content="Cursor 公布 10 月 29 日安全事件的完整调查：攻击者从 Fireworks 泄露的访问密钥入手，把篡改过的 Claude Code 扩展（2.1.312 / 2.1.313）放进 Cursor 扩展市场缓存，挂着约 11 小时，最多 5000 名用户可能装到；不到 0.01% 客户的 API 凭证暴露。">
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z33SFE6V0H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z33SFE6V0H');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469472392292447" crossorigin="anonymous"></script>
+<style>
+.content-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+.key-number { color: #2563eb; font-weight: 700; font-size: 1.1em; }
+blockquote { border-left: 4px solid #2563eb; margin: 1.5rem 0; padding: 0.8rem 1.2rem; background: #f8fafc; border-radius: 0 8px 8px 0; font-style: italic; color: #374151; }
+blockquote footer { margin-top: 0.5rem; font-size: 0.85rem; color: #6b7280; font-style: normal; }
+.featured-hero { margin-bottom: 2rem; }
+.featured-hero img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 12px; }
+.featured-meta { color: #6b7280; font-size: 0.9rem; margin: 1rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #2563eb; padding-left: 0.8rem; }
+.article-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.8rem; color: #1f2937; }
+.article-body p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
+.article-body ul { margin: 1rem 0; padding-left: 1.5rem; }
+.article-body li { margin-bottom: 0.5rem; line-height: 1.7; color: #374151; }
+.inline-img { margin: 1.5rem 0; text-align: center; }
+.inline-img img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.inline-img .caption { font-size: 0.82rem; color: #9ca3af; margin-top: 0.4rem; }
+.bottom-cta { margin: 3rem 0 1rem; text-align: center; }
+.bottom-cta .affiliate-btn { display: inline-block; padding: 0.8rem 2rem; }
+.source-link { color: #6b7280; font-size: 0.85rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="logo">AI<span>快报</span></a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="chatgpt-vs-claude.html">ChatGPT vs Claude</a>
+      <a href="best-ai-writing-tools.html">写作</a>
+      <a href="best-ai-image-tools.html">图像</a>
+      <a href="best-ai-coding-tools.html">编程</a>
+      <a href="best-ai-video-tools.html">视频</a>
+      <a href="best-ai-voice-tools.html">语音</a>
+      <a href="daily.html">每日快报</a>
+      <a href="about.html">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container content-page">
+
+  <h1>11 小时、5000 人、两个版本号：Cursor 把 AI 编程工具的供应链风险摊开了</h1>
+  <div class="featured-meta">
+    <span>📅 2026-11-14</span><span>📖 7 分钟</span><span>行业 / 安全</span>
+  </div>
+
+  <div class="featured-hero">
+    <img src="images/featured-2026-11-14-1.png" alt="Cursor 官方品牌标识（来源：cursor.com 官方品牌资源）">
+  </div>
+
+  <div class="article-body">
+
+    <p>11 月 13 日，Cursor 发布了那份拖了两周的调查报告，标题很克制：<em>An update on our recent security incident</em>。里面有几个数字值得记住——恶意扩展在市场里挂了约 <span class="key-number">11</span> 小时，最多 <span class="key-number">5000</span> 名用户可能下载到，受影响的版本号只有两个（<span class="key-number">2.1.312</span> 和 <span class="key-number">2.1.313</span>），不到 <span class="key-number">0.01%</span> 的客户有 API 凭证暴露。整件事的起点不是 Cursor 自己的服务器，而是一把发给第三方的访问密钥。</p>
+
+    <p>这是 AI 编程工具第一次把完整的攻击链公开写出来。它同时暴露了一个很少被讨论的事实：这类工具的信任，最后其实是建在扩展市场的一层缓存上的。</p>
+
+    <h2>一、背景：为什么偏偏是编程工具</h2>
+
+    <p>Cursor 是过去两年增长最快的 AI 编程工具之一，用户每天把整个仓库、终端输出、API key 和长达数小时的 agent 会话记录交给它。这类数据的价值密度比聊天记录高一个量级：聊天里最多有几句抱怨，代码里有生产环境的连接串。</p>
+
+    <p>而它的分发依赖于 VS Code 扩展市场的镜像与缓存。为了保证全球下载速度，扩展包会被缓存在离用户最近的节点上。源站干净不代表缓存干净——这次出问题的正是缓存。<strong>Open VSX 官方源站自始至终没有恶意包</strong>，被投毒的是 Cursor 用于分发扩展的那层缓存。</p>
+
+    <h2>二、攻击链：一把钥匙，四步走到底</h2>
+
+    <p>Cursor 的调查把过程拆得很清楚，几乎没有留想象空间：</p>
+
+    <ul>
+      <li><strong>第一把钥匙来自 Fireworks。</strong>攻击者拿到了 Cursor 发给 Fireworks 的访问密钥。这把密钥是 Fireworks 自己泄露出去的，权限是只读——足够读，不必写。</li>
+      <li><strong>只用只读权限就拿到了训练数据。</strong>那把密钥能读一个只读存储桶，里面是 Cursor 与 Fireworks 共享的 coding agent trace，主要是 <span class="key-number">2025</span> 年的会话，来自未开启 Privacy Mode 的用户，用途是模型训练。少数 trace 里的凭证没有脱敏。</li>
+      <li><strong>从凭证横向到内部系统。</strong>攻击者用这些凭证进入了 Cursor 在用的若干 SaaS 工具，拿到归档的非生产代码仓库、部分客服数据与邮件、产品使用指标，以及一些用户发给客服的凭证。</li>
+      <li><strong>最后一步是缓存投毒。</strong>10 月 29 日，攻击者用从内部系统偷到的凭证，把 Anthropic Claude Code 扩展的篡改版本直接放进了扩展市场用来分发的那层缓存。Anthropic 没有发布过这个版本，这也不是 Anthropic 产品的漏洞。</li>
+    </ul>
+
+    <blockquote>
+      「最多有 5,000 名在 10 月 29 日请求了特定缓存版本扩展的用户，可能收到了这个恶意构建。它在被我们移除前存在了大约 11 个小时。」
+      <footer>—— Cursor 安全事件调查报告，2026 年 11 月 13 日</footer>
+    </blockquote>
+
+    <h2>三、损失到底有多大</h2>
+
+    <p>Cursor 这次把「没有受影响」的部分也逐条列了出来，这在同类通报里不常见，但也正因为列得细，边界才看得清：</p>
+
+    <p>受影响的是 <span class="key-number">0.05%</span> 以内用户的 coding agent trace（未开 Privacy Mode 的那部分）、不到 <span class="key-number">0.01%</span> 客户的 API 凭证、部分归档的非生产代码仓库、部分客服对话，以及那 <span class="key-number">5000</span> 名可能装到恶意扩展的用户。公司称已逐一通知，未收到通知即代表数据不在其中。</p>
+
+    <p>没有受影响的是：开启 Privacy Mode 的提示词与代码、客户代码仓库、生产系统、Cursor 客户端与其官方更新、发布签名密钥、其他任何扩展，以及从 Cursor Marketplace 下载的插件。Cursor 特别说明，它用另一套代码托管系统发布客户端，攻击者从未接触到那套系统。</p>
+
+    <h2>四、各方反应与处置清单</h2>
+
+    <p>Anthropic 这边的态度很明确：那个版本不是它发的，问题不在 Claude Code。Cursor 的处置则基本按「先切断、再重建」的顺序做完了一遍——把所有推理流量迁离 Fireworks、停用密钥、切断它对共享数据集的访问；按风险从高到低轮换全部暴露凭证，最后把内部系统在用的凭证也一并轮换，即便没有证据表明被用；重建整个扩展市场并逐个校验扩展真实性；给所有代码仓库加上密钥扫描；把生产基础设施整体重新部署，逐个服务复核后才恢复对外。</p>
+
+    <p>时间线也给了：10 月 29 日发现并下线，10 月 30 日发布安全公告与排查脚本，11 月 1 日之后攻击者再没有活动，<span class="key-number">11</span> 月 13 日交出完整报告。外部取证团队介入。</p>
+
+    <p>行业层面的反应比公司声明更值得看。企业采购最先问的三个问题变了：你的 coding agent trace 会不会进训练集、扩展市场的缓存由谁管、供应商密钥泄露算谁的责任。这三个问题，Cursor 这次各答了一遍，答案都不算漂亮。</p>
+
+    <h2>五、真正值得记住的三件事</h2>
+
+    <h3>1. 训练数据是负债，不是资产</h3>
+
+    <p>整条攻击链的入口，是一个「为了训练模型而保留的历史 trace 桶」。这些数据在 2025 年产生，到 2026 年 10 月还在，还在被第三方读取。对用户来说，这意味着一句简单的判断：<strong>你今天没开 Privacy Mode 敲下的代码，可能在一年后仍然构成一个可被读取的存储桶。</strong>模型效果是当期收益，数据留存是长期负债，这次是负债先到期。</p>
+
+    <h3>2. 缓存层是供应链上最便宜的攻击面</h3>
+
+    <p>打源站要过审核、签名、发布流程；打缓存只要一把能写的凭证。攻击者绕开了 Open VSX 的全部校验，直接往离用户最近的节点塞包。所有依赖镜像、CDN、企业内网代理的软件分发体系，都有同一个洞——只是大部分公司还没被撞上。</p>
+
+    <h3>3. 发给第三方的密钥就是你自己的边界</h3>
+
+    <p>Fireworks 是训练与推理供应商，那把密钥是「只读」的。但只读意味着可复制：攻击者不需要写权限，只需要读走数据，再用数据里的凭证往上爬。把数据共享给第三方做训练，等于把安全边界画到了对方的运维水平上。</p>
+
+    <h2>六、总结</h2>
+
+    <p>5000 个用户、11 小时、两个版本号，数字不大，但它证明了一件不小的事：AI 编程工具的风险不在模型会不会写错代码，而在它为了训练和加速而保留、共享、缓存的那部分东西。下一步大概会有三件事发生——Privacy Mode 从「可选」变成默认、扩展分发开始做签名与来源校验、供应商密钥的权限被切到「只能读一个桶而且那个桶会过期」。这三件都不难，难的是在没出事之前做。</p>
+
+    <div class="bottom-cta">
+      <a href="daily-2026-11-14.html" class="affiliate-btn">看今日完整快报 →</a>
+    </div>
+
+    <p class="source-link">原文：<a href="https://cursor.com/blog/security-incident-update" target="_blank" rel="noopener">An update on our recent security incident — Cursor Blog</a> ｜ 另见 <a href="https://aihot.news/items/e9o5h2c1o5f0xuh2bgqtc2w7k" target="_blank" rel="noopener">AI 热点条目</a></p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>AI快报站 © 2026</p>
+    <p style="margin-top:2px;"><a href="privacy-policy.html">隐私政策</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
